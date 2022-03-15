@@ -1,16 +1,16 @@
 const path = require('path');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'components', 'index.js'),
+  entry: path.resolve(__dirname, 'scripts', 'popup.js'),
   output: {
     path: path.resolve(__dirname, 'assets'),
-    filename: 'index.js'
+    filename: 'popup.js'
   },
   module: {
     rules: [
       {
         test: /\.(jsx|js)$/,
-        include: path.resolve(__dirname, 'src'),
+        include: path.resolve(__dirname, 'scripts'),
         exclude: /node_modules/,
         use: [{
           loader: 'babel-loader',
