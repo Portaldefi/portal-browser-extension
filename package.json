@@ -23,6 +23,7 @@
   "homepage": "https://github.com/FabricLabs/fabric-browser-extension#readme",
   "dependencies": {
     "@fabric/core": "martindale/fabric#swaps-develop",
+    "@fabric/http": "martindale/fabric-http#feature/react",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
