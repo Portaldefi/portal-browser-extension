@@ -1,7 +1,14 @@
-import React from 'react';
-import { Header, Image,  } from 'semantic-ui-react';
+import React, { useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Header, Image, Button } from 'semantic-ui-react';
 
 export default () => {
+  const navigate = useNavigate();
+
+  const handleStart = useCallback(() => {
+    navigate('/select-action');
+  }, []);
+
   return (
     <>
       <Header className="app-header" as='h1' inverted textAlign='center'>
@@ -11,6 +18,7 @@ export default () => {
       <div className='branding'>
         Safe & Stable & ... Wallet
       </div>
+      <Button color='teal' size='huge' onClick={handleStart}>Start Wallet</Button>
     </>
   )
 }

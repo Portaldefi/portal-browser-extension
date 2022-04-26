@@ -208,6 +208,10 @@ module.exports = (env) => {
             from: 'public/icons',
             to: 'icons',
           }),
+          ifDirIsNotEmpty(path.join(__dirname, 'public', 'images'), {
+            from: 'public/images',
+            to: 'images',
+          }),
           {
             from: 'public/manifest.json',
             transform: (buffer) => {
