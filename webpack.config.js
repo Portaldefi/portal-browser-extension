@@ -96,7 +96,7 @@ module.exports = (env) => {
       ...getEntries('scripts', 'index.ts'),
     }),
     output: {
-      path: path.resolve(__dirname, 'build'),
+      path: path.resolve(__dirname, 'assets'),
       filename: 'js/[name].js',
     },
     module: {
@@ -166,7 +166,7 @@ module.exports = (env) => {
 
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: 'public/index.html',
+        template: 'build/index.html',
         chunks: ['index'],
       }),
       ifProd(
@@ -209,16 +209,16 @@ module.exports = (env) => {
       ...setUIElementHtml(),
       new CopyPlugin({
         patterns: removeEmpty([
-          ifDirIsNotEmpty(path.join(__dirname, 'public', 'icons'), {
-            from: 'public/icons',
+          ifDirIsNotEmpty(path.join(__dirname, 'build', 'icons'), {
+            from: 'build/icons',
             to: 'icons',
           }),
-          ifDirIsNotEmpty(path.join(__dirname, 'public', 'images'), {
-            from: 'public/images',
+          ifDirIsNotEmpty(path.join(__dirname, 'build', 'images'), {
+            from: 'build/images',
             to: 'images',
           }),
           {
-            from: 'public/manifest.json',
+            from: 'build/manifest.json',
             transform: (buffer) => {
               const manifestJson = JSON.parse(buffer.toString());
               manifestJson.name = pkgJson.name;
@@ -268,8 +268,8 @@ module.exports = (env) => {
       host: 'localhost',
       open: true, // open the browser after server had been started
       compress: true,
-      overlay: true, // show compiler errors in the browser
-      static: path.join(__dirname, 'public'),
+      // overlay: true, // show compiler errors in the browser
+      static: path.join(__dirname, 'build'),
     },
     stats: {
        errorDetails: true,
