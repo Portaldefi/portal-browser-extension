@@ -18,7 +18,7 @@ export default () => {
       }
     ]));
 
-    chrome.action.setPopup('popup.html');
+    chrome.action.setPopup({ popup: 'popup.html' });
   }, []);
 
   const handleCreate = useCallback(() => {
