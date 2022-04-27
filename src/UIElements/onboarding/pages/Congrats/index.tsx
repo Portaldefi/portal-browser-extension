@@ -11,14 +11,9 @@ export default () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(setItems([
-      {
-        title: 'Back',
-        link: '/select-action',
-      }
-    ]));
+    dispatch(setItems([]));
 
-    chrome.action.setPopup({ popup: 'popup.html' });
+    chrome.action.setPopup({ popup: 'index.html' });
   }, []);
 
   const handleCreate = useCallback(() => {

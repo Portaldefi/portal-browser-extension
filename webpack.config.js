@@ -83,7 +83,7 @@ module.exports = (env) => {
   return {
     mode: ifProd('production', 'development'),
     entry: removeEmpty({
-      // index: './src/index.tsx',
+      index: './src/index.tsx',
       popup: ifDirExists('popup', path.join(__dirname, 'src/popup/index.tsx')),
       options: ifDirExists('options', './src/options/index.tsx'),
       onboarding: ifDirExists('onboarding', './src/onboarding/index.tsx'),
@@ -164,6 +164,11 @@ module.exports = (env) => {
         cleanStaleWebpackAssets: false, // don't remove index.html when using the flag watch
       }),
 
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'public/index.html',
+        chunks: ['index'],
+      }),
       ifProd(
         new MiniCssExtractPlugin({
           filename: 'css/[name].css',
