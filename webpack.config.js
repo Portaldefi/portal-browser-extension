@@ -142,6 +142,10 @@ module.exports = (env) => {
             'css-loader',
             'sass-loader',
           ]),
+          include: [
+            path.join(__dirname, 'src'),
+            /node_modules/
+          ],
         },
         {
           test: /\.(png|svg|jpe?g|gif)$/i,
@@ -163,7 +167,6 @@ module.exports = (env) => {
       new CleanWebpackPlugin({
         cleanStaleWebpackAssets: false, // don't remove index.html when using the flag watch
       }),
-
       new HtmlWebpackPlugin({
         filename: 'index.html',
         template: 'build/index.html',

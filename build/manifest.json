@@ -1,25 +1,22 @@
 {
   "name": "@fabric/passport",
   "description": "Sign in to websites using Fabric.",
-  "version": "0.0.1-dev",
+  "version": "0.1.0",
   "manifest_version": 3,
   "background": {
     "service_worker": "serviceWorker.js"
   },
-  "permissions": [
-    "storage",
-    "activeTab",
-    "scripting"
-  ],
   "action": {
     "default_icon": {
       "16": "icons/icon16.png",
       "24": "icons/icon24.png",
       "32": "icons/icon32.png"
     },
-    "default_title": "Click Me",
-    "default_popup": "popup.html"
+    "default_title": "Fabric Wallet"
   },
+  "permissions": [
+    "tabs", "storage"
+  ],
   "content_scripts": [
     {
       "matches": ["*://*/*"],
