@@ -5,7 +5,9 @@ import { store } from './store';
 import AppLoader from './layouts/AppLoader';
 
 import 'semantic-ui-css/semantic.min.css';
-import './App.scss';
+// import './App.scss';
+import '../../styles/global.scss';
+import '../../styles/onboarding.scss';
 
 const App = () => {
   return (

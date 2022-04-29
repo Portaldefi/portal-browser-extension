@@ -1,0 +1,48 @@
+@import './color.scss';
+@import './size.scss';
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap');
+
+.ui.board {
+  background-color: white;
+  width: $boardSize;
+  top: 30vh;
+  border-radius: 16px;
+  margin: 0 auto;
+  font-family: 'Public-Sans';
+
+  .heading, .description {
+    font-family: 'Public Sans', sans-serif;
+    font-style: normal;
+  }
+  .heading {
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 24px;
+    color: black;
+  }
+  .description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .row {
+    padding: 12px 24px;
+
+    &:first-child {
+      padding-top: 24px;
+    }
+    &:last-child {
+      padding-bottom: 24px;
+    }
+  }
+
+  .primary-button {
+    margin: 0;
+    padding: 9px 16px;
+    width: 100%;
+    background-color: $accent;
+    color: white;
+    border-radius: 8px;
+    line-height: 24px;
+  }
+}
