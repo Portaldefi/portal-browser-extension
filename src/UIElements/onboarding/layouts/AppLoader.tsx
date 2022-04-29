@@ -12,6 +12,7 @@ import ImportWallet from '../pages/ImportWallet';
 import CreateWallet from '../pages/CreateWallet';
 import SeedIntro from '../pages/SeedIntro';
 import SeedPhrase from '../pages/SeedPhrase';
+import RestoreSeedPhrase from '../pages/RestoreSeedPhrase';
 import Congrats from '../pages/Congrats';
 
 const AppLoader = () => {
@@ -28,6 +29,7 @@ const AppLoader = () => {
           <Route path='create-wallet' element={<CreateWallet />} />
           <Route path='seed-phrase-intro' element={<SeedIntro />} />
           <Route path='seed-phrase' element={<SeedPhrase />} />
+          <Route path='seed-phrase-restore' element={<RestoreSeedPhrase />} />
           <Route path='congrats' element={<Congrats />} />
         </Routes>
       </Router>

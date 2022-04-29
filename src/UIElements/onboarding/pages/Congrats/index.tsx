@@ -1,47 +1,55 @@
 import React, { useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Form, Grid, Header, Segment } from 'semantic-ui-react';
-
-import { setItems } from '../../slices/menuSlice';
-import { setSRFLength, setSRFList } from '../../slices/phraseSlice';
-import { useAppDispatch } from '../../hooks';
+import { useLocation } from 'react-router-dom';
+import { Form, Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
 
 export default () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { state: { mode: connectMode } } = location;
 
   useEffect(() => {
-    dispatch(setItems([]));
-
     chrome.action.setPopup({ popup: 'index.html' });
   }, []);
-
-  const handleCreate = useCallback(() => {
-    // TODO: Backend interaction
-    dispatch(setSRFLength(12));
-    dispatch(setSRFList([
-      'minor', 'regret', 'daring', 'perfect', 'tenant', 'surge', 'they', 'section', 'mobile', 'bottom', 'vacant', 'cheese'
-    ]));
-
-    navigate('/seed-phrase-intro');
-  }, []);
+  console.log(connectMode);
   
   return (
-    <Segment size='big'>
-      <Header size='large' as='h1'>🎉<br/>Congratulations</Header>
-      <Grid centered columns={1}>
-        <Grid.Column width='eight'>
-          <div>
-          You passed the test - keep your Secret Recovery Phrase safe, it's your responsibility! <br />
-          <strong>Tips on storing it safely</strong> <br />
-          • Save a backup in multiple places. <br />
-          • Never share the phrase with anyone. <br />
-          • Be careful of phishing! MetaMask will never spontaneously ask for your Secret Recovery Phrase. <br />
-          • If you need to back up your Secret Recovery Phrase again, you can find it in Settings -> Security. <br />
-          • If you ever have questions or see something fishy, contact our support here. <br />
-          *MetaMask cannot recover your Secret Recovery Phrase. Learn more. <br />
-          </div>
-        </Grid.Column>
+    <Segment className='board'>
+      <Grid>
+        <Grid.Row centered>
+          <Header size='medium' className='heading'>
+            { connectMode === 'create'
+              ? "Your Wallet Is All Setup, Congratulations!"
+              : "Welcome back!"
+            }
+          </Header>
+        </Grid.Row>
+        { connectMode === 'create'
+        ? <>
+            <Grid.Row centered>
+              <Header as='p' size='small' color='grey' className='description'>
+                You are now ready to connect to Fabric web3 applications. 
+              </Header>
+            </Grid.Row>
+            <Grid.Row centered>
+              <Header as='p' size='small' color='grey' className='description'>
+                Remember to back up your seed in a secure location. 
+              </Header>
+            </Grid.Row>
+          </>
+        : <Grid.Row centered>
+            <Header as='p' size='small' color='grey' className='description'>
+              Your waller is now ready to connect to Fabric web3 applications.
+            </Header>
+          </Grid.Row>
+        }
+        <Grid.Row centered>
+          <Image src='/images/onboarding/Congrats.png' />
+        </Grid.Row>
+        <Grid.Row centered columns={1}>
+          <Grid.Column>
+            <Button className='primary-button' onClick={() => {}}>Confirm</Button>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </Segment>
   )

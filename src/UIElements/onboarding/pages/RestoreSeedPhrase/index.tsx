@@ -6,22 +6,17 @@ export default () => {
   const navigate = useNavigate();
 
   const handleBack = useCallback(() => {
-    navigate('/select-action');
+    navigate('/seed-phrase');
   }, []);
   const handleConfirm = useCallback(() => {
-    navigate('/congrats', { state: { mode: 'import' } });
+    navigate('/congrats', { state: { mode: 'create' } });
   }, []);
 
   return (
     <Segment className='board'>
       <Grid>
         <Grid.Row centered>
-          <Header size='medium' className='heading'>Import Seed Phrase</Header>
-        </Grid.Row>
-        <Grid.Row>
-          <Header as='p' size='small' color='grey' className='description'>
-            Enter your seed phrase from a previously backed up Portal wallet.
-          </Header>
+          <Header size='medium' className='heading'>Restore Seed Phrase</Header>
         </Grid.Row>
         <Grid.Row centered>
           <Form className='form-container'>
@@ -46,6 +41,11 @@ export default () => {
               <Form.Input label="12." width={16} />
             </Form.Group>
           </Form>
+        </Grid.Row>
+        <Grid.Row>
+          <Header as='p' size='small' color='grey' className='description extra-former-blank extra-latter-blank'>
+            WARNING: Improper backup of the seed phrase will result in loss of funds!
+          </Header>
         </Grid.Row>
         <Grid.Row centered columns={2}>
           <Grid.Column>
