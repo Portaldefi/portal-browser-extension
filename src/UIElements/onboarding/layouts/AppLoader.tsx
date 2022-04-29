@@ -2,8 +2,6 @@ import React from 'react';
 import { HashRouter as Router, Navigate, Routes, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 
-import Menu from './Menu';
-
 import Welcome from '../pages/Welcome';
 import Intro from '../pages/Intro';
 import OurGoal from '../pages/OurGoal';

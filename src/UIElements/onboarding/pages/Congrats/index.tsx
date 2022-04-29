@@ -2,10 +2,16 @@ import React, { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Form, Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
 
-export default () => {
-  const location = useLocation();
+type LocationState = {
+  state: {
+    mode: string;
+  }
+}
 
-  const { state: { mode: connectMode } } = location;
+export default () => {
+  const location = useLocation<LocationState>();
+
+  const { state: { mode: connectMode } } = location as LocationState;
 
   useEffect(() => {
     chrome.action.setPopup({ popup: 'index.html' });

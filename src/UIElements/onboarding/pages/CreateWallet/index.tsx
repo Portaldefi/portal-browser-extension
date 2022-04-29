@@ -1,54 +1,46 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, Grid, Header, Segment } from 'semantic-ui-react';
-
-import { setItems } from '../../slices/menuSlice';
-import { setSRFLength, setSRFList } from '../../slices/phraseSlice';
-import { useAppDispatch } from '../../hooks';
+import { Header, Image, Button, Grid, Segment, Icon, Form } from 'semantic-ui-react';
 
 export default () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    dispatch(setItems([
-      {
-        title: 'Back',
-        link: '/select-action',
-      }
-    ]));
+  const handleBack = useCallback(() => {
+    navigate('/select-action');
+  }, []);
+  const handleConfirm = useCallback(() => {
+    navigate('/seed-phrase-intro', { state: { mode: 'create' } });
   }, []);
 
-  const handleCreate = useCallback(() => {
-    // TODO: Backend interaction
-    dispatch(setSRFLength(12));
-    dispatch(setSRFList([
-      'minor', 'regret', 'daring', 'perfect', 'tenant', 'surge', 'they', 'section', 'mobile', 'bottom', 'vacant', 'cheese'
-    ]));
-
-    navigate('/seed-phrase-intro');
-  }, []);
-  
   return (
-    <Segment size='big'>
-      <Header size='large' as='h1'>Create Password</Header>
-      <Grid centered columns={1}>
-        <Grid.Column width='eight'>
-          <Form onSubmit={handleCreate}>
-            <Form.Field>
-              <Form.Input label='New password (8 characters min)' size='big' type='password' />
-            </Form.Field>
-            <Form.Field>
-              <Form.Input label='Confirm password' size='big' type='password' />
-            </Form.Field>
-            <Form.Field>
-              <Form.Checkbox label={{children: <div>I have read and agree to the <a>Terms of Use</a></div>}} />
-            </Form.Field>
-            <Form.Button type='submit' size='large' color='blue'>
-              Create
-            </Form.Button>
+    <Segment className='board'>
+      <Grid>
+        <Grid.Row centered>
+          <Header size='medium' className='heading'>Create Password</Header>
+        </Grid.Row>
+        <Grid.Row centered>
+          <Form className='form-container'>
+            <Form.Group inline widths={1}>
+              <Form.Input label="Password" width={8} type='password' />
+            </Form.Group>
+            <Form.Group inline widths={1}>
+              <Form.Input label="Confirm" width={8} type='password' />
+            </Form.Group>
           </Form>
-        </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Header as='p' size='small' color='grey' className='description extra-former-blank extra-latter-blank'>
+            WARNING: Improper backup of the seed phrase will result in loss of funds!
+          </Header>
+        </Grid.Row>
+        <Grid.Row centered columns={2}>
+          <Grid.Column>
+            <Button className='blank-button' onClick={handleBack}><Icon name='angle left' />Back</Button>
+          </Grid.Column>
+          <Grid.Column>
+            <Button className='primary-button' onClick={handleConfirm}>Confirm</Button>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     </Segment>
   )

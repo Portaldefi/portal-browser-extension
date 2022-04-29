@@ -45,7 +45,7 @@
     .fields {
       margin: 0 20px;
 
-      label, input[type="text"] {
+      label, input[type="text"], input[type="password"] {
         font-family: 'Inter', sans-serif;
         font-style: normal;
         font-weight: 700;
@@ -55,9 +55,12 @@
       label {
         margin: 0;
       }
-      input[type="text"] {
+      input[type="text"], input[type="password"] {
         padding-left: 0;
         border: none;
+      }
+      input[type="password"] {
+        border-bottom: 1px solid rgba(86, 103, 137, 0.26);
       }
     }
   }
