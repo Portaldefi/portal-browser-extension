@@ -5,6 +5,8 @@ import { Container } from 'semantic-ui-react';
 import Menu from './Menu';
 
 import Welcome from '../pages/Welcome';
+import Intro from '../pages/Intro';
+import OurGoal from '../pages/OurGoal';
 import SelectAction from '../pages/SelectAction';
 import ImportWallet from '../pages/ImportWallet';
 import CreateWallet from '../pages/CreateWallet';
@@ -19,14 +21,14 @@ const AppLoader = () => {
         <Routes>
           <Route path='' element={<Navigate to='welcome' replace />} />
           <Route path='welcome' element={<Welcome />} />
-          <Route path='' element={<Menu />}>
-            <Route path='select-action' element={<SelectAction />} />
-            <Route path='import-wallet' element={<ImportWallet />} />
-            <Route path='create-wallet' element={<CreateWallet />} />
-            <Route path='seed-phrase-intro' element={<SeedIntro />} />
-            <Route path='seed-phrase' element={<SeedPhrase />} />
-            <Route path='congrats' element={<Congrats />} />
-          </Route>
+          <Route path='intro' element={<Intro />} />
+          <Route path='our-goal' element={<OurGoal />} />
+          <Route path='select-action' element={<SelectAction />} />
+          <Route path='import-wallet' element={<ImportWallet />} />
+          <Route path='create-wallet' element={<CreateWallet />} />
+          <Route path='seed-phrase-intro' element={<SeedIntro />} />
+          <Route path='seed-phrase' element={<SeedPhrase />} />
+          <Route path='congrats' element={<Congrats />} />
         </Routes>
       </Router>
     </Container>

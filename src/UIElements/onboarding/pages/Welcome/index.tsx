@@ -5,8 +5,8 @@ import { Header, Image, Button, Grid, Segment } from 'semantic-ui-react';
 export default () => {
   const navigate = useNavigate();
 
-  const handleStart = useCallback(() => {
-    navigate('/select-action');
+  const handleContinue = useCallback(() => {
+    navigate('/intro');
   }, []);
 
   return (
@@ -22,7 +22,7 @@ export default () => {
           <Image src='/icons/logo.png' />
         </Grid.Row>
         <Grid.Row centered columns={1}>
-          <Button className='primary-button'>Continue</Button>
+          <Button className='primary-button' onClick={handleContinue}>Continue</Button>
         </Grid.Row>
       </Grid>
     </Segment>

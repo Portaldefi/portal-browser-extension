@@ -1,6 +1,6 @@
 @import './color.scss';
 @import './size.scss';
-@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;700&family=Work+Sans:wght@600&display=swap');
 
 .ui.board {
   background-color: white;
@@ -34,15 +34,41 @@
     &:last-child {
       padding-bottom: 24px;
     }
+    .column {
+      padding: 0 4px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
   }
 
-  .primary-button {
+  button {
+    width: 100%;
     margin: 0;
     padding: 9px 16px;
-    width: 100%;
-    background-color: $accent;
-    color: white;
     border-radius: 8px;
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
     line-height: 24px;
+
+    &.primary-button {
+      background-color: $accent;
+      color: white;
+    }
+    &.blank-button {
+      background-color: white;
+      text-align: left;
+    }
+    &.secondary-button {
+      background-color: transparent;
+      color: rgba(21, 25, 32, 0.5);
+      border: 1px solid rgba(86, 103, 137, 0.26);
+    }
   }
 }
