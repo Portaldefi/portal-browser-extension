@@ -12,6 +12,6 @@ const accountOptions = [
 
 export default () => {
   return (
-    <Dropdown text='Identity 1' options={accountOptions} />
+    <Dropdown selection options={accountOptions} defaultValue={accountOptions[0].value} />
   );
 }

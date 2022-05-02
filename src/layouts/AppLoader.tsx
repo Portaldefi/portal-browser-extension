@@ -6,7 +6,8 @@ import Menu from './Menu';
 import Board from './Board';
 import Home from '../pages/Home';
 import ConnectionView from '../pages/ConnectionView';
-import Settings from '../pages/Settings';``
+import Settings from '../pages/Settings';
+import Network from '../pages/Settings/Network';
 
 const AppLoader = () => {
   return (
@@ -19,6 +20,7 @@ const AppLoader = () => {
             <Route path='' element={<Board />}>
               <Route path='connection-detail' element={<ConnectionView />} />
               <Route path='settings' element={<Settings />} />
+              <Route path='settings/network' element={<Network />} />
             </Route>
           </Route>
         </Routes>
