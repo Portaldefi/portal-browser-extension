@@ -3,7 +3,10 @@ import { MemoryRouter as Router, Navigate, Routes, Route } from 'react-router-do
 import { Container } from 'semantic-ui-react';
 
 import Menu from './Menu';
+import Board from './Board';
 import Home from '../pages/Home';
+import ConnectionView from '../pages/ConnectionView';
+import Settings from '../pages/Settings';``
 
 const AppLoader = () => {
   return (
@@ -13,6 +16,10 @@ const AppLoader = () => {
           <Route path='' element={<Navigate to='home' replace />} />
           <Route path='' element={<Menu />}>
             <Route path='home' element={<Home />} />
+            <Route path='' element={<Board />}>
+              <Route path='connection-detail' element={<ConnectionView />} />
+              <Route path='settings' element={<Settings />} />
+            </Route>
           </Route>
         </Routes>
       </Router>

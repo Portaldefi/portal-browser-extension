@@ -14,9 +14,8 @@ export default () => {
   const { state: { mode: connectMode } } = location as LocationState;
 
   useEffect(() => {
-    chrome.action.setPopup({ popup: 'index.html' });
+    chrome.action.setPopup({ popup: 'index.html?popup=true' });
   }, []);
-  console.log(connectMode);
   
   return (
     <Segment className='board'>
