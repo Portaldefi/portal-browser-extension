@@ -8,7 +8,7 @@ chrome.runtime.onMessageExternal.addListener(
       "from the extension");
     if (request.request === 'account') {
       // window.open("onboarding.html", "extension_popup", "width=300,height=400,status=no,scrollbars=yes,resizable=no");
-      chrome.windows.create({ url: 'index.html#/connection-detail', type: 'panel', width: 350, height: 460 });
+      chrome.windows.create({ url: 'index.html#/notification', type: 'panel', width: 350, height: 460 });
       sendResponse({message: "hello world"});
     }
   }

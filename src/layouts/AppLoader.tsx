@@ -18,9 +18,9 @@ const AppLoader = () => {
           <Route path='' element={<Navigate to='home' replace />} />
           <Route path='' element={<Menu />}>
             <Route path='home' element={<Home />} />
-            <Route path='connection-detail' element={<AccessNotification />} />
+            <Route path='notification' element={<AccessNotification />} />
             <Route path='' element={<Board />}>
-              {/* <Route path='connection-detail' element={<ConnectionView />} /> */}
+              <Route path='connection-detail' element={<ConnectionView />} />
               <Route path='settings' element={<Settings />} />
               <Route path='settings/network' element={<Network />} />
             </Route>
