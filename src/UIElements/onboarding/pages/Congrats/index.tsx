@@ -13,6 +13,10 @@ export default () => {
 
   const { state: { mode: connectMode } } = location as LocationState;
 
+  const handleFinish = useCallback(() => {
+    window.location.replace('https://localhost:3000');
+  }, []);
+
   useEffect(() => {
     chrome.action.setPopup({ popup: 'index.html?popup=true' });
   }, []);
@@ -52,7 +56,7 @@ export default () => {
         </Grid.Row>
         <Grid.Row centered columns={1}>
           <Grid.Column>
-            <Button className='primary-button' onClick={() => {}}>Confirm</Button>
+            <Button className='primary-button' onClick={handleFinish}>Finish</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
