@@ -38,10 +38,10 @@ export default () => {
         </Grid.Row>
         <Grid.Row centered columns={2}>
           <Grid.Column className='px-16'>
-            <Button className='secondary-button'>Reject</Button>
+            <Button className='secondary-button' onClick={()=>{window.close()}}>Reject</Button>
           </Grid.Column>
           <Grid.Column className='px-16'>
-            <Button className='primary-button'>Allow</Button>
+            <Button className='primary-button' onClick={()=>{window.close()}}>Allow</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
