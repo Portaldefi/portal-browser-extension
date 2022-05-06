@@ -4,7 +4,6 @@ import { Container } from 'semantic-ui-react';
 
 import Welcome from '../pages/Welcome';
 import Intro from '../pages/Intro';
-import OurGoal from '../pages/OurGoal';
 import SelectAction from '../pages/SelectAction';
 import ImportWallet from '../pages/ImportWallet';
 import CreateWallet from '../pages/CreateWallet';
@@ -21,7 +20,6 @@ const AppLoader = () => {
           <Route path='' element={<Navigate to='welcome' replace />} />
           <Route path='welcome' element={<Welcome />} />
           <Route path='intro' element={<Intro />} />
-          <Route path='our-goal' element={<OurGoal />} />
           <Route path='select-action' element={<SelectAction />} />
           <Route path='import-wallet' element={<ImportWallet />} />
           <Route path='create-wallet' element={<CreateWallet />} />

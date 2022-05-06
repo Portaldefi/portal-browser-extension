@@ -22,7 +22,7 @@ export default () => {
           <Image src='/icons/logo.png' />
         </Grid.Row>
         <Grid.Row centered columns={1}>
-          <Button className='primary-button' onClick={handleContinue}>Continue</Button>
+          <Button className='primary-button' onClick={handleContinue}>Get Started</Button>
         </Grid.Row>
       </Grid>
     </Segment>
