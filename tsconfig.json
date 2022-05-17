@@ -6,6 +6,11 @@
       "DOM",
       "ESNext"
     ],
+    "baseUrl": "/",
+    "paths": {
+      "@/*": ["src/*"],
+      "@utils/*": ["utils/*"]
+    },
     // "allowJs": true,
     // "checkJs": true,
     "jsx": "react",

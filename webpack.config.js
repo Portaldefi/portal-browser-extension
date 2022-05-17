@@ -172,6 +172,9 @@ module.exports = (env) => {
         template: 'build/index.html',
         chunks: ['index'],
       }),
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer'],
+      }),
       ifProd(
         new MiniCssExtractPlugin({
           filename: 'css/[name].css',
@@ -243,6 +246,10 @@ module.exports = (env) => {
     ]),
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+        '@utils': path.resolve(__dirname, 'utils')
+      },
       fallback: {
         "assert": false,
         "child_process": false,
