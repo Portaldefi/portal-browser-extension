@@ -2,11 +2,41 @@ import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Button, Grid, Segment, Form } from 'semantic-ui-react';
 
+import { useAppSelector } from '../../hooks';
+
 export default () => {
   const navigate = useNavigate();
 
+  const phrase = useAppSelector(state => state.phrase);
+  console.log(phrase);
+
   const handleContinue = useCallback(() => {
     navigate('/seed-phrase-restore');
+  }, []);
+  const phraseRenderer = useCallback((phrases: Array<string>) => {
+    let dispPhrases: Array<Array<string>>;
+
+    dispPhrases = phrases.reduce((rows: Array<Array<string>>, phrase: string, index: number) => {
+      if (index % 3 === 0) {
+        rows.push([]);
+      }
+
+      rows.at(-1)?.push(phrase);
+
+      return rows;
+    }, []);
+
+    return (
+      <Form className='form-container'>
+        {dispPhrases.map((rowPhrases, rowIdx) => (
+          <Form.Group inline widths={3} key={rowIdx}>
+            {rowPhrases.map((phrase, colIdx) => (
+              <Form.Input label={`${rowIdx * rowPhrases.length + colIdx}.`} width={16} readOnly value={phrase} key={colIdx} />
+            ))}
+          </Form.Group>
+        ))}
+      </Form>
+    )
   }, []);
 
   return (
@@ -16,28 +46,7 @@ export default () => {
           <Header size='medium' className='heading'>New Seed Phrase</Header>
         </Grid.Row>
         <Grid.Row centered>
-          <Form className='form-container'>
-            <Form.Group inline widths={3}>
-              <Form.Input label="1." width={16} readOnly value='download' />
-              <Form.Input label="2." width={16} readOnly value='portal' />
-              <Form.Input label="3." width={16} readOnly value='defi' />
-            </Form.Group>
-            <Form.Group inline widths={3}>
-              <Form.Input label="4." width={16} readOnly value='download' />
-              <Form.Input label="5." width={16} readOnly value='portal' />
-              <Form.Input label="6." width={16} readOnly value='defi' />
-            </Form.Group>
-            <Form.Group inline widths={3}>
-              <Form.Input label="7." width={16} readOnly value='download' />
-              <Form.Input label="8." width={16} readOnly value='portal' />
-              <Form.Input label="9." width={16} readOnly value='defi' />
-            </Form.Group>
-            <Form.Group inline widths={3}>
-              <Form.Input label="10." width={16} readOnly value='download' />
-              <Form.Input label="11." width={16} readOnly value='portal' />
-              <Form.Input label="12." width={16} readOnly value='defi' />
-            </Form.Group>
-          </Form>
+          {phraseRenderer(phrase.SRF_List)}
         </Grid.Row>
         <Grid.Row>
           <Header as='p' size='small' color='grey' className='description extra-former-blank extra-latter-blank'>
