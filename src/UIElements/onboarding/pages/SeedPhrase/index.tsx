@@ -8,7 +8,6 @@ export default () => {
   const navigate = useNavigate();
 
   const phrase = useAppSelector(state => state.phrase);
-  console.log(phrase);
 
   const handleContinue = useCallback(() => {
     navigate('/seed-phrase-restore');

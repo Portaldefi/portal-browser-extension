@@ -11,15 +11,19 @@ export default () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const phrase = useAppSelector(state => state.phrase);
+
   const handleContinue = useCallback(() => {
     navigate('/seed-phrase');
   }, []);
 
   useEffect(() => {
-    const seedList = generateSeed();
+    if (!phrase.SRF_Length) {
+      const seedList = generateSeed();
 
-    dispatch(setSRFList(seedList));
-    dispatch(setSRFLength(seedList.length));
+      dispatch(setSRFList(seedList));
+      dispatch(setSRFLength(seedList.length));
+    }
   }, []);
 
   return (

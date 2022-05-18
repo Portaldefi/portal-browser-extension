@@ -6,7 +6,7 @@ interface phraseState {
 }
 
 const initialState: phraseState = {
-  SRF_Length: 12,
+  SRF_Length: 0,
   SRF_List: []
 };
 
