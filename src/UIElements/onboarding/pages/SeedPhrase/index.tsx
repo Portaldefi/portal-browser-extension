@@ -31,7 +31,7 @@ export default () => {
         {dispPhrases.map((rowPhrases, rowIdx) => (
           <Form.Group inline widths={3} key={rowIdx}>
             {rowPhrases.map((phrase, colIdx) => (
-              <Form.Input label={`${rowIdx * rowPhrases.length + colIdx}.`} width={16} readOnly value={phrase} key={colIdx} />
+              <Form.Input label={`${rowIdx * rowPhrases.length + colIdx + 1}.`} width={16} readOnly value={phrase} key={colIdx} />
             ))}
           </Form.Group>
         ))}
