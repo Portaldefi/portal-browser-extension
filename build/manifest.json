@@ -30,8 +30,7 @@
     "matches": ["<all_urls>"]
   }],
   "externally_connectable": {
-    "matches": ["*://*.google.com/*",
-                "localhost:3000"]
+    "matches": ["*://*.google.com/*"]
   },
   "icons": {
     "16": "icons/icon16.png",
