@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Image, Button, Grid, Segment, Icon } from 'semantic-ui-react';
 
-import { generateSeed } from '@utils/seedPhrase';
+import { generateSeed, generateAddress } from '@utils/seedPhrase';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
@@ -20,6 +20,8 @@ export default () => {
   useEffect(() => {
     if (!phrase.SRF_Length) {
       const seedList = generateSeed();
+
+      generateAddress(seedList);
 
       dispatch(setSRFList(seedList));
       dispatch(setSRFLength(seedList.length));

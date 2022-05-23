@@ -45,7 +45,7 @@
     "react-refresh": "^0.9.0",
     "sass-loader": "^11.0.1",
     "style-loader": "^2.0.0",
-    "typescript": "^4.1.4",
+    "typescript": "^4.6.4",
     "webpack": "^5.21.2",
     "webpack-cli": "^4.5.0",
     "webpack-config-utils": "^2.3.1",
@@ -60,10 +60,18 @@
     "@fabric/http": "martindale/fabric-http#feature/react",
     "@reduxjs/toolkit": "^1.8.1",
     "acorn": "^8.7.0",
+    "assert": "^2.0.0",
+    "bip32": "^3.0.1",
     "bip39": "^3.0.4",
+    "bip44": "0.0.1",
+    "bitauth": "^0.4.1",
+    "bitcoinjs-lib": "^6.0.1",
+    "bs58check": "^2.1.2",
     "child_process": "^1.0.2",
+    "create-hash": "^1.2.0",
     "crypto-browserify": "^3.12.0",
     "dgram": "^1.0.1",
+    "hdkey": "^2.0.1",
     "iso-639-3": "^3.0.1",
     "json-loader": "^0.5.7",
     "os-browserify": "^0.3.0",
@@ -75,6 +83,8 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.1.2",
     "stream-browserify": "^3.0.0",
-    "trezor-connect": "^8.2.7"
+    "tiny-secp256k1": "^2.2.1",
+    "trezor-connect": "^8.2.7",
+    "ts-loader": "^9.3.0"
   }
 }

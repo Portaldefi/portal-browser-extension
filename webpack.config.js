@@ -282,8 +282,19 @@ module.exports = (env) => {
       static: path.join(__dirname, 'build'),
     },
     stats: {
-       errorDetails: true,
-       children: true
+      errorDetails: true,
+      children: true
     },
+    experiments: {
+      asyncWebAssembly: true,
+      buildHttp: [
+        () => true
+      ],
+      // layers: true,
+      // lazyCompilation: true,
+      // outputModule: true,
+      // syncWebAssembly: true,
+      // topLevelAwait: true,
+    }
   };
 };
