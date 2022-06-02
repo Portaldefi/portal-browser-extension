@@ -44,7 +44,7 @@ export const generateAddress = async mnemonic => {
   console.log(address);
   // console.log(getAddress(bip32.fromSeed(_seed)));
   return {
-    privateKey: hdKey.privateKey,
+    privateKey: privateKey.toString('hex'),
     privateExtendedKey: hdKey.privateExtendedKey,
     address
   }

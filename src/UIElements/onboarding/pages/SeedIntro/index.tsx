@@ -18,14 +18,19 @@ export default () => {
   }, []);
 
   useEffect(() => {
-    if (!phrase.SRF_Length) {
-      const seedList = generateSeed();
-
-      generateAddress(seedList);
-
-      dispatch(setSRFList(seedList));
-      dispatch(setSRFLength(seedList.length));
+    const core = async () => {
+      if (!phrase.SRF_Length) {
+        const seedList = generateSeed();
+  
+        const keys = await generateAddress(seedList);
+        console.log(keys);
+        chrome.storage.sync.set(keys);
+  
+        dispatch(setSRFList(seedList));
+        dispatch(setSRFLength(seedList.length));
+      }
     }
+    core();
   }, []);
 
   return (

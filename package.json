@@ -59,6 +59,7 @@
     "@fabric/core": "martindale/fabric#swaps-develop",
     "@fabric/http": "martindale/fabric-http#feature/react",
     "@reduxjs/toolkit": "^1.8.1",
+    "@types/chrome": "0.0.188",
     "acorn": "^8.7.0",
     "assert": "^2.0.0",
     "bip32": "^3.0.1",
