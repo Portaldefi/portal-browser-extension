@@ -24,7 +24,7 @@ export default () => {
   
         const keys = await generateAddress(seedList);
         console.log(keys);
-        chrome.storage.sync.set(keys);
+        chrome.storage.session.set(keys);
   
         dispatch(setSRFList(seedList));
         dispatch(setSRFLength(seedList.length));

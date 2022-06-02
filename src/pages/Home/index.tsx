@@ -8,7 +8,7 @@ export default () => {
   
   useEffect(() => {
     const core = async () => {
-      const syncStorage = await chrome.storage.sync.get();
+      const syncStorage = await chrome.storage.session.get();
       setAddress(syncStorage.address);
     }
     core();
