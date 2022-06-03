@@ -47,7 +47,7 @@ export default () => {
           </>
         : <Grid.Row centered>
             <Header as='p' size='small' color='grey' className='description'>
-              Your waller is now ready to connect to Fabric web3 applications.
+              Your DeIdentity is now ready to connect to Fabric web3 applications.
             </Header>
           </Grid.Row>
         }
