@@ -26,8 +26,23 @@ export const generateAddress = async mnemonic => {
   const _seed = await bip39.mnemonicToSeed(_mnemonic);
   const hdKey = HDKey.fromMasterSeed(_seed);
 
-  const privateKey = hdKey.privateKey;
-  const addrNode = hdKey.derive("m/44'/0'/0'/0");
+  const privateKey = hdKey.privateExtendedKey;
+  const result = {
+    privateKey: privateKey.toString('hex'),
+    privateExtendedKey: hdKey.privateExtendedKey,
+    address: [],
+  };
+  for (let i = 0; i < 10; i ++) {
+    result.address[i] = generateAddressFromPvtKey(result.privateKey, i);
+  }
+
+  // console.log(getAddress(bip32.fromSeed(_seed)));
+  return result;
+}
+
+export const generateAddressFromPvtKey = (privateKey, addressNo = 0) => {
+  const hdKey = HDKey.fromExtendedKey(privateKey.toString('hex'));
+  const addrNode = hdKey.derive(`m/44'/0'/0'/${addressNo}`);
 
   const step2 = createHash('sha256').update(addrNode.publicKey).digest();
   const step3 = createHash('rmd160').update(step2).digest();
@@ -37,15 +52,5 @@ export const generateAddress = async mnemonic => {
 
   const address = bs58check.encode(step4);
 
-  console.log(_mnemonic);
-  console.log(addrNode.publicExtendedKey.toString('hex'));
-  console.log(addrNode.privateKey.toString('hex'));
-  console.log(addrNode.publicKey.toString('hex'));
-  console.log(address);
-  // console.log(getAddress(bip32.fromSeed(_seed)));
-  return {
-    privateKey: privateKey.toString('hex'),
-    privateExtendedKey: hdKey.privateExtendedKey,
-    address
-  }
+  return address;
 }

@@ -21,7 +21,7 @@ export default () => {
           <Header as='h1' className='description'>Identity 1</Header>
         </Grid.Row>
         <Grid.Row centered>
-          <Header as='p' className='description'>{address}</Header>
+          <Header as='p' className='description'>{address[0]}</Header>
         </Grid.Row>
         <Grid.Row stretched centered>
           <RecentConnections />
