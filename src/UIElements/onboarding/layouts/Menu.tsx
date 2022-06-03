@@ -32,7 +32,7 @@ export default () => {
           <Menu inverted size='massive'>
             <MenuItem header>
               <Image className='app-logo' src="https://portaldefi.com/assets/portal-logo.gif" alt="Portal Logo" />
-              Fabric Wallet
+              DeIdentity
             </MenuItem>
             {menuItems.map(renderMenuItem)}
           </Menu>

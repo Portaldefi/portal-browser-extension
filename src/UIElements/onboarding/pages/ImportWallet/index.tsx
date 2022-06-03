@@ -61,7 +61,7 @@ export default () => {
         </Grid.Row>
         <Grid.Row>
           <Header as='p' size='small' color='grey' className='description'>
-            Enter your seed phrase from a previously backed up Portal wallet.
+            Enter your seed phrase from a previously backed up Identity Seed.
           </Header>
         </Grid.Row>
         <Grid.Row centered>

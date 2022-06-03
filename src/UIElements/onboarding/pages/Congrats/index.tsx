@@ -27,7 +27,7 @@ export default () => {
         <Grid.Row centered>
           <Header size='medium' className='heading'>
             { connectMode === 'create'
-              ? "Your Wallet Is All Setup, Congratulations!"
+              ? "Your Identity Is All Setup, Congratulations!"
               : "Welcome back!"
             }
           </Header>

@@ -37,7 +37,7 @@ export default () => {
     <Segment className='board'>
       <Grid>
         <Grid.Row centered>
-          <Header size='medium' className='heading'>Create New Wallet</Header>
+          <Header size='medium' className='heading'>Create New Identity Seed</Header>
         </Grid.Row>
         <Grid.Row centered>
           <Header as='p' size='small' color='grey' className='description'>

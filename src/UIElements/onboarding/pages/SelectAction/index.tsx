@@ -16,10 +16,10 @@ export default () => {
     <Segment className='board'>
       <Grid>
         <Grid.Row centered>
-          <Header size='medium' className='heading'>Connect Wallet</Header>
+          <Header size='medium' className='heading'>Connect Identity</Header>
         </Grid.Row>
         <Grid.Row centered>
-          <Header as='p' size='small' color='grey' className='description'>Every Portal wallet is created with a seed, we will create a </Header>
+          <Header as='p' size='small' color='grey' className='description'>Every identity is created with a seed, with the option to create multiple detached identities from each seed.</Header>
         </Grid.Row>
         <Grid.Row centered>
           <Image src='/images/onboarding/vault.png' />
@@ -29,7 +29,7 @@ export default () => {
             <Button className='secondary-button' onClick={handleImport}>Import Seed</Button>
           </Grid.Column>
           <Grid.Column>
-            <Button className='primary-button' onClick={handleCreate}>Create New Wallet</Button>
+            <Button className='primary-button' onClick={handleCreate}>Create New Identity Seed</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
