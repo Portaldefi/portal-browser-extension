@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import menuReducer from './slices/menuSlice';
+import keyReducer from './slices/keySlice';
 
 export const store = configureStore({
   reducer: {
-    menu: menuReducer
+    menu: menuReducer,
+    key: keyReducer,
   }
 });
 
