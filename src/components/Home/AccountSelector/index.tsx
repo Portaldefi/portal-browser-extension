@@ -5,9 +5,11 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { selectAddress } from '../../../slices/keySlice';
 import { cutter } from '../../../../utils/text';
 
+
 export default () => {
   const dispatch = useAppDispatch();
   const addresses = useAppSelector(state => state.key.address);
+  const selectedAddress = useAppSelector(state => state.key.selectedAddress);
 
   const accountOptions = useMemo(() => addresses.map((address, idx) => ({
     key: address,
@@ -19,6 +21,6 @@ export default () => {
   }, []);
 
   return (
-    <Dropdown selection options={accountOptions} defaultValue={accountOptions[0]?.value} onChange={handleChange} />
+    <Dropdown selection options={accountOptions} value={selectedAddress && accountOptions[0]?.value} onChange={handleChange} />
   );
 }
