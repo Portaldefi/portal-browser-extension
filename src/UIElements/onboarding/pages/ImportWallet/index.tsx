@@ -5,6 +5,11 @@ import { useForm, NestedValue } from 'react-hook-form';
 import { isEqual } from 'lodash';
 import * as bip39 from 'bip39';
 
+import { generateSeed, generateAddress } from '@utils/seedPhrase';
+
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
+
 type FormValue = {
   phrase1: string,
   phrase2: string,
@@ -28,9 +33,12 @@ const defaultPhrases = {
 }
 
 export default () => {
-  const [isDirty, setIsDirty] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [isDirty, setIsDirty] = useState(false);
   const { setValue, getValues, watch } = useForm<FormValue>({ defaultValues: defaultPhrases });
+
+  const phrase = useAppSelector(state => state.phrase);
 
   const phrases = useMemo(() => {
     return getValues()
@@ -47,6 +55,18 @@ export default () => {
   }, []);
   const handleConfirm = useCallback(() => {
     if (isCorrectPhrase) {
+      const core = async () => {
+        if (!phrase.SRF_Length) {
+          const seedList = Object.keys(phrases).map(key => phrases[key]);
+    
+          const keys = await generateAddress(seedList);
+          chrome.storage.session.set(keys);
+    
+          dispatch(setSRFList(seedList));
+          dispatch(setSRFLength(seedList.length));
+        }
+      }
+      core();
       navigate('/congrats', { state: { mode: 'import' } });
     } else {
       setIsDirty(true);
