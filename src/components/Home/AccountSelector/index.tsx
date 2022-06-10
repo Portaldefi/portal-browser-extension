@@ -19,8 +19,10 @@ export default () => {
   const handleChange = useCallback((event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
     dispatch(selectAddress(data.value as string));
   }, []);
+  console.log(selectedAddress);
+  console.log(selectedAddress && accountOptions[0]?.value);
 
   return (
-    <Dropdown selection options={accountOptions} value={selectedAddress && accountOptions[0]?.value} onChange={handleChange} />
+    <Dropdown selection options={accountOptions} value={selectedAddress || accountOptions[0]?.value} onChange={handleChange} />
   );
 }

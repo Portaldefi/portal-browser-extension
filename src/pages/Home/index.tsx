@@ -13,9 +13,7 @@ export default () => {
   
   useEffect(() => {
     const core = async () => {
-      const syncStorage = await chrome.storage.session.get(["keys"], function(result:any) {
-        console.log('keys retrieved' + result)
-      });
+      const syncStorage = await chrome.storage.session.get();
       dispatch(setKeys(syncStorage));
     }
     core();
