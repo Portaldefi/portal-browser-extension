@@ -17,8 +17,8 @@
     "@babel/preset-env": "^7.12.13",
     "@babel/preset-react": "^7.12.13",
     "@babel/preset-typescript": "^7.12.16",
-    "@fabric/core": "FabricLabs/fabric#faucet",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@fabric/core": "FabricLabs/fabric#feature/node-16",
     "@types/hdkey": "^2.0.1",
     "@types/react": "^17.0.1",
     "@types/react-dom": "^17.0.0",
@@ -57,11 +57,11 @@
     "not dead"
   ],
   "dependencies": {
-    "@fabric/core": "martindale/fabric#swaps-develop",
-    "@fabric/http": "martindale/fabric-http#feature/react",
     "@reduxjs/toolkit": "^1.8.1",
     "@types/chrome": "0.0.188",
     "acorn": "^8.7.0",
+    "@fabric/core": "FabricLabs/fabric#feature/node-16",
+    "@fabric/http": "FabricLabs/fabric-http#feature/node-16",
     "assert": "^2.0.0",
     "bip32": "^3.0.1",
     "bip39": "^3.0.4",
