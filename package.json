@@ -87,5 +87,7 @@
     "tiny-secp256k1": "^2.2.1",
     "trezor-connect": "^8.2.7",
     "ts-loader": "^9.3.0"
+    "ts-loader": "^9.3.0",
+    "uuid": "^8.3.2"
   }
 }
