@@ -1,4 +1,7 @@
 import { handleActionClick } from './action';
+import { createDB, insertAccount } from './database';
+
+createDB();
 
 chrome.action.onClicked.addListener(handleActionClick);
 chrome.runtime.onMessageExternal.addListener(
