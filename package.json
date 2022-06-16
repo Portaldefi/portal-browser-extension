@@ -7,10 +7,10 @@
   "author": "Fabric Labs",
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --env dev",
-    "watch": "webpack --env devBuild --watch",
-    "dev": "webpack --env devBuild",
-    "build": "webpack --env prod"
+    "start": "./init.sh && webpack serve --env dev",
+    "watch": "./init.sh && webpack --env devBuild --watch",
+    "dev": "./init.sh && webpack --env devBuild",
+    "build": "./init.sh && webpack --env prod"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
