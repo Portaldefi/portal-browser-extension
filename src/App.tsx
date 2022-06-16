@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import AppLoader from './layouts/AppLoader';
 
-import 'semantic-ui-css/semantic.min.css';
+// import 'semantic-ui-css/semantic.min.css';
 import './styles/global.scss';
 import './styles/main.scss';
 
