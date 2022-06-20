@@ -36,7 +36,7 @@ export default () => {
         ? <>
             <Grid.Row centered>
               <Header as='p' size='small' color='grey' className='description'>
-                You are now ready to connect to Fabric web3 applications. 
+                You are now ready to connect to Fabric web applications. 
               </Header>
             </Grid.Row>
             <Grid.Row centered>
@@ -47,7 +47,7 @@ export default () => {
           </>
         : <Grid.Row centered>
             <Header as='p' size='small' color='grey' className='description'>
-              Your DeIdentity is now ready to connect to Fabric web3 applications.
+              Your DeIdentity is now ready to connect to Fabric web applications.
             </Header>
           </Grid.Row>
         }
