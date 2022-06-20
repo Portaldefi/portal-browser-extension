@@ -8,7 +8,8 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ProgressBar = require('progress-bar-webpack-plugin');
-const webpack = require('webpack')
+const webpack = require('webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const pkgJson = require('./package.json');
 
@@ -164,6 +165,11 @@ module.exports = (env) => {
       ],
     },
     plugins: removeEmpty([
+      new ForkTsCheckerWebpackPlugin({
+        // tslint: false,      // change to 'true' later
+        // useTypescriptIncrementalApi: true,
+        // checkSyntacticErrors: true,
+      }),
       new CleanWebpackPlugin({
         cleanStaleWebpackAssets: false, // don't remove index.html when using the flag watch
       }),
