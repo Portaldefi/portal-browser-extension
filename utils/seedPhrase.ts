@@ -1,5 +1,5 @@
 import * as bip39 from 'bip39';
-import * as createHash from 'create-hash';
+import createHash from 'create-hash';
 import * as HDKey from 'hdkey';
 import * as bs58check from 'bs58check';
 
