@@ -1,11 +1,11 @@
 import React, { useCallback, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Button, Grid, Segment, Icon, Form, Message } from 'semantic-ui-react';
-import { useForm, NestedValue } from 'react-hook-form';
-import { isEqual } from 'lodash';
+import { useForm } from 'react-hook-form';
+// import { isEqual } from 'lodash';
 import * as bip39 from 'bip39';
 
-import { generateSeed, generateAddress } from '@utils/seedPhrase';
+import { generateAddress } from '@utils/seedPhrase';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';

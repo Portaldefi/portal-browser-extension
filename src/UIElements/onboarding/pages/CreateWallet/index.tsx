@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header, Image, Button, Grid, Segment, Icon, Form } from 'semantic-ui-react';
+import { Header, Button, Grid, Segment, Icon, Form } from 'semantic-ui-react';
 
 export default () => {
   const navigate = useNavigate();

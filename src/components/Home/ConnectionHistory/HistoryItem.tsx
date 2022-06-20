@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, Grid, Header } from 'semantic-ui-react';
+import { Grid, Header } from 'semantic-ui-react';
 
 interface IConnectionItem {
   url: string,

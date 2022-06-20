@@ -16,7 +16,7 @@ export default () => {
     value: address,
     text: `Identity ${idx} (fabric${cutter(address)})`
   })), [addresses]);
-  const handleChange = useCallback((event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+  const handleChange = useCallback((_event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
     dispatch(selectAddress(data.value as string));
   }, []);
   console.log(selectedAddress);

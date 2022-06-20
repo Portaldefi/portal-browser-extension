@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header, Image, Button, Grid, Segment, Icon } from 'semantic-ui-react';
+import { Header, Button, Grid, Segment } from 'semantic-ui-react';
 
 import { generateSeed, generateAddress } from '@utils/seedPhrase';
 

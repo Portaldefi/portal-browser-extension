@@ -15,7 +15,7 @@ export const generateSeed = () => {
   }
 }
 
-export const generateAddress = async mnemonic => {
+export const generateAddress = async (mnemonic: any[]) => {
   let _mnemonic;
   if (typeof mnemonic === 'object') {
     _mnemonic = mnemonic.join(' ');
@@ -28,9 +28,9 @@ export const generateAddress = async mnemonic => {
 
   const privateKey = hdKey.privateExtendedKey;
   const result = {
-    privateKey: privateKey.toString('hex'),
+    privateKey: privateKey.toString(),
     privateExtendedKey: hdKey.privateExtendedKey,
-    address: [],
+    address: [''],
   };
   for (let i = 0; i < 10; i ++) {
     result.address[i] = generateAddressFromPvtKey(result.privateKey, i);
@@ -40,8 +40,8 @@ export const generateAddress = async mnemonic => {
   return result;
 }
 
-export const generateAddressFromPvtKey = (privateKey, addressNo = 0) => {
-  const hdKey = HDKey.fromExtendedKey(privateKey.toString('hex'));
+export const generateAddressFromPvtKey = (privateKey:any, addressNo = 0) => {
+  const hdKey = HDKey.fromExtendedKey(privateKey.toString());
   const addrNode = hdKey.derive(`m/44'/0'/0'/${addressNo}`);
 
   const step2 = createHash('sha256').update(addrNode.publicKey).digest();

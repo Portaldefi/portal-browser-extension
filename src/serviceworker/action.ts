@@ -1,4 +1,6 @@
-import { syncGet, syncSet } from '../storage';
+import { syncGet
+  // , syncSet
+ } from '../storage';
 
 const handleActionClick = async () => {
   const accountStatus = await syncGet('accountStatus');

@@ -1,11 +1,13 @@
 import { handleActionClick } from './action';
-import { createDB, insertAccount } from './database';
+import { createDB
+  // , insertAccount
+ } from './database';
 
 createDB();
 
 chrome.action.onClicked.addListener(handleActionClick);
 chrome.runtime.onMessageExternal.addListener(
-  function(request, sender, sendResponse) {
+  function(request:any, sender:any, sendResponse:any) {
     console.log(sender.tab ?
       "from a content script:" + sender.tab.url :
       "from the extension");

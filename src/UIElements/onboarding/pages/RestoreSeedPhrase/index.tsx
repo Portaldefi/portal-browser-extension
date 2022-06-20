@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Message, Button, Grid, Segment, Icon, Form } from 'semantic-ui-react';
-import { useForm, NestedValue } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { isEqual } from 'lodash';
 
 import { useAppSelector } from '../../hooks';

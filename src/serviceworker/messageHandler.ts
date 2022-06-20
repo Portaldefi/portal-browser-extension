@@ -4,7 +4,7 @@ import { IAccount } from './database/schema';
 
 type MessageResponse = (response?: any) => void;
 
-export default (message: RuntimeMessage, sender: chrome.runtime.MessageSender, sendResponse: MessageResponse) => {
+export default (message: RuntimeMessage, _sender: chrome.runtime.MessageSender, _sendResponse: MessageResponse) => {
   switch(message.msg) {
     case CREATE_ACCOUNT:
       insertAccount(message.payload as IAccount);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Header } from 'semantic-ui-react';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
@@ -7,7 +7,7 @@ import { cutter } from '../../../utils/text';
 import RecentConnections from '../../components/Home/RecentConnections';
 
 export default () => {
-  const [address, setAddress] = useState<string>('');
+  // const [address, setAddress] = useState<string>('');
   const dispatch = useAppDispatch();
   const selectedAddress = useAppSelector(state => state.key.selectedAddress);
   

@@ -1,5 +1,9 @@
 import React from 'react';
-import { Button, Grid, Header, Icon, List } from 'semantic-ui-react';
+import { 
+  // Button, 
+  Grid, Header, 
+  // Icon, 
+  List } from 'semantic-ui-react';
 
 import NetworkOption from '../../components/Settings/NetworkOption';
 

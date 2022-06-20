@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React
+// , { useState }
+ from 'react';
 import { Label, Segment } from 'semantic-ui-react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { 
+  // useAppDispatch, 
+  useAppSelector } from '../../hooks';
 import { RootState } from '../../store';
 
 export default () => {
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
 
   const phrases = useAppSelector((state: RootState) => state.phrase.SRF_List);
   console.log(phrases);

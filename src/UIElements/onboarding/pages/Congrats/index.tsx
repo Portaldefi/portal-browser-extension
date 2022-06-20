@@ -1,6 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Form, Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
+import { 
+  // Form, 
+  Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
 
 type LocationState = {
   state: {

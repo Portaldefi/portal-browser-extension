@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Grid, Header, Icon } from 'semantic-ui-react';
+import { 
+  // Button, 
+  Grid, Header, 
+  // Icon
+ } from 'semantic-ui-react';
 
 import SettingItem from '../../components/Home/SettingItem';
 
@@ -20,19 +24,19 @@ export default () => {
         <SettingItem name='Network' extra={<Header as='p' className='description'><u>mainnet</u></Header>} />
       </Grid.Row>
       <Grid.Row className='p-none'>
-        <SettingItem name='Export Private Key' />
+        <SettingItem name='Export Private Key' extra={undefined} />
       </Grid.Row>
       <Grid.Row className='p-none'>
-        <SettingItem name='Export Seed' />
+        <SettingItem name='Export Seed' extra={undefined} />
       </Grid.Row>
       <Grid.Row className='p-none'>
-        <SettingItem name='Import Identity' />
+        <SettingItem name='Import Identity' extra={undefined} />
       </Grid.Row>
       <Grid.Row className='p-none'>
-        <SettingItem name='Clear Identities' />
+        <SettingItem name='Clear Identities' extra={undefined} />
       </Grid.Row>
       <Grid.Row className='p-none'>
-        <SettingItem name='Feedback' />
+        <SettingItem name='Feedback' extra={undefined} />
       </Grid.Row>
     </Grid>
   );
