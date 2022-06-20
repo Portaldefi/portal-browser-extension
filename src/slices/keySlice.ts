@@ -2,9 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IKey } from '../types/key';
 
-interface menuState {
+// interface menuState {
   // items: Array<IMenuItem>
-}
+// }
 
 const initialState: IKey = {
   privateKey: '',
