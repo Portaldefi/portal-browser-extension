@@ -34,6 +34,7 @@ export default () => {
     watch('phrase7'), watch('phrase8'), watch('phrase9'),
     watch('phrase10'), watch('phrase11'), watch('phrase12'),
   ]);
+  // @ts-ignore
   const isCorrectPhrase = useMemo(() => isEqual(Object.keys(phrases).map(key => phrases[key]), phrase.SRF_List), [phrases, phrase.SRF_List]);
 
   const handleBack = useCallback(() => {
@@ -60,7 +61,7 @@ export default () => {
               <Form.Group inline widths={3} key={rowIdx}>
                 {[...new Array(3)].map((_, colIdx) => {
                   const id = rowIdx * 3 + colIdx + 1;
-
+// @ts-ignore
                   return <Form.Input label={`${id}.`} width={16} key={colIdx} value={phrases[`phrase${id}`]} onChange={(e) => { setValue(`phrase${id}`, e.target.value); setIsDirty(true); }} />
                 })}
               </Form.Group>

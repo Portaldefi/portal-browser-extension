@@ -14,6 +14,7 @@ export default () => {
   useEffect(() => {
     const core = async () => {
       const syncStorage = await chrome.storage.session.get();
+      // @ts-ignore
       dispatch(setKeys(syncStorage));
     }
     core();

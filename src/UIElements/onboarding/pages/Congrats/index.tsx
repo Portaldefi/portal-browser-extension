@@ -11,6 +11,7 @@ type LocationState = {
 }
 
 export default () => {
+  // @ts-ignore
   const location = useLocation<LocationState>();
 
   const { state: { mode: connectMode } } = location as LocationState;

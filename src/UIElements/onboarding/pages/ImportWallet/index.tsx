@@ -48,6 +48,7 @@ export default () => {
     watch('phrase7'), watch('phrase8'), watch('phrase9'),
     watch('phrase10'), watch('phrase11'), watch('phrase12'),
   ]);
+  // @ts-ignore
   const isCorrectPhrase = useMemo(() => bip39.validateMnemonic(Object.keys(phrases).map(key => phrases[key]).join(' ')), [phrases]);
 
   const handleBack = useCallback(() => {
@@ -57,6 +58,7 @@ export default () => {
     if (isCorrectPhrase) {
       const core = async () => {
         if (!phrase.SRF_Length) {
+          // @ts-ignore
           const seedList = Object.keys(phrases).map(key => phrases[key]);
     
           const keys = await generateAddress(seedList);
@@ -90,7 +92,7 @@ export default () => {
               <Form.Group inline widths={3} key={rowIdx}>
                 {[...new Array(3)].map((_, colIdx) => {
                   const id = rowIdx * 3 + colIdx + 1;
-
+// @ts-ignore
                   return <Form.Input label={`${id}.`} width={16} key={colIdx} value={phrases[`phrase${id}`]} onChange={(e) => { setValue(`phrase${id}`, e.target.value); setIsDirty(true); }} />
                 })}
               </Form.Group>
