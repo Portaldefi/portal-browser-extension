@@ -3,7 +3,7 @@ import { Dropdown, DropdownProps } from 'semantic-ui-react';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { selectAddress } from '../../../slices/keySlice';
-import { cutter } from '../../../../utils/text';
+import { cutter } from '@utils/text';
 
 
 export default () => {
