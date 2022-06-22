@@ -13,7 +13,7 @@ export const generateSeed = () => {
   } catch (err) {
     throw err;
   }
-}
+};
 
 export const generateAddress = async (mnemonic: any[]) => {
   let _mnemonic;
@@ -38,7 +38,7 @@ export const generateAddress = async (mnemonic: any[]) => {
 
   // console.log(getAddress(bip32.fromSeed(_seed)));
   return result;
-}
+};
 
 export const generateAddressFromPvtKey = (privateKey:any, addressNo = 0) => {
   const hdKey = HDKey.fromExtendedKey(privateKey.toString());
@@ -53,4 +53,4 @@ export const generateAddressFromPvtKey = (privateKey:any, addressNo = 0) => {
   const address = bs58check.encode(step4);
 
   return address;
-}
+};
