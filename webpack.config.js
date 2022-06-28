@@ -267,7 +267,8 @@ module.exports = (env) => {
         "stream": require.resolve("stream-browserify"),
         "crypto": require.resolve('crypto-browserify'),
         "url": false,
-        "util": false
+        "util": false,
+        "querystring": false
       },
       symlinks: true,
     },
