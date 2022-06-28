@@ -2,7 +2,6 @@ import { handleActionClick, handleStartup } from './action';
 import { createDB, insertAccount } from './database';
 import handleMessage from './messageHandler';
 
-console.log('background');
 createDB();
 
 chrome.action.onClicked.addListener(handleActionClick);
