@@ -82,7 +82,6 @@ module.exports = (env) => {
   };
 
   return {
-    target: "node",
     mode: ifProd('production', 'development'),
     entry: removeEmpty({
       index: './src/index.tsx',
