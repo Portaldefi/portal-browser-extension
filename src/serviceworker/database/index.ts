@@ -13,7 +13,8 @@ export const createDB = async (dbName: string = config.name) => {
 }
 
 export const insertAccount = async (account: IAccount) => {
-  db.add("account", account);
+  const accountCount = await db.count('account');
+  db.add("account", account, accountCount);
 }
 
 export const getAccount = async (accountId: number = 0) => {
