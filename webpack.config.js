@@ -82,6 +82,7 @@ module.exports = (env) => {
   };
 
   return {
+    target: "node",
     mode: ifProd('production', 'development'),
     entry: removeEmpty({
       index: './src/index.tsx',
@@ -104,7 +105,7 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.[jt]sx?$/,
-          use: {
+          use: [{
             loader: 'babel-loader',
             options: {
               presets: [
@@ -114,7 +115,8 @@ module.exports = (env) => {
               ],
               plugins: removeEmpty([ifDev('react-refresh/babel')]),
             },
-          },
+          },{
+            loader: 'ts-loader'}],
           exclude: /node_modules/,
           include: [path.resolve(__dirname, 'src')],
         },
