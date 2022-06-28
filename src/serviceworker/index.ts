@@ -1,7 +1,5 @@
-import { handleActionClick } from './action';
-import { createDB
-  // , insertAccount
- } from './database';
+import { handleActionClick, handleStartup } from './action';
+import { createDB, insertAccount } from './database';
 
 createDB();
 
@@ -18,5 +16,6 @@ chrome.runtime.onMessageExternal.addListener(
     }
   }
 )
+chrome.runtime.onStartup.addListener(handleStartup);
 
 export {}; // stops ts error that the file isn't a module

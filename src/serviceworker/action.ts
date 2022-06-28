@@ -2,16 +2,16 @@ import { syncGet
   // , syncSet
  } from '../storage';
 
-const handleActionClick = async () => {
+export const handleActionClick = async () => {
+  chrome.tabs.create({
+    url: 'onboarding.html'
+  })
+};
+
+export const handleStartup = async () => {
   const accountStatus = await syncGet('accountStatus');
 
   if (accountStatus !== undefined) {
-    chrome.tabs.create({
-      url: 'onboarding.html'
-    })
+    chrome.action.setPopup({ popup: 'index.html?popup=true' });
   }
-};
-
-export {
-  handleActionClick
 }

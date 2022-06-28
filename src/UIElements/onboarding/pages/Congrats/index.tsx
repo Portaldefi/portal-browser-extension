@@ -1,8 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { 
-  // Form, 
-  Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
+import { Form, Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
+import { syncSet } from '@/storage';
 
 type LocationState = {
   state: {
@@ -22,6 +21,7 @@ export default () => {
 
   useEffect(() => {
     chrome.action.setPopup({ popup: 'index.html?popup=true' });
+    syncSet({ 'accountStatus': 'set' });
   }, []);
   
   return (
