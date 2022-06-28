@@ -14,8 +14,9 @@ export default () => {
   
   useEffect(() => {
     const core = async () => {
+      console.log('core');
       const syncStorage = await chrome.storage.session.get();
-      const storage = await chrome.runtime.sendMessage(RETRIEVE_ACCOUNT);
+      const storage = await (new Promise(resolve => chrome.runtime.sendMessage({msg: RETRIEVE_ACCOUNT}, response => {console.log(response); resolve(response)})));
       console.log(storage);
       dispatch(setKeys(syncStorage));
     }

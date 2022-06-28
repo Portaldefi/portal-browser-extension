@@ -8,7 +8,9 @@ export default (message: RuntimeMessage, _sender: chrome.runtime.MessageSender, 
   switch(message.msg) {
     case CREATE_ACCOUNT:
       insertAccount(message.payload as IAccount);
+      break;
     case RETRIEVE_ACCOUNT:
-      sendResponse(getAccount());
+      getAccount().then(result => {console.log(result); sendResponse(result)});
+      break;
   }
 }

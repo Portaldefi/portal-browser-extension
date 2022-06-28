@@ -13,10 +13,15 @@ export const createDB = async (dbName: string = config.name) => {
 }
 
 export const insertAccount = async (account: IAccount) => {
+  console.log(db);
   const accountCount = await db.count('account');
   db.add("account", account, accountCount);
 }
 
 export const getAccount = async (accountId: number = 0) => {
-  db.get('account', accountId);
+  const count = await db.count('account');
+  console.log(count);
+  const res = await db.get('account', accountId);
+  console.log(res);
+  return res;
 }
