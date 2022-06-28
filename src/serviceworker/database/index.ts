@@ -15,3 +15,7 @@ export const createDB = async (dbName: string = config.name) => {
 export const insertAccount = async (account: IAccount) => {
   db.add("account", account);
 }
+
+export const getAccount = async (accountId: number = 0) => {
+  db.get('account', accountId);
+}

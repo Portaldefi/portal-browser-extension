@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Grid, Header } from 'semantic-ui-react';
 
+import { RETRIEVE_ACCOUNT, RuntimeMessage } from '@/config/messages';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setKeys } from '../../slices/keySlice';
 import { cutter } from '../../../utils/text';
@@ -14,7 +15,8 @@ export default () => {
   useEffect(() => {
     const core = async () => {
       const syncStorage = await chrome.storage.session.get();
-      // @ts-ignore
+      const storage = await chrome.runtime.sendMessage(RETRIEVE_ACCOUNT);
+      console.log(storage);
       dispatch(setKeys(syncStorage));
     }
     core();
