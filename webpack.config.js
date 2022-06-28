@@ -132,12 +132,33 @@ module.exports = (env) => {
                 '@babel/preset-react',
                 {
                     'plugins': ['@babel/plugin-proposal-class-properties']
-                }
+                },
+                '@babel/preset-typescript',
               ],
             }
-          }],
+          }],"exclude": /node_modules/,
           include: [path.resolve(__dirname, 'node_modules/@fabric')],
         },
+        {
+          test: /\.ts$/,
+          use: [{
+            loader: 'ts-loader'},{
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env', {
+                  "targets": "defaults"
+                }],
+                '@babel/preset-react',
+                {
+                    'plugins': ['@babel/plugin-proposal-class-properties']
+                },
+                '@babel/preset-typescript',
+              ],
+            }
+          }],"exclude": /node_modules/,
+        include: [path.resolve(__dirname, 'node_modules/@fabric')],
+      },
         {
           test: /\.(s[ac]|c)ss$/i,
           use: removeEmpty([

@@ -4,14 +4,14 @@
     "module": "ES6",
     "lib": [
       "DOM",
-      "ESNext"
+      "es6"
     ],
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
       "@utils/*": ["utils/*"]
     },
-    // "allowJs": true,
+    "allowJs": true,
     // "checkJs": true,
     "jsx": "react",
     // "declaration": true,
