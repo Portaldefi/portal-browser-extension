@@ -105,7 +105,7 @@ module.exports = (env) => {
       rules: [
         {
           test: /\.[jt]sx?$/,
-          use: [{
+          use: {
             loader: 'babel-loader',
             options: {
               presets: [
@@ -115,8 +115,7 @@ module.exports = (env) => {
               ],
               plugins: removeEmpty([ifDev('react-refresh/babel')]),
             },
-          },{
-            loader: 'ts-loader'}],
+          },
           exclude: /node_modules/,
           include: [path.resolve(__dirname, 'src')],
         },
@@ -132,32 +131,41 @@ module.exports = (env) => {
                 '@babel/preset-react',
                 {
                     'plugins': ['@babel/plugin-proposal-class-properties']
-                },
-                '@babel/preset-typescript',
+                }
               ],
             }
-          }],"exclude": /node_modules/,
+          }],
           include: [path.resolve(__dirname, 'node_modules/@fabric')],
         },
         {
           test: /\.ts$/,
-          use: [{
-            loader: 'ts-loader'},{
-            loader: 'babel-loader',
-            options: {
-              presets: [
-                ['@babel/preset-env', {
-                  "targets": "defaults"
-                }],
-                '@babel/preset-react',
-                {
-                    'plugins': ['@babel/plugin-proposal-class-properties']
-                },
-                '@babel/preset-typescript',
-              ],
-            }
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+                onlyCompileBundledFiles: true,
+              },
+            },{
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  ['@babel/preset-env', {
+                    "targets": "defaults"
+                  }],
+                  '@babel/preset-react',
+                  {
+                      'plugins': ['@babel/plugin-proposal-class-properties']
+                  },
+                  '@babel/preset-typescript',
+                ],
+              }
           }],"exclude": /node_modules/,
-        include: [path.resolve(__dirname, 'node_modules/@fabric')],
+        include: [
+          path.resolve(__dirname, 'node_modules/@fabric'),
+          path.resolve(__dirname, 'utils')
+        ],
       },
         {
           test: /\.(s[ac]|c)ss$/i,

@@ -1,5 +1,6 @@
 import React from 'react';
 
+      // @ts-ignore
 import FabricIdentityManager from '@fabric/react';
 
 const App = () => {

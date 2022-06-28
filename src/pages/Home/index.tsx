@@ -16,6 +16,7 @@ export default () => {
     const core = async () => {
       const syncStorage = await chrome.storage.session.get();
       const storage = await (new Promise(resolve => chrome.runtime.sendMessage({msg: RETRIEVE_ACCOUNT}, response => resolve(response))));
+      // @ts-ignore
       dispatch(setKeys(syncStorage));
     }
     core();

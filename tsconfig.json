@@ -11,12 +11,13 @@
       "@/*": ["src/*"],
       "@utils/*": ["utils/*"]
     },
-    "allowJs": true,
+    // "allowJs": true,
     // "checkJs": true,
     "jsx": "react",
     // "declaration": true,
     "sourceMap": true,
     "outDir": "./assets",
+    // "rootDir": "./src",
     "removeComments": true,
     "noEmit": true,
     "isolatedModules": true,
@@ -42,7 +43,8 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src"
+    "src",
+    "utils"
   ],
   "exclude": [
     "node_modules",
