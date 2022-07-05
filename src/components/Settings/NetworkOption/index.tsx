@@ -6,7 +6,7 @@ interface IConnectionItem {
   comment: string
 };
 
-export default ({name, comment}: IConnectionItem) => {
+export default ({ name, comment }: IConnectionItem) => {
   return (
     <Grid className='p-16 py-9 bg-white'>
       <Grid.Column width='eleven' textAlign='left'>

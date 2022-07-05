@@ -1,5 +1,4 @@
-import { syncGet, syncSet } from '../storage';
-import { createDB, insertAccount } from './database';
+import { syncGet } from '../storage';
 
 export const handleActionClick = async () => {
   chrome.tabs.create({

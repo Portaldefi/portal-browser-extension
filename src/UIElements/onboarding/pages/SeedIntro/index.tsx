@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Header, Button, Grid, Segment } from 'semantic-ui-react';
 
 import { generateSeed, generateAddress } from '@utils/seedPhrase';
-import { CREATE_ACCOUNT, RuntimeMessage } from '@/config/messages';
-import { IAccount } from '@/serviceworker/database/schema';
+import { CREATE_ACCOUNT } from '@/config/messages';
+//import { IAccount } from '@/serviceworker/database/schema';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
@@ -23,14 +23,14 @@ export default () => {
     const core = async () => {
       if (!phrase.SRF_Length) {
         const seedList = generateSeed();
-  
+
         const keys = await generateAddress(seedList);
         chrome.storage.session.set(keys);
         chrome.runtime.sendMessage({
           msg: CREATE_ACCOUNT,
           payload: keys
         })
-  
+
         dispatch(setSRFList(seedList));
         dispatch(setSRFLength(seedList.length));
       }

@@ -6,7 +6,7 @@ interface IConnectionItem {
   timestamp: string
 };
 
-export default ({url, timestamp}: IConnectionItem) => {
+export default ({ url, timestamp }: IConnectionItem) => {
   return (
     <Grid className='p-16 py-9 bg-white'>
       <Grid.Column width='sixteen' textAlign='left'>

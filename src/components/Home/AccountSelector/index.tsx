@@ -21,6 +21,10 @@ export default () => {
   }, []);
 
   return (
-    <Dropdown selection options={accountOptions} value={selectedAddress || accountOptions[0]?.value} onChange={handleChange} />
+    <Dropdown
+      selection
+      options={accountOptions}
+      value={selectedAddress || accountOptions[0]?.value}
+      onChange={handleChange} />
   );
 }

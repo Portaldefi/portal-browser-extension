@@ -5,6 +5,7 @@ import handleMessage from './messageHandler';
 createDB();
 
 chrome.action.onClicked.addListener(handleActionClick);
+
 chrome.runtime.onMessageExternal.addListener(
   function(request:any, sender:any, sendResponse:any) {
     console.log(sender.tab ?
@@ -17,7 +18,8 @@ chrome.runtime.onMessageExternal.addListener(
     }
   }
 )
+
 chrome.runtime.onStartup.addListener(handleStartup);
 chrome.runtime.onMessage.addListener(handleMessage);
 
-export {}; // stops ts error that the file isn't a module
+export { }; // stops ts error that the file isn't a module

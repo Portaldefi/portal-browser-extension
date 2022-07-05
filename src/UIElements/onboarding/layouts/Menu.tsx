@@ -13,12 +13,12 @@ export default () => {
   const menuItems = useAppSelector((state: RootState) => state.menu.items);
 
   const handleMenuClick = useCallback((item: IMenuItem) => {
-    if (item.external) {
-      
-    } else {
+    if (item.external) { }
+    else {
       navigate(item.link);
     }
   }, []);
+
   const renderMenuItem = useCallback((item: IMenuItem, idx: number) => (
     <MenuItem as='a' key={idx} onClick={() => handleMenuClick(item)}>
       {item.title}

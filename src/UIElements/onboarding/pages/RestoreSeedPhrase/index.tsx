@@ -14,14 +14,14 @@ type FormValue = {
 };
 
 const defaultPhrases = {
-  phrase1: '', phrase2: '', phrase3: '', 
+  phrase1: '', phrase2: '', phrase3: '',
   phrase4: '', phrase5: '', phrase6: '',
   phrase7: '', phrase8: '', phrase9: '',
   phrase10: '', phrase11: '', phrase12: '',
 }
 
 export default () => {
-  const [ isDirty, setIsDirty ] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
   const navigate = useNavigate();
   const phrase = useAppSelector(state => state.phrase);
   const { setValue, getValues, watch } = useForm<FormValue>({ defaultValues: defaultPhrases });

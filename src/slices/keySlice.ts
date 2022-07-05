@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
 import { IKey } from '../types/key';
 
 // interface menuState {
@@ -17,9 +16,6 @@ export const menuSlice = createSlice({
   name: 'menu',
   initialState,
   reducers: {
-    // setItems: (state: menuState, action: PayloadAction<IKey>) => {
-    //   state.items = action.payload;
-    // },
     setKeys: (state: IKey, action: PayloadAction<IKey>) => {
       state.privateKey = action.payload.privateKey;
       state.privateExtendedKey = action.payload.privateExtendedKey;

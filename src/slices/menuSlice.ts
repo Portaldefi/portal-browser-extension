@@ -6,9 +6,7 @@ interface menuState {
   items: Array<IMenuItem>
 }
 
-const initialState: menuState = {
-  items: []
-};
+const initialState: menuState = { items: [] };
 
 export const menuSlice = createSlice({
   name: 'menu',
@@ -21,5 +19,4 @@ export const menuSlice = createSlice({
 });
 
 export const { setItems } = menuSlice.actions;
-
 export default menuSlice.reducer;
