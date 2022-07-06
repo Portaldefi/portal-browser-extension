@@ -5,10 +5,12 @@ import { Container } from 'semantic-ui-react';
 import Menu from './Menu';
 import Board from './Board';
 import Home from '../pages/Home';
+import Login from '../pages/Login';
 import ConnectionView from '../pages/ConnectionView';
 import Settings from '../pages/Settings';
 import Network from '../pages/Settings/Network';
 import AccessNotification from '../pages/Notifications/Access';
+
 
 const AppLoader = () => {
   return (
@@ -16,6 +18,7 @@ const AppLoader = () => {
       <Router>
         <Routes>
           <Route path='' element={<Navigate to='home' replace />} />
+          <Route path='login' element={<Login />} />
           <Route path='' element={<Menu />}>
             <Route path='home' element={<Home />} />
             <Route path='notification' element={<AccessNotification />} />

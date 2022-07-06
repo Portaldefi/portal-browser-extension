@@ -61,6 +61,7 @@ export default () => {
           // @ts-ignore
           const seedList = Object.keys(phrases).map(key => phrases[key]);
 
+  // @ts-ignore
           const keys = await generateAddress(seedList);
           chrome.storage.session.set(keys);
 

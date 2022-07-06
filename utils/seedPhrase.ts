@@ -3,6 +3,7 @@ import createHash from 'create-hash';
 import HDKey from 'hdkey';
 import * as bs58check from 'bs58check';
 
+
 // const bip32 = Bip32Factory(ecc);
 
 export const generateSeed = () => {
@@ -15,7 +16,7 @@ export const generateSeed = () => {
   }
 };
 
-export const generateAddress = async (mnemonic: any[]) => {
+export const generateAddress = async (mnemonic: any[], password: any) => {
   let _mnemonic;
   if (typeof mnemonic === 'object') {
     _mnemonic = mnemonic.join(' ');
@@ -27,12 +28,16 @@ export const generateAddress = async (mnemonic: any[]) => {
   const hdKey = HDKey.fromMasterSeed(_seed);
 
   const privateKey = hdKey.privateExtendedKey;
+
+
   const result = {
     privateKey: privateKey.toString(),
     privateExtendedKey: hdKey.privateExtendedKey,
     address: [''],
+    password: password
   };
-  for (let i = 0; i < 10; i ++) {
+
+  for (let i = 0; i < 10; i++) {
     result.address[i] = generateAddressFromPvtKey(result.privateKey, i);
   }
 

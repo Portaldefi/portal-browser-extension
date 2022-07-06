@@ -2,7 +2,11 @@ import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Button, Grid, Segment, Icon, Form } from 'semantic-ui-react';
 
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setPassword } from '../../slices/phraseSlice';
+
 export default () => {
+  const dispatch = useAppDispatch();
   const [passData, setPassData] = useState({
     password: '',
     confPass: ''
@@ -28,6 +32,8 @@ export default () => {
       alert('Passwords don\'t match');
       return;
     }
+
+    dispatch(setPassword(password));
     navigate('/seed-phrase-intro', { state: { mode: 'create' } });
   }, [password, confPass]);
 
