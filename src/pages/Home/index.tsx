@@ -11,13 +11,17 @@ export default () => {
   // const [address, setAddress] = useState<string>('');
   const dispatch = useAppDispatch();
   const selectedAddress = useAppSelector(state => state.key.selectedAddress);
-  
+
   useEffect(() => {
     const core = async () => {
       const syncStorage = await chrome.storage.session.get();
-      const storage = await (new Promise(resolve => chrome.runtime.sendMessage({msg: RETRIEVE_ACCOUNT}, response => resolve(response))));
-      // @ts-ignore
-      dispatch(setKeys(syncStorage));
+      const storage = await (new Promise(resolve => chrome.runtime.sendMessage({ msg: RETRIEVE_ACCOUNT }, response => {
+        resolve(response);
+        chrome.storage.local.get(['account'], (res) => {
+          dispatch(setKeys(res.account));
+        })
+      })));
+      //dispatch(setKeys(syncStorage));
     }
     core();
   }, []);

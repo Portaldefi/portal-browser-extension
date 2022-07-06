@@ -61,8 +61,9 @@ export default () => {
               <Form.Group inline widths={3} key={rowIdx}>
                 {[...new Array(3)].map((_, colIdx) => {
                   const id = rowIdx * 3 + colIdx + 1;
-// @ts-ignore
-                  return <Form.Input label={`${id}.`} width={16} key={colIdx} value={phrases[`phrase${id}`]} onChange={(e) => { setValue(`phrase${id}`, e.target.value); setIsDirty(true); }} />
+
+  // @ts-ignore
+                  return <Form.Input type='password' label={`${id}.`} width={16} key={colIdx} value={phrases[`phrase${id}`]} onChange={(e) => { setValue(`phrase${id}`, e.target.value); setIsDirty(true); }} />
                 })}
               </Form.Group>
             ))}

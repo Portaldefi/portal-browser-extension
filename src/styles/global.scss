@@ -71,6 +71,9 @@ body {
 .bg-white {
   background-color: white;
 }
+.seed-input{
+  border-bottom: 1px solid grey;
+}
 @each $weight in $font-weights {
   .font-weight-#{$weight} {
     font-weight: #{$weight};

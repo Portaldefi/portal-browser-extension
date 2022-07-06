@@ -10,8 +10,10 @@ export default (message: RuntimeMessage, _sender: chrome.runtime.MessageSender, 
       insertAccount(message.payload as IAccount);
       break;
     case RETRIEVE_ACCOUNT:
-      // @ts-ignore
-      getAccount().then(result => sendResponse(result));
+      getAccount().then(result => {
+        chrome.storage.local.set({ account: result });
+        _sendResponse(result)
+      });
       break;
   }
 }

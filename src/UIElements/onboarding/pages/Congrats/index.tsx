@@ -24,6 +24,12 @@ export default () => {
     syncSet({ 'accountStatus': 'set' });
   }, []);
 
+  const closeTab = () => {
+    window.opener = null;
+    window.open("", "_self");
+    window.close();
+  };
+
   return (
     <Segment className='board'>
       <Grid>
