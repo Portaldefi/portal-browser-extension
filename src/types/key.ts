@@ -5,4 +5,5 @@ export interface IKey {
   privateExtendedKey: string,
   address: Array<string>,
   selectedAddress: IAddress,
+  selectedId: number
 }

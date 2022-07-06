@@ -11,6 +11,7 @@ export default () => {
   // const [address, setAddress] = useState<string>('');
   const dispatch = useAppDispatch();
   const selectedAddress = useAppSelector(state => state.key.selectedAddress);
+  const selectedId = useAppSelector(state => state.key.selectedId);
 
   useEffect(() => {
     const core = async () => {
@@ -30,7 +31,7 @@ export default () => {
     <div className='mainframe'>
       <Grid>
         <Grid.Row centered>
-          {/* <Header as='h1' className='description'>Identity 1</Header> */}
+          <Header as='h1' className='description'>Identity {selectedId}</Header>
         </Grid.Row>
         <Grid.Row centered>
           <Header as='p' className='description'>fabric{cutter(selectedAddress, 20)}</Header>
