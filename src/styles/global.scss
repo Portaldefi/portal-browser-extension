@@ -24,6 +24,7 @@ body {
     &.blank-button {
       background-color: transparent;
       text-align: left;
+      width:fit-content;
     }
     &.secondary-button {
       background-color: transparent;
@@ -103,4 +104,9 @@ body {
 
 .pwd-confirm{
   width: 50% !important;
+}
+
+.justify-between{
+  display: flex !important;
+  justify-content: space-between !important;
 }

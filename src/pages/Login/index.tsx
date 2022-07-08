@@ -7,11 +7,30 @@ export default () => {
     const navigate = useNavigate();
     const [password, setPassword] = useState('');
 
+    useEffect(() => {
+        chrome.storage.sync.get(['authenticated', 'auth_time'], (res) => {
+            if (res.authenticated !== true)
+                return;
+
+            const auth_time = (new Date(res.auth_time)).getTime();
+            const cur_time = (new Date(Date.now())).getTime();
+            if (Math.abs(cur_time - auth_time) > 3600 * 1000) {
+                //Auth time expired   
+                chrome.storage.sync.set({ authenticated: false });
+            }
+            else
+                navigate('/home');
+        });
+    }, []);
+
     const handleConfirm = () => {
         const core = async () => {
             chrome.runtime.sendMessage({ msg: CHECK_PASSWORD, payload: password }, response => {
                 chrome.storage.local.get(['passwordCheck'], (res) => {
+                    console.log(res.passwordCheck);
                     if (res.passwordCheck === true) {
+                        //Authentication to session
+                        chrome.storage.sync.set({ authenticated: true, auth_time: Date.now() });
                         navigate('/home');
                     }
                     else {
