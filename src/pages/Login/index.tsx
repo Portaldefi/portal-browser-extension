@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Grid, GridRow, GridColumn, Form, Button } from 'semantic-ui-react';
+import { checkPassword, getAccount } from '@/serviceworker/database';
 
 export default () => {
+    const [password, setPassword] = useState('');
+
+    const handleConfirm = () => {
+        checkPassword(0, password).then(res => console.log(res)); // 0 means account 0
+    };
+
     return (
         <Grid>
             <GridRow id='menu' verticalAlign='middle'>
@@ -25,11 +32,11 @@ export default () => {
                             </Grid.Row>
                             <Grid.Row centered>
                                 <Form.Group inline widths={1}>
-                                    <Form.Input width={8} type='password' name='password' />
+                                    <Form.Input width={8} type='password' name='password' value={password} onChange={e => setPassword(e.target.value)} />
                                 </Form.Group>
                             </Grid.Row>
                             <Grid.Row centered>
-                                <Button className='primary-button pwd-confirm'>Confirm</Button>
+                                <Button className='primary-button pwd-confirm' onClick={e => handleConfirm()}>Confirm</Button>
                             </Grid.Row>
                         </Grid>
                     </div>

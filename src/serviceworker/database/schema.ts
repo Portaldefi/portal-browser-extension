@@ -4,7 +4,8 @@ import { IIdentity } from '../../types/identity';
 export interface IAccount {
   settings: null,
   publicKey: string,
-  identities: Array<IIdentity>
+  identities: Array<IIdentity>,
+  password: string
 };
 
 export interface AccountSchema extends DBSchema {
