@@ -25,5 +25,7 @@ export const getAccount = async (accountId: number = 0) => {
 export const checkPassword = async (accountId: number = 0, password: string) => {
   const res = await db.get('account', accountId);
   // @ts-ignore
-  return (res.password === password)
+  console.log('wa' + (res.password === password));
+  // @ts-ignore
+  return (res.password === password);
 }

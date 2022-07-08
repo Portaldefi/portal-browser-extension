@@ -6,6 +6,7 @@ import { Button, Grid, Header,
 import AccessOption from '../../components/AccessOption';
 
 export default () => {
+
   return (
     <div className='mainframe'>
       <Grid className='bg-white py-12'>

@@ -13,6 +13,7 @@ export default () => {
       <Grid.Row centered className='p-none pb-19'>
         <Header as='h1' className='heading'>Settings</Header>
       </Grid.Row>
+
       <Grid.Row className='p-none'>
         <List className='w-100'>
           <List.Item>
@@ -27,6 +28,7 @@ export default () => {
           </List.Item>
         </List>
       </Grid.Row>
+
     </Grid>
   );
 }

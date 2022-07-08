@@ -1,12 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Grid, GridRow, GridColumn, Form, Button } from 'semantic-ui-react';
-import { checkPassword, getAccount } from '@/serviceworker/database';
+import { CHECK_PASSWORD } from '@/config/messages';
+import { useNavigate } from 'react-router-dom';
 
 export default () => {
+    const navigate = useNavigate();
     const [password, setPassword] = useState('');
 
     const handleConfirm = () => {
-        checkPassword(0, password).then(res => console.log(res)); // 0 means account 0
+        const core = async () => {
+            chrome.runtime.sendMessage({ msg: CHECK_PASSWORD, payload: password }, response => {
+                chrome.storage.local.get(['passwordCheck'], (res) => {
+                    if (res.passwordCheck === true) {
+                        navigate('/home');
+                    }
+                    else {
+                        alert('Password incorrect!');
+                    }
+                })
+            });
+        }
+        core();
+        //checkPassword(0, password).then(res => console.log(res)); // 0 means account 0
     };
 
     return (

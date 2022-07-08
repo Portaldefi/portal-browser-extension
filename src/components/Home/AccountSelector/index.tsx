@@ -14,9 +14,10 @@ export default () => {
   const accountOptions = useMemo(() => addresses.map((address, idx) => ({
     key: address,
     value: address,
-    text: `Identity ${idx} (fabric${cutter(address)})`
+    text: `Identity ${idx} (${cutter(address)})`
   })), [addresses]);
-  const handleChange = useCallback((_event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+
+  const handleSelectAccount = useCallback((event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
     dispatch(selectAddress(data.value as string));
   }, []);
 
@@ -25,6 +26,6 @@ export default () => {
       selection
       options={accountOptions}
       value={selectedAddress || accountOptions[0]?.value}
-      onChange={handleChange} />
+      onChange={handleSelectAccount} />
   );
 }
