@@ -1,6 +1,7 @@
 import { openDB, IDBPDatabase } from 'idb';
 import config from '../../config/db'
 import { AccountSchema, IAccount } from './schema';
+import createHash from 'create-hash';
 
 let db: IDBPDatabase<AccountSchema>;
 
@@ -24,8 +25,9 @@ export const getAccount = async (accountId: number = 0) => {
 
 export const checkPassword = async (accountId: number = 0, password: string) => {
   const res = await db.get('account', accountId);
+  const passHash = createHash('sha256').update(password).digest('base64');
   // @ts-ignore
-  console.log('wa' + (res.password === password));
-  // @ts-ignore
-  return (res.password === password);
+    return (res.password === passHash);
 }
+
+createDB();

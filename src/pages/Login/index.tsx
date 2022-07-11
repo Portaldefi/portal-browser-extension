@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Image, Grid, GridRow, GridColumn, Form, Button } from 'semantic-ui-react';
 import { CHECK_PASSWORD } from '@/config/messages';
 import { useNavigate } from 'react-router-dom';
+import { checkPassword } from '@/serviceworker/database';
+
 
 export default () => {
     const navigate = useNavigate();
@@ -25,9 +27,9 @@ export default () => {
 
     const handleConfirm = () => {
         const core = async () => {
-            chrome.runtime.sendMessage({ msg: CHECK_PASSWORD, payload: password }, response => {
+            /*chrome.runtime.sendMessage({ msg: CHECK_PASSWORD, payload: password }, response => {
                 chrome.storage.local.get(['passwordCheck'], (res) => {
-                    console.log(res.passwordCheck);
+                    console.log('login ' + res.passwordCheck);
                     if (res.passwordCheck === true) {
                         //Authentication to session
                         chrome.storage.sync.set({ authenticated: true, auth_time: Date.now() });
@@ -37,6 +39,19 @@ export default () => {
                         alert('Password incorrect!');
                     }
                 })
+            });*/
+            checkPassword(0, password).then(res => { // 0 is account 0
+                console.log('msg ' + res);
+                if (res === true) {
+                    //Authentication to session
+                    chrome.storage.sync.set({ authenticated: true, auth_time: Date.now() });
+                    navigate('/home');
+                }
+                else {
+                    alert('Password incorrect!');
+                }
+                //chrome.storage.local.set({ passwordCheck: res });
+                //sendResponse(res);
             });
         }
         core();

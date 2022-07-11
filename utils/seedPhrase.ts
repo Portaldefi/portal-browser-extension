@@ -3,7 +3,6 @@ import createHash from 'create-hash';
 import HDKey from 'hdkey';
 import * as bs58check from 'bs58check';
 
-
 // const bip32 = Bip32Factory(ecc);
 
 export const generateSeed = () => {
@@ -29,12 +28,11 @@ export const generateAddress = async (mnemonic: any[], password: any) => {
 
   const privateKey = hdKey.privateExtendedKey;
 
-
   const result = {
     privateKey: privateKey.toString(),
     privateExtendedKey: hdKey.privateExtendedKey,
     address: [''],
-    password: password
+    password: createHash('sha256').update(password).digest('base64')
   };
 
   for (let i = 0; i < 10; i++) {

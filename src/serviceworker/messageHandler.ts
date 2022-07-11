@@ -15,12 +15,13 @@ export default (message: RuntimeMessage, _sender: chrome.runtime.MessageSender, 
         _sendResponse(result)
       });
       break;
-    case CHECK_PASSWORD:
+    /*case CHECK_PASSWORD:
       // @ts-ignore
       checkPassword(0, message.payload as string).then(res => {
+        console.log('msg ' + res);
         chrome.storage.local.set({ passwordCheck: res });
         _sendResponse(res);
       });
-      break;
+      break;*/
   }
 }
