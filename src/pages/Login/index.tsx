@@ -42,6 +42,12 @@ export default () => {
         core();
         //checkPassword(0, password).then(res => console.log(res)); // 0 means account 0
     };
+// @ts-ignore
+    const onKeyDown = (e) => {
+        if (e.keyCode == 13) {
+            handleConfirm();
+        }
+    }
 
     return (
         <Grid>
@@ -66,7 +72,9 @@ export default () => {
                             </Grid.Row>
                             <Grid.Row centered>
                                 <Form.Group inline widths={1}>
-                                    <Form.Input width={8} type='password' name='password' value={password} onChange={e => setPassword(e.target.value)} />
+                                    <Form.Input width={8} type='password' name='password' value={password}
+                                        onChange={e => setPassword(e.target.value)}
+                                        onKeyDown={onKeyDown} />
                                 </Form.Group>
                             </Grid.Row>
                             <Grid.Row centered>
