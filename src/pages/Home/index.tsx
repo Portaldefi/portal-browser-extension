@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setKeys } from '../../slices/keySlice';
 import { cutter } from '../../../utils/text';
 import RecentConnections from '../../components/Home/RecentConnections';
+import { getAccount } from '@/serviceworker/database';
 
 export default () => {
   // const [address, setAddress] = useState<string>('');
@@ -16,12 +17,16 @@ export default () => {
   useEffect(() => {
     const core = async () => {
       const syncStorage = await chrome.storage.session.get();
-      const storage = await (new Promise(resolve => chrome.runtime.sendMessage({ msg: RETRIEVE_ACCOUNT }, response => {
+      /*const storage = await (new Promise(resolve => chrome.runtime.sendMessage({ msg: RETRIEVE_ACCOUNT }, response => {
         resolve(response);
         chrome.storage.local.get(['account'], (res) => {
           dispatch(setKeys(res.account));
         })
-      })));
+      })));*/
+      getAccount().then(result => {
+        // @ts-ignore
+        dispatch(setKeys(result));
+      });
       //dispatch(setKeys(syncStorage));
     }
     core();

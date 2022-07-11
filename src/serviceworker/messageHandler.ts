@@ -9,12 +9,12 @@ export default (message: RuntimeMessage, _sender: chrome.runtime.MessageSender, 
     case CREATE_ACCOUNT:
       insertAccount(message.payload as IAccount);
       break;
-    case RETRIEVE_ACCOUNT:
+    /*case RETRIEVE_ACCOUNT:
       getAccount().then(result => {
         chrome.storage.local.set({ account: result });
         _sendResponse(result)
       });
-      break;
+      break;*/
     /*case CHECK_PASSWORD:
       // @ts-ignore
       checkPassword(0, message.payload as string).then(res => {
