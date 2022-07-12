@@ -27,19 +27,6 @@ export default () => {
 
     const handleConfirm = () => {
         const core = async () => {
-            /*chrome.runtime.sendMessage({ msg: CHECK_PASSWORD, payload: password }, response => {
-                chrome.storage.local.get(['passwordCheck'], (res) => {
-                    console.log('login ' + res.passwordCheck);
-                    if (res.passwordCheck === true) {
-                        //Authentication to session
-                        chrome.storage.sync.set({ authenticated: true, auth_time: Date.now() });
-                        navigate('/home');
-                    }
-                    else {
-                        alert('Password incorrect!');
-                    }
-                })
-            });*/
             checkPassword(0, password).then(res => { // 0 is account 0
                 console.log('msg ' + res);
                 if (res === true) {
@@ -50,12 +37,9 @@ export default () => {
                 else {
                     alert('Password incorrect!');
                 }
-                //chrome.storage.local.set({ passwordCheck: res });
-                //sendResponse(res);
             });
         }
         core();
-        //checkPassword(0, password).then(res => console.log(res)); // 0 means account 0
     };
 // @ts-ignore
     const onKeyDown = (e) => {
