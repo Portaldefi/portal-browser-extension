@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Header, Button, Grid, Segment } from 'semantic-ui-react';
 
 import { generateSeed, generateAddress } from '@utils/seedPhrase';
-import { CREATE_ACCOUNT } from '@/config/messages';
-//import { IAccount } from '@/serviceworker/database/schema';
+import { IAccount } from '@/serviceworker/database/schema';
+import { insertAccount } from '@/serviceworker/database';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
@@ -26,10 +26,13 @@ export default () => {
 
         const keys = await generateAddress(seedList, phrase.password);
         chrome.storage.session.set(keys);
-        chrome.runtime.sendMessage({
+        /*chrome.runtime.sendMessage({
           msg: CREATE_ACCOUNT,
           payload: keys
-        });
+        });*/
+
+        // @ts-ignore
+        insertAccount(keys as IAccount);
 
         dispatch(setSRFList(seedList));
         dispatch(setSRFLength(seedList.length));
