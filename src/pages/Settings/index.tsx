@@ -1,11 +1,14 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Grid, Header, Icon } from 'semantic-ui-react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { addAddress } from '../../slices/keySlice';
 
 import SettingItem from '../../components/Home/SettingItem';
 import { generateAddress } from '@utils/seedPhrase';
 
 export default () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleNetwork = useCallback(() => {
@@ -13,12 +16,17 @@ export default () => {
   }, []);
 
   const addIdentity = useCallback(() => {
-    if (confirm('Really Add an identity?') === true) {
-      generateAddress();
-    }
-    else {
-      alert('Request Canceled!');
-    }
+    const core = async () => {
+      if (confirm('Really Add an identity?') === true) {
+        const address = await generateAddress();
+        alert(address);
+        dispatch(addAddress(address));
+      }
+      else {
+        alert('Request Canceled!');
+      }
+    };
+    core();
   }, []);
 
   return (

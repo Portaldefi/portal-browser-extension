@@ -68,4 +68,6 @@ export const generateAddress = async () => {
   console.log(idCnt);
   const address = generateAddressFromPvtKey(key, idCnt);
   insertIdentity(address);
+
+  return address;
 }
