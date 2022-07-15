@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Grid, GridRow, GridColumn, Form, Button } from 'semantic-ui-react';
-import { CHECK_PASSWORD } from '@/config/messages';
 import { useNavigate } from 'react-router-dom';
 import { checkPassword } from '@/serviceworker/database';
 

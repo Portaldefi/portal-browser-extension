@@ -24,15 +24,11 @@ export default () => {
       if (!phrase.SRF_Length) {
         const seedList = generateSeed();
 
-        const keys = await generateAccount(seedList, phrase.password);
-        chrome.storage.session.set(keys);
-        /*chrome.runtime.sendMessage({
-          msg: CREATE_ACCOUNT,
-          payload: keys
-        });*/
+        const account = await generateAccount(seedList, phrase.password);
+        chrome.storage.session.set(account);
 
         // @ts-ignore
-        insertAccount(keys as IAccount);
+        insertAccount(account as IAccount);
 
         dispatch(setSRFList(seedList));
         dispatch(setSRFLength(seedList.length));
