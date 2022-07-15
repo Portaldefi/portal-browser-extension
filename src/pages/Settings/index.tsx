@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Grid, Header, Icon } from 'semantic-ui-react';
-import { insertIdentity } from '@/serviceworker/database';
 
 import SettingItem from '../../components/Home/SettingItem';
+import { generateAddress } from '@utils/seedPhrase';
 
 export default () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default () => {
 
   const addIdentity = useCallback(() => {
     if (confirm('Really Add an identity?') === true) {
-      insertIdentity('123');
+      generateAddress();
     }
     else {
       alert('Request Canceled!');

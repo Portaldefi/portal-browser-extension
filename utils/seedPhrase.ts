@@ -2,6 +2,7 @@ import * as bip39 from 'bip39';
 import createHash from 'create-hash';
 import HDKey from 'hdkey';
 import * as bs58check from 'bs58check';
+import { retrievePrivateKey, getIdentityCount, insertIdentity } from '@/serviceworker/database';
 
 // const bip32 = Bip32Factory(ecc);
 
@@ -59,18 +60,12 @@ export const generateAddressFromPvtKey = (privateKey:any, addressNo = 0) => {
 }
 
 
-export const generateAddress = async (mnemonic: any, i: number) => {
-  let _mnemonic;
-  if (typeof mnemonic === 'object') {
-    _mnemonic = mnemonic.join(' ');
-  } else {
-    _mnemonic = mnemonic;
-  }
+export const generateAddress = async () => {
+  const key = await retrievePrivateKey();
+  const idCnt = await getIdentityCount();
 
-  const _seed = await bip39.mnemonicToSeed(_mnemonic);
-  const hdKey = HDKey.fromMasterSeed(_seed);
-
-  const privateKey = hdKey.privateExtendedKey;
-
-  return generateAddressFromPvtKey(privateKey, i);
+  console.log(key);
+  console.log(idCnt);
+  const address = generateAddressFromPvtKey(key, idCnt);
+  insertIdentity(address);
 }

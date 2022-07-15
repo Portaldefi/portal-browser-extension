@@ -18,9 +18,12 @@ export const insertAccount = async (account: IAccount) => {
   db.add("account", account, accountCount);
 }
 
-export const insertIdentity = async (identity: string) => {
-  //const accountCount = await db.count('account');
-  //db.add("account", account, accountCount);
+export const insertIdentity = async (identity: string, accountId: number = 0) => {
+  const account = await db.get('account', accountId);
+  // @ts-ignore
+  account.address[account.address.length] = identity;
+  // @ts-ignore
+  db.put('account', account, accountId);
 }
 
 export const getAccount = async (accountId: number = 0) => {
@@ -33,6 +36,18 @@ export const checkPassword = async (accountId: number = 0, password: string) => 
   const passHash = createHash('sha256').update(password).digest('base64');
   // @ts-ignore
     return (res.password === passHash);
+}
+
+export const retrievePrivateKey = async (accountId: number = 0) => {
+  const res = await db.get('account', accountId);
+  // @ts-ignore
+  return res.privateKey;
+};
+
+export const getIdentityCount = async (accountId: number = 0) => {
+  const res = await db.get('account', accountId);
+  // @ts-ignore
+  return res.address.length;
 }
 
 createDB();
