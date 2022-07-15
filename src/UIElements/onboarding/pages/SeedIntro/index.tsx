@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Button, Grid, Segment } from 'semantic-ui-react';
 
-import { generateSeed, generateAddress } from '@utils/seedPhrase';
+import { generateSeed, generateAccount } from '@utils/seedPhrase';
 import { IAccount } from '@/serviceworker/database/schema';
 import { insertAccount } from '@/serviceworker/database';
 
@@ -24,7 +24,7 @@ export default () => {
       if (!phrase.SRF_Length) {
         const seedList = generateSeed();
 
-        const keys = await generateAddress(seedList, phrase.password);
+        const keys = await generateAccount(seedList, phrase.password);
         chrome.storage.session.set(keys);
         /*chrome.runtime.sendMessage({
           msg: CREATE_ACCOUNT,

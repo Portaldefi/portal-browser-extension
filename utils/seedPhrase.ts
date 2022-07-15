@@ -15,7 +15,7 @@ export const generateSeed = () => {
   }
 };
 
-export const generateAddress = async (mnemonic: any[], password: any) => {
+export const generateAccount = async (mnemonic: any[], password: any) => {
   let _mnemonic;
   if (typeof mnemonic === 'object') {
     _mnemonic = mnemonic.join(' ');
@@ -56,4 +56,21 @@ export const generateAddressFromPvtKey = (privateKey:any, addressNo = 0) => {
   const address = bs58check.encode(step4);
 
   return address;
-};
+}
+
+
+export const generateAddress = async (mnemonic: any, i: number) => {
+  let _mnemonic;
+  if (typeof mnemonic === 'object') {
+    _mnemonic = mnemonic.join(' ');
+  } else {
+    _mnemonic = mnemonic;
+  }
+
+  const _seed = await bip39.mnemonicToSeed(_mnemonic);
+  const hdKey = HDKey.fromMasterSeed(_seed);
+
+  const privateKey = hdKey.privateExtendedKey;
+
+  return generateAddressFromPvtKey(privateKey, i);
+}

@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 // import { isEqual } from 'lodash';
 import * as bip39 from 'bip39';
 
-import { generateAddress } from '@utils/seedPhrase';
+import { generateAccount } from '@utils/seedPhrase';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';

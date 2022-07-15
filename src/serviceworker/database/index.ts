@@ -18,6 +18,11 @@ export const insertAccount = async (account: IAccount) => {
   db.add("account", account, accountCount);
 }
 
+export const insertIdentity = async (identity: string) => {
+  //const accountCount = await db.count('account');
+  //db.add("account", account, accountCount);
+}
+
 export const getAccount = async (accountId: number = 0) => {
   const res = await db.get('account', accountId);
   return res;
