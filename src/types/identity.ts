@@ -3,7 +3,7 @@ export type IHistory = string;
 export type IAddress = string | undefined;
 
 export interface IChain {
-  address: IAddress,
+  address: ArrayBuffer,
   history: IHistory,
   connectedWebsites: Array<string>
 };

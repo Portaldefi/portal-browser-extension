@@ -10,7 +10,7 @@ import { getAccount } from '@/serviceworker/database';
 export default () => {
   // const [address, setAddress] = useState<string>('');
   const dispatch = useAppDispatch();
-  const selectedAddress = useAppSelector(state => state.key.selectedAddress);
+  const selectedIdentity = useAppSelector(state => state.key.selectedIdentity);
   const selectedId = useAppSelector(state => state.key.selectedId);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export default () => {
           <Header as='h1' className='description'>Identity {selectedId}</Header>
         </Grid.Row>
         <Grid.Row centered>
-          <Header as='p' className='description'>fabric{cutter(selectedAddress, 20)}</Header>
+          <Header as='p' className='description'>fabric{cutter(selectedIdentity, 20)}</Header>
         </Grid.Row>
         <Grid.Row stretched centered>
           <RecentConnections />

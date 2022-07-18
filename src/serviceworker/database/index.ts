@@ -3,6 +3,7 @@ import config from '../../config/db'
 import { AccountSchema, EAccount, IAccount } from './schema';
 import createHash from 'create-hash';
 import { encrypt, decrypt, importKey, generateKey } from '@utils/subtleCrypto';
+import { IChain, IIdentity } from '@/types/identity';
 
 let db: IDBPDatabase<AccountSchema>;
 var iv = new Uint8Array([188, 185, 57, 146, 246, 194, 116, 34, 12, 80, 198, 76]);
@@ -26,13 +27,15 @@ export const insertAccount = async (account: IAccount) => {
     password: account.password,
     privateKey: await encrypt(textEnc.encode(account.privateKey), keys, iv),
     privateExtendedKey: await encrypt(textEnc.encode(account.privateExtendedKey), keys, iv),
-    address: [] as Array<ArrayBuffer>
+    identity: [] as Array<IIdentity>
   } as EAccount;
 
 
-  for (let i = 0; i < account.address.length; i++) {
-    var data = textEnc.encode(account.address[i]);
-    eAccount.address[i] = await encrypt(data, keys, iv);
+  for (let i = 0; i < account.identity.length; i++) {
+    var data = textEnc.encode(account.identity[i]);
+    eAccount.identity[i] = [] as IIdentity;
+    eAccount.identity[i][0] = {} as IChain;
+    eAccount.identity[i][0].address = await encrypt(data, keys, iv);
   }
 
   db.add("account", eAccount, accountCount);
@@ -45,7 +48,9 @@ export const insertIdentity = async (identity: string, accountId: number = 0) =>
   var keys = await importKey();
 
   var data = textEnc.encode(identity);
-  account.address[account.address.length] = await encrypt(data, keys, iv);
+  var length = account.identity.length;
+  account.identity[length][0] = {} as IChain;
+  account.identity[length][0].address = await encrypt(data, keys, iv);
   // @ts-ignore
   db.put('account', account, accountId);
 }
@@ -58,12 +63,12 @@ export const getAccount = async (accountId: number = 0) => {
     password: account.password,
     privateKey: textDec.decode(await decrypt(account.privateKey, keys, iv)),
     privateExtendedKey: textDec.decode(await decrypt(account.privateExtendedKey, keys, iv)),
-    address: [] as Array<string>
+    identity: [] as Array<string>
   } as IAccount;
 
-  for (let i = 0; i < account.address.length; i++) {
-    var decryptedData = await decrypt(account.address[i], keys, iv);
-    iAccount.address[i] = textDec.decode(decryptedData);
+  for (let i = 0; i < account.identity.length; i++) {
+    var decryptedData = await decrypt(account.identity[i][0].address, keys, iv);
+    iAccount.identity[i] = textDec.decode(decryptedData);
   }
 
   return iAccount;
@@ -89,7 +94,7 @@ export const retrievePrivateKey = async (accountId: number = 0) => {
 export const getIdentityCount = async (accountId: number = 0) => {
   const res = await db.get('account', accountId);
   // @ts-ignore
-  return res.address.length;
+  return res.identity.length;
 }
 
 createDB();

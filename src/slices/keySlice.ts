@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IKey } from '../types/key';
 
 // interface menuState {
-  // items: Array<IMenuItem>
+// items: Array<IMenuItem>
 // }
 
 const initialState: IKey = {
   privateKey: '',
   privateExtendedKey: '',
-  address: [],
-  selectedAddress: '',
+  identity: [],
+  selectedIdentity: '',
   selectedId: 0
 };
 
@@ -20,23 +20,23 @@ export const menuSlice = createSlice({
     setKeys: (state: IKey, action: PayloadAction<IKey>) => {
       state.privateKey = action.payload.privateKey;
       state.privateExtendedKey = action.payload.privateExtendedKey;
-      state.address = action.payload.address;
-      state.selectedAddress = state.address[0];
+      state.identity = action.payload.identity;
+      state.selectedIdentity = state.identity[0];
       state.selectedId = 0;
     },
     selectAddress: (state: IKey, action: PayloadAction<string | number>) => {
       if (typeof action.payload === 'number') {
-        state.selectedAddress = state.address[action.payload];
+        state.selectedIdentity = state.identity[action.payload];
         state.selectedId = action.payload;
       } else {
-        state.selectedAddress = action.payload;
-        for (let i = 0; i < state.address.length; i++)
-          if (state.selectedAddress == state.address[i])
+        state.selectedIdentity = action.payload;
+        for (let i = 0; i < state.identity.length; i++)
+          if (state.selectedIdentity == state.identity[i])
             state.selectedId = i;
       }
     },
     addAddress: (state: IKey, action: PayloadAction<string>) => {
-      state.address.push(action.payload);
+      state.identity.push(action.payload);
     }
   }
 });

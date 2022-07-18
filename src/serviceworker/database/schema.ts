@@ -4,15 +4,14 @@ import { IIdentity } from '../../types/identity';
 export interface IAccount {
   password: string,
   privateKey: string,
-  address: Array<string>,
+  identity: Array<string>,
   privateExtendedKey: string
 };
-
 
 export interface EAccount {
   password: string,
   privateKey: ArrayBuffer,
-  address: Array<ArrayBuffer>,
+  identity: Array<IIdentity>,
   privateExtendedKey: ArrayBuffer
 };
 

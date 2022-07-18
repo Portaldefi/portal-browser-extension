@@ -32,19 +32,19 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
   const result = {
     privateKey: privateKey.toString(),
     privateExtendedKey: hdKey.privateExtendedKey,
-    address: [''],
+    identity: [''],
     password: createHash('sha256').update(password).digest('base64')
   };
 
   for (let i = 0; i < 10; i++) {
-    result.address[i] = generateAddressFromPvtKey(result.privateKey, i);
+    result.identity[i] = generateAddressFromPvtKey(result.privateKey, i);
   }
 
   // console.log(getAddress(bip32.fromSeed(_seed)));
   return result;
 };
 
-export const generateAddressFromPvtKey = (privateKey:any, addressNo = 0) => {
+export const generateAddressFromPvtKey = (privateKey: any, addressNo = 0) => {
   const hdKey = HDKey.fromExtendedKey(privateKey.toString());
   const addrNode = hdKey.derive(`m/44'/0'/0'/${addressNo}`);
 

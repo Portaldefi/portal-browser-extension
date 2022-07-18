@@ -3,7 +3,7 @@ import { IAddress } from './identity';
 export interface IKey {
   privateKey: string,
   privateExtendedKey: string,
-  address: Array<string>,
-  selectedAddress: IAddress,
+  identity: Array<string>,
+  selectedIdentity: string,
   selectedId: number
 }

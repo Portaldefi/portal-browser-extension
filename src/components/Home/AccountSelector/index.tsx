@@ -8,14 +8,14 @@ import { cutter } from '@utils/text';
 
 export default () => {
   const dispatch = useAppDispatch();
-  const addresses = useAppSelector(state => state.key.address);
-  const selectedAddress = useAppSelector(state => state.key.selectedAddress);
+  const identities = useAppSelector(state => state.key.identity);
+  const selectedIdentity = useAppSelector(state => state.key.selectedIdentity);
 
-  const accountOptions = useMemo(() => addresses.map((address, idx) => ({
-    key: address,
-    value: address,
-    text: `Identity ${idx} (${cutter(address)})`
-  })), [addresses]);
+  const accountOptions = useMemo(() => identities.map((identity, idx) => ({
+    key: identity,
+    value: identity,
+    text: `Identity ${idx} (${cutter(identity)})`
+  })), [identities]);
 
   const handleSelectAccount = useCallback((event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
     dispatch(selectAddress(data.value as string));
@@ -25,7 +25,7 @@ export default () => {
     <Dropdown
       selection
       options={accountOptions}
-      value={selectedAddress || accountOptions[0]?.value}
+      value={selectedIdentity || accountOptions[0]?.value}
       onChange={handleSelectAccount} />
   );
 }
