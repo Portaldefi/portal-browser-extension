@@ -52,6 +52,9 @@ export default () => {
       <Grid.Row className='p-none'>
         <SettingItem name='Clear Identities' extra={undefined} />
       </Grid.Row>
+      <Grid.Row className='p-none' onClick={() => navigate('/settings/manage_identities')}>
+        <SettingItem name='Manage Identities' extra={undefined} />
+      </Grid.Row>
       <Grid.Row className='p-none'>
         <SettingItem name='Feedback' extra={undefined} />
       </Grid.Row>

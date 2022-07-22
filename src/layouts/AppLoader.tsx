@@ -10,6 +10,7 @@ import ConnectionView from '../pages/ConnectionView';
 import Settings from '../pages/Settings';
 import Network from '../pages/Settings/Network';
 import AccessNotification from '../pages/Notifications/Access';
+import ManageIdentities from '@/pages/Settings/ManageIdentities';
 
 
 const AppLoader = () => {
@@ -26,6 +27,7 @@ const AppLoader = () => {
               <Route path='connection-detail' element={<ConnectionView />} />
               <Route path='settings' element={<Settings />} />
               <Route path='settings/network' element={<Network />} />
+              <Route path='settings/manage_identities' element={<ManageIdentities />} />
             </Route>
           </Route>
         </Routes>

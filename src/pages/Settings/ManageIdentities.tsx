@@ -8,8 +8,6 @@ import {
 import { useNavigate } from 'react-router-dom';
 import ConnectionItem from '@/components/Home/RecentConnections/ConnectionItem';
 
-import NetworkOption from '../../components/Settings/NetworkOption';
-
 export default () => {
   const navigate = useNavigate();
 
@@ -33,6 +31,11 @@ export default () => {
           <List.Item onClick={handleClickConnection}>
             <List.Content>
               <ConnectionItem name='Ethereum' comment='https://uniswap.org/  -  Mon, Apr. 25, 2022 8:00 pm' />
+            </List.Content>
+          </List.Item>
+          <List.Item onClick={handleClickConnection}>
+            <List.Content>
+              <ConnectionItem name='Cosmos' comment='https://tokenrank.ai/  -  Friday, Apr. 20, 2022 3:00 pm' />
             </List.Content>
           </List.Item>
         </List>

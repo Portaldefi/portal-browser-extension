@@ -49,6 +49,9 @@ export const insertIdentity = async (identity: string, accountId: number = 0) =>
 
   var data = textEnc.encode(identity);
   var length = account.identity.length;
+  console.log(length);
+  console.log(account);
+  account.identity[length] = [];
   account.identity[length][0] = {} as IChain;
   account.identity[length][0].address = await encrypt(data, keys, iv);
   // @ts-ignore
