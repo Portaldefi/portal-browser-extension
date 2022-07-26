@@ -6,13 +6,20 @@ export interface IAccount {
   privateKey: string,
   identity: Array<string>,
   privateExtendedKey: string
+  chainAcceptStates: any
+};
+
+export interface ChainState {
+  name: string,
+  state: boolean
 };
 
 export interface EAccount {
   password: string,
   privateKey: ArrayBuffer,
   identity: Array<IIdentity>,
-  privateExtendedKey: ArrayBuffer
+  privateExtendedKey: ArrayBuffer,
+  chainAcceptStates: any
 };
 
 

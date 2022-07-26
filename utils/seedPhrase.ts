@@ -29,6 +29,8 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
 
   const privateKey = hdKey.privateExtendedKey;
 
+  console.log(privateKey.toString());
+
   const result = {
     privateKey: privateKey.toString(),
     privateExtendedKey: hdKey.privateExtendedKey,
@@ -46,7 +48,7 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
 
 export const generateAddressFromPvtKey = (privateKey: any, addressNo = 0) => {
   const hdKey = HDKey.fromExtendedKey(privateKey.toString());
-  const addrNode = hdKey.derive(`m/44'/0'/0'/${addressNo}`);
+  const addrNode = hdKey.derive(getDerivationPathOfChain('ethereum', addressNo) as string);
 
   const step2 = createHash('sha256').update(addrNode.publicKey).digest();
   const step3 = createHash('rmd160').update(step2).digest();
@@ -57,6 +59,13 @@ export const generateAddressFromPvtKey = (privateKey: any, addressNo = 0) => {
   const address = bs58check.encode(step4);
 
   return address;
+}
+
+
+export const getDerivationPathOfChain = (chainName: string, addrNo: number) => {
+  if (chainName === 'ethereum')
+    return `m/44'/60'/0'/0'/${addrNo}`;
+
 }
 
 

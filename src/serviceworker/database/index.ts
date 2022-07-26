@@ -1,6 +1,6 @@
 import { openDB, IDBPDatabase } from 'idb';
 import config from '../../config/db'
-import { AccountSchema, EAccount, IAccount } from './schema';
+import { AccountSchema, ChainState, EAccount, IAccount } from './schema';
 import createHash from 'create-hash';
 import { encrypt, decrypt, importKey, generateKey } from '@utils/subtleCrypto';
 import { IChain, IIdentity } from '@/types/identity';
@@ -23,11 +23,15 @@ export const insertAccount = async (account: IAccount) => {
 
   var keys = await importKey();
 
+  var chains = {} as any;
+  chains['ethereum'] = true;
+
   var eAccount = {
     password: account.password,
     privateKey: await encrypt(textEnc.encode(account.privateKey), keys, iv),
     privateExtendedKey: await encrypt(textEnc.encode(account.privateExtendedKey), keys, iv),
-    identity: [] as Array<IIdentity>
+    identity: [] as Array<IIdentity>,
+    chainAcceptStates: chains
   } as EAccount;
 
 
