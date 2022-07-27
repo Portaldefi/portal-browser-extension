@@ -11,10 +11,12 @@ export default () => {
   const identities = useAppSelector(state => state.key.identity);
   const selectedIdentity = useAppSelector(state => state.key.selectedIdentity);
 
+  console.log(identities);
+
   const accountOptions = useMemo(() => identities.map((identity, idx) => ({
-    key: identity,
-    value: identity,
-    text: `Identity ${idx} (${cutter(identity)})`
+    key: identity[0].address,
+    value: identity[0].address,
+    text: `Identity ${idx} (${cutter(identity[0].address)})`
   })), [identities]);
 
   const handleSelectAccount = useCallback((event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {

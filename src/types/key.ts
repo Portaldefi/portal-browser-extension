@@ -1,9 +1,9 @@
-import { IAddress } from './identity';
+import { IIdentity } from './identity';
 
 export interface IKey {
   privateKey: string,
   privateExtendedKey: string,
-  identity: Array<string>,
+  identity: Array<IIdentity>,
   selectedIdentity: string,
   selectedId: number
 }

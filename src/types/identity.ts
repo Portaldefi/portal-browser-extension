@@ -3,11 +3,13 @@ export type IHistory = string;
 export type IAddress = string | undefined;
 
 export interface IChain {
-  address: ArrayBuffer,
+  address: any,
   history: IHistory,
   connectedWebsites: Array<string>
 };
 
-export interface IIdentity {
-  [index: number]: IChain
-};
+// export interface IIdentity {
+//   [index: number]: IChain
+// };
+
+export type IIdentity = Array<IChain>;

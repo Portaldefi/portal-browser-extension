@@ -3,6 +3,8 @@ import createHash from 'create-hash';
 import HDKey from 'hdkey';
 import * as bs58check from 'bs58check';
 import { retrievePrivateKey, getIdentityCount, insertIdentity } from '@/serviceworker/database';
+import { IAccount } from '@/serviceworker/database/schema';
+import { IChain, IIdentity } from '@/types/identity';
 
 // const bip32 = Bip32Factory(ecc);
 
@@ -34,12 +36,14 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
   const result = {
     privateKey: privateKey.toString(),
     privateExtendedKey: hdKey.privateExtendedKey,
-    identity: [''],
+    identity: [],
     password: createHash('sha256').update(password).digest('base64')
-  };
+  } as IAccount;
 
   for (let i = 0; i < 10; i++) {
-    result.identity[i] = generateAddressFromPvtKey(result.privateKey, i);
+    result.identity[i] = [] as IIdentity;
+    result.identity[i][0] = {} as IChain;
+    result.identity[i][0].address = generateAddressFromPvtKey(result.privateKey, i);
   }
 
   // console.log(getAddress(bip32.fromSeed(_seed)));
@@ -69,14 +73,18 @@ export const getDerivationPathOfChain = (chainName: string, addrNo: number) => {
 }
 
 
-export const generateAddress = async () => {
+export const generateIdentity = async () => {
   const key = await retrievePrivateKey();
   const idCnt = await getIdentityCount();
 
   console.log(key);
   console.log(idCnt);
   const address = generateAddressFromPvtKey(key, idCnt);
-  insertIdentity(address);
+  //insertIdentity(address);
 
-  return address;
+  let identity = [] as IIdentity;
+  identity[0] = {} as IChain;
+  identity[0].address = address;
+
+  return identity;
 }

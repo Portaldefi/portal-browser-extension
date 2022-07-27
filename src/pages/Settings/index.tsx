@@ -2,10 +2,10 @@ import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Grid, Header, Icon } from 'semantic-ui-react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addAddress } from '../../slices/keySlice';
+import { addIdentity } from '../../slices/keySlice';
 
 import SettingItem from '../../components/Home/SettingItem';
-import { generateAddress } from '@utils/seedPhrase';
+import { generateIdentity } from '@utils/seedPhrase';
 
 export default () => {
   const dispatch = useAppDispatch();
@@ -15,12 +15,12 @@ export default () => {
     navigate('/settings/network');
   }, []);
 
-  const addIdentity = useCallback(() => {
+  const addIdentityFr = useCallback(() => {
     const core = async () => {
       if (confirm('Really Add an identity?') === true) {
-        const address = await generateAddress();
-        alert(address);
-        dispatch(addAddress(address));
+        const identity = await generateIdentity();
+        alert(identity);
+        dispatch(addIdentity(identity));
       }
       else {
         alert('Request Canceled!');
@@ -43,7 +43,7 @@ export default () => {
       <Grid.Row className='p-none'>
         <SettingItem name='Export Seed' extra={undefined} />
       </Grid.Row>
-      <Grid.Row className='p-none' onClick={addIdentity}>
+      <Grid.Row className='p-none' onClick={addIdentityFr}>
         <SettingItem name='Add Identity' extra='undefined' />
       </Grid.Row>
       {/* <Grid.Row className='p-none'>
