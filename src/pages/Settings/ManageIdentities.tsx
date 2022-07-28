@@ -4,18 +4,16 @@ import {
   List
 } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import ConnectionItem from '@/components/Home/RecentConnections/ConnectionItem'
+import IdentityItem from '@/pages/Settings/IdentityItem'
 import { useAppSelector } from '@/hooks';
 
 export default () => {
   const identities = useAppSelector(state => state.key.identity);
   const navigate = useNavigate();
+  //console.log(identities);
 
-
-  console.log(identities);
-
-  const handleClickConnection = useCallback(() => {
-    navigate('/connection-detail')
+  const handleClickIdentity = useCallback((index: number) => {
+    navigate('/settings/identity/' + index);
   }, []);
 
   return (
@@ -28,9 +26,9 @@ export default () => {
         <List className='w-100' style={{ height: "270px", overflowY: "scroll" }}>
           {
             identities.map((identity, index) =>
-              <List.Item onClick={() => { }}>
+              <List.Item onClick={() => handleClickIdentity(index)} key={index}>
                 <List.Content>
-                  <ConnectionItem name={"Identity" + index} comment={identity[0].address} />
+                  <IdentityItem name={"Identity" + index} comment={identity[0].address} />
                 </List.Content>
               </List.Item>
             )
