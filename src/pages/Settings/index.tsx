@@ -19,7 +19,6 @@ export default () => {
     const core = async () => {
       if (confirm('Really Add an identity?') === true) {
         const identity = await generateIdentity();
-        console.log(identity);
 
         dispatch(addIdentity(identity));
       }

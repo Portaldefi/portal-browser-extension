@@ -4,10 +4,10 @@ export default [
         path: "m/44'/60'/0'/0'/"
     }, {
         name: 'bitcoin',
-        path: "m/44'/60'/0'/0'/"
+        path: "m/44'/0'/0'/0/"
     }, {
         name: 'cosmos',
-        path: "m/44'/60'/0'/0'/"
+        path: "m/44'/118'/0'/0/"
     }, {
         name: 'binance',
         path: "m/44'/60'/0'/0'/"
