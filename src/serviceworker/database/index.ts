@@ -4,6 +4,7 @@ import { AccountSchema, IAccount } from './schema';
 import createHash from 'create-hash';
 import { encrypt, decrypt, importKey, generateKey } from '@utils/subtleCrypto';
 import { IChain, IIdentity } from '@/types/identity';
+import chains from '@/config/chains';
 
 let db: IDBPDatabase<AccountSchema>;
 var iv = new Uint8Array([188, 185, 57, 146, 246, 194, 116, 34, 12, 80, 198, 76]);
@@ -29,25 +30,31 @@ export const insertAccount = async (account: IAccount) => {
 
 
   for (let i = 0; i < account.identity.length; i++) {
-    var data = textEnc.encode(account.identity[i][0].address);
-    account.identity[i][0].address = await encrypt(data, keys, iv);
+    for (let j = 0; j < account.identity[i].length; j++) {
+      var data = textEnc.encode(account.identity[i][j].address);
+      account.identity[i][j].address = await encrypt(data, keys, iv);
+    }
   }
 
   db.add("account", account, accountCount);
 }
 
-export const insertIdentity = async (identity: string, accountId: number = 0) => {
+export const insertIdentity = async (identity: IIdentity, accountId: number = 0) => {
   const account = await db.get('account', accountId) as IAccount;
   // @ts-ignore
 
   var keys = await importKey();
 
-  var data = textEnc.encode(identity);
   var length = account.identity.length;
 
   account.identity[length] = [];
-  account.identity[length][0] = {} as IChain;
-  account.identity[length][0].address = await encrypt(data, keys, iv);
+
+  for (let i = 0; i < chains.length; i++) {
+    account.identity[length][i] = {
+      address: await encrypt(textEnc.encode(identity[i].address), keys, iv)
+    } as IChain;
+  }
+
   // @ts-ignore
   db.put('account', account, accountId);
 }
@@ -60,8 +67,10 @@ export const getAccount = async (accountId: number = 0) => {
   account.privateExtendedKey = textDec.decode(await decrypt(account.privateExtendedKey, keys, iv));
 
   for (let i = 0; i < account.identity.length; i++) {
-    var decryptedData = await decrypt(account.identity[i][0].address, keys, iv);
-    account.identity[i][0].address = textDec.decode(decryptedData);
+    for (let j = 0; j < account.identity[i].length; j++) {
+      var decryptedData = await decrypt(account.identity[i][j].address, keys, iv);
+      account.identity[i][j].address = textDec.decode(decryptedData);
+    }
   }
 
   return account;

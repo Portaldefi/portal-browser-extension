@@ -27,7 +27,6 @@ export default () => {
     const handleConfirm = () => {
         const core = async () => {
             checkPassword(0, password).then(res => { // 0 is account 0
-                console.log('msg ' + res);
                 if (res === true) {
                     //Authentication to session
                     chrome.storage.sync.set({ authenticated: true, auth_time: Date.now() });
@@ -40,7 +39,7 @@ export default () => {
         }
         core();
     };
-// @ts-ignore
+    // @ts-ignore
     const onKeyDown = (e) => {
         if (e.keyCode == 13) {
             handleConfirm();

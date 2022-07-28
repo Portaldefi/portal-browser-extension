@@ -5,6 +5,7 @@ import * as bs58check from 'bs58check';
 import { retrievePrivateKey, getIdentityCount, insertIdentity } from '@/serviceworker/database';
 import { IAccount } from '@/serviceworker/database/schema';
 import { IChain, IIdentity } from '@/types/identity';
+import chains from '@/config/chains';
 
 // const bip32 = Bip32Factory(ecc);
 
@@ -31,7 +32,6 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
 
   const privateKey = hdKey.privateExtendedKey;
 
-  console.log(privateKey.toString());
 
   const result = {
     privateKey: privateKey.toString(),
@@ -42,17 +42,19 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
 
   for (let i = 0; i < 10; i++) {
     result.identity[i] = [] as IIdentity;
-    result.identity[i][0] = {} as IChain;
-    result.identity[i][0].address = generateAddressFromPvtKey(result.privateKey, i);
+    for (let j = 0; j < chains.length; j++) {
+      result.identity[i][j] = {
+        address: generateAddressFromPvtKey(result.privateKey, j, i)
+      } as IChain;
+    }
   }
 
-  // console.log(getAddress(bip32.fromSeed(_seed)));
   return result;
 };
 
-export const generateAddressFromPvtKey = (privateKey: any, addressNo = 0) => {
+export const generateAddressFromPvtKey = (privateKey: any, chainNo = 0, addressNo = 0) => {
   const hdKey = HDKey.fromExtendedKey(privateKey.toString());
-  const addrNode = hdKey.derive(getDerivationPathOfChain('ethereum', addressNo) as string);
+  const addrNode = hdKey.derive(getDerivationPathOfChain(chainNo, addressNo) as string);
 
   const step2 = createHash('sha256').update(addrNode.publicKey).digest();
   const step3 = createHash('rmd160').update(step2).digest();
@@ -66,10 +68,8 @@ export const generateAddressFromPvtKey = (privateKey: any, addressNo = 0) => {
 }
 
 
-export const getDerivationPathOfChain = (chainName: string, addrNo: number) => {
-  if (chainName === 'ethereum')
-    return `m/44'/60'/0'/0'/${addrNo}`;
-
+export const getDerivationPathOfChain = (chainNo: number, addrNo: number) => {
+  return `${chains[chainNo].path}${addrNo}`;
 }
 
 
@@ -77,14 +77,14 @@ export const generateIdentity = async () => {
   const key = await retrievePrivateKey();
   const idCnt = await getIdentityCount();
 
-  console.log(key);
-  console.log(idCnt);
-  const address = generateAddressFromPvtKey(key, idCnt);
-  //insertIdentity(address);
-
   let identity = [] as IIdentity;
-  identity[0] = {} as IChain;
-  identity[0].address = address;
+  for (let i = 0; i < chains.length; i++) {
+    identity[i] = {
+      address: generateAddressFromPvtKey(key, 0, idCnt)
+    } as IChain;
+  }
+
+  insertIdentity(identity, 0);
 
   return identity;
 }

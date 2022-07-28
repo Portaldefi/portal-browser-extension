@@ -11,8 +11,6 @@ export default () => {
   const identities = useAppSelector(state => state.key.identity);
   const selectedIdentity = useAppSelector(state => state.key.selectedIdentity);
 
-  console.log(identities);
-
   const accountOptions = useMemo(() => identities.map((identity, idx) => ({
     key: identity[0].address,
     value: identity[0].address,
