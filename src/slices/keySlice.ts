@@ -11,7 +11,8 @@ const initialState: IKey = {
   privateExtendedKey: '',
   identity: [],
   selectedIdentity: '',
-  selectedId: 0
+  selectedId: 0,
+  selectedChain: 'ethereum'
 };
 
 export const menuSlice = createSlice({
@@ -38,10 +39,13 @@ export const menuSlice = createSlice({
     },
     addIdentity: (state: IKey, action: PayloadAction<IIdentity>) => {
       state.identity.push(action.payload);
+    },
+    selectChain: (state: IKey, action: PayloadAction<string>) => {
+      state.selectedChain = action.payload;
     }
   }
 });
 
-export const { setKeys, selectAddress, addIdentity } = menuSlice.actions;
+export const { setKeys, selectAddress, addIdentity, selectChain } = menuSlice.actions;
 
 export default menuSlice.reducer;

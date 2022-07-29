@@ -5,5 +5,6 @@ export interface IKey {
   privateExtendedKey: string,
   identity: Array<IIdentity>,
   selectedIdentity: string,
-  selectedId: number
+  selectedId: number,
+  selectedChain: string
 }

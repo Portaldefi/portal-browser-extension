@@ -6,6 +6,7 @@ import { setKeys } from '../../slices/keySlice';
 import { cutter } from '../../../utils/text';
 import RecentConnections from '../../components/Home/RecentConnections';
 import { getAccount } from '@/serviceworker/database';
+import ChainSelector from '@/components/Home/ChainSelector';
 
 export default () => {
   // const [address, setAddress] = useState<string>('');
@@ -29,7 +30,10 @@ export default () => {
     <div className='mainframe'>
       <Grid>
         <Grid.Row centered>
-          <Header as='h1' className='description'>Identity {selectedId}</Header>
+          <Header as='h1' className='description home-header'>
+            Identity {selectedId}
+            <ChainSelector />
+          </Header>
         </Grid.Row>
         <Grid.Row centered>
           <Header as='p' className='description'>fabric{cutter(selectedIdentity, 20)}</Header>
