@@ -8,16 +8,16 @@ import chains from '@/config/chains';
 
 export default () => {
   const dispatch = useAppDispatch();
-  const selectedChain = useAppSelector(state => state.key.selectedChain);
+  const selectedChainId = useAppSelector(state => state.key.selectedChainId);
 
   const chainOptions = useMemo(() => chains.map((chain, idx) => ({
-    key: chain.name,
-    value: chain.name,
+    key: idx,
+    value: idx,
     text: chain.name.toUpperCase()
   })), []);
 
   const onChainSelect = useCallback((event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-    dispatch(selectChain(data.value as string));
+    dispatch(selectChain(data.value as number));
   }, []);
 
 
@@ -26,7 +26,7 @@ export default () => {
       className='chain-selector'
       selection
       options={chainOptions}
-      value={selectedChain || chainOptions[0]?.value}
+      value={selectedChainId || 0}
       onChange={onChainSelect}
     />
   );

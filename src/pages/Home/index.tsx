@@ -11,8 +11,12 @@ import ChainSelector from '@/components/Home/ChainSelector';
 export default () => {
   // const [address, setAddress] = useState<string>('');
   const dispatch = useAppDispatch();
-  const selectedIdentity = useAppSelector(state => state.key.selectedIdentity);
-  const selectedId = useAppSelector(state => state.key.selectedId);
+  const selectedIdentityId = useAppSelector(state => state.key.selectedIdentityId);
+  const selectedIdentityIdentity = useAppSelector(state => state.key.identity[selectedIdentityId]);
+  const selectedChainId = useAppSelector(state => state.key.selectedChainId);
+
+  console.log(selectedIdentityIdentity);
+  console.log(selectedChainId);
 
   useEffect(() => {
     const core = async () => {
@@ -31,12 +35,12 @@ export default () => {
       <Grid>
         <Grid.Row centered>
           <Header as='h1' className='description home-header'>
-            Identity {selectedId}
+            Identity {selectedIdentityId}
             <ChainSelector />
           </Header>
         </Grid.Row>
         <Grid.Row centered>
-          <Header as='p' className='description'>fabric{cutter(selectedIdentity, 20)}</Header>
+          <Header as='p' className='description'>fabric{cutter((selectedIdentityIdentity ? selectedIdentityIdentity[selectedChainId].address : ''), 20)}</Header>
         </Grid.Row>
         <Grid.Row stretched centered>
           <RecentConnections />

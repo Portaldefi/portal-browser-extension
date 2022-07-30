@@ -10,9 +10,8 @@ const initialState: IKey = {
   privateKey: '',
   privateExtendedKey: '',
   identity: [],
-  selectedIdentity: '',
-  selectedId: 0,
-  selectedChain: 'ethereum'
+  selectedIdentityId: 0,
+  selectedChainId: 0
 };
 
 export const menuSlice = createSlice({
@@ -23,29 +22,22 @@ export const menuSlice = createSlice({
       state.privateKey = action.payload.privateKey;
       state.privateExtendedKey = action.payload.privateExtendedKey;
       state.identity = action.payload.identity;
-      state.selectedIdentity = state.identity[0][0].address;
-      state.selectedId = 0;
+      state.selectedIdentityId = 0;
     },
-    selectAddress: (state: IKey, action: PayloadAction<string | number>) => {
+    selectIdentity: (state: IKey, action: PayloadAction<string | number>) => {
       if (typeof action.payload === 'number') {
-        state.selectedIdentity = state.identity[action.payload][0].address;
-        state.selectedId = action.payload;
-      } else {
-        state.selectedIdentity = action.payload;
-        for (let i = 0; i < state.identity.length; i++)
-          if (state.selectedIdentity == state.identity[i][0].address)
-            state.selectedId = i;
+        state.selectedIdentityId = action.payload;
       }
     },
     addIdentity: (state: IKey, action: PayloadAction<IIdentity>) => {
       state.identity.push(action.payload);
     },
-    selectChain: (state: IKey, action: PayloadAction<string>) => {
-      state.selectedChain = action.payload;
+    selectChain: (state: IKey, action: PayloadAction<number>) => {
+      state.selectedChainId = action.payload;
     }
   }
 });
 
-export const { setKeys, selectAddress, addIdentity, selectChain } = menuSlice.actions;
+export const { setKeys, selectIdentity, addIdentity, selectChain } = menuSlice.actions;
 
 export default menuSlice.reducer;
