@@ -1,3 +1,4 @@
+import { IChainState } from '@/types/chainstate';
 import { IIdentity } from '@/types/identity';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IKey } from '../types/key';
@@ -24,20 +25,21 @@ export const menuSlice = createSlice({
       state.identity = action.payload.identity;
       state.selectedIdentityId = 0;
     },
-    selectIdentity: (state: IKey, action: PayloadAction<string | number>) => {
-      if (typeof action.payload === 'number') {
-        state.selectedIdentityId = action.payload;
-      }
+    selectIdentity: (state: IKey, action: PayloadAction<number>) => {
+      state.selectedIdentityId = action.payload;
     },
     addIdentity: (state: IKey, action: PayloadAction<IIdentity>) => {
       state.identity.push(action.payload);
     },
     selectChain: (state: IKey, action: PayloadAction<number>) => {
       state.selectedChainId = action.payload;
+    },
+    setIdentityCheckState: (state: IKey, action: PayloadAction<IChainState>) => {
+      state.identity[action.payload.identity][action.payload.chain].allowed = action.payload.state;
     }
   }
 });
 
-export const { setKeys, selectIdentity, addIdentity, selectChain } = menuSlice.actions;
+export const { setKeys, selectIdentity, addIdentity, selectChain, setIdentityCheckState } = menuSlice.actions;
 
 export default menuSlice.reducer;

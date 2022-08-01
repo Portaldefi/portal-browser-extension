@@ -44,7 +44,8 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
     result.identity[i] = [] as IIdentity;
     for (let j = 0; j < chains.length; j++) {
       result.identity[i][j] = {
-        address: generateAddressFromPvtKey(result.privateKey, j, i)
+        address: generateAddressFromPvtKey(result.privateKey, j, i),
+        allowed: true
       } as IChain;
     }
   }
@@ -80,7 +81,8 @@ export const generateIdentity = async () => {
   let identity = [] as IIdentity;
   for (let i = 0; i < chains.length; i++) {
     identity[i] = {
-      address: generateAddressFromPvtKey(key, 0, idCnt)
+      address: generateAddressFromPvtKey(key, 0, idCnt),
+      allowed: true
     } as IChain;
   }
 

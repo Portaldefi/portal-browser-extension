@@ -2,15 +2,26 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import IdentityItem from './IdentityItem';
 import { Grid, Header, List } from 'semantic-ui-react';
-import { useAppSelector } from '@/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks';
 import ChainItem from './ChainItem';
 import chains from '@/config/chains';
+import { setIdentityCheckState } from '@/slices/keySlice';
+import { IChainState } from '@/types/chainstate';
+import { setDBIdentityCheckState } from '@/serviceworker/database';
 
 export default () => {
+    const dispatch = useAppDispatch();
     const { id } = useParams();
-    const identity = useAppSelector(state => state.key.identity[parseInt(id!)]);
+    const identityId = parseInt(id!);
+    const identity = useAppSelector(state => state.key.identity[identityId]);
 
     console.log(identity);
+
+    const handleSetCheckState = (chainId: number, check: boolean) => {
+        const state = { identity: identityId, chain: chainId, state: check } as IChainState;
+        dispatch(setIdentityCheckState(state));
+        setDBIdentityCheckState(0, identityId, chainId, check);
+    };
 
     return (
 
@@ -26,7 +37,12 @@ export default () => {
                             return (
                                 <List.Item key={index}>
                                     <List.Content>
-                                        <ChainItem name={chains[index].name.toUpperCase()} comment={iChain.address} />
+                                        <ChainItem
+                                            name={chains[index].name.toUpperCase()}
+                                            comment={iChain.address}
+                                            checked={iChain.allowed}
+                                            handleSetCheckState={handleSetCheckState}
+                                            index={index} />
                                     </List.Content>
                                 </List.Item>
                             )
