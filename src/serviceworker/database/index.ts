@@ -20,7 +20,6 @@ export const createDB = async (dbName: string = config.name) => {
 }
 
 export const insertAccount = async (account: IAccount) => {
-    let iterator = await accountTB.iterator() as any;
     let accountCount = 0;
 
     for await (const [key, value] of accountTB.iterator()) {
@@ -41,9 +40,18 @@ export const insertAccount = async (account: IAccount) => {
             }
         }
     */
-    console.log(account);
 
     accountTB.put(accountCount, account);
+}
+
+export const getAccountValid = async () => {
+    let accountCount = 0;
+
+    for await (const [key, value] of accountTB.iterator()) {
+        accountCount++;
+    }
+
+    return accountCount !== 0;
 }
 
 export const insertIdentity = async (identity: IIdentity, accountId: number = 0) => {
@@ -70,18 +78,17 @@ export const getAccount = async (accountId: number = 0) => {
     var keys = await importKey();
 
     const account = await accountTB.get(accountId, { valueEncoding: db.valueEncoding('json') }) as IAccount;
-    console.log(account);
     /*
         account.privateKey = textDec.decode(await decrypt(account.privateKey, keys, iv));
         account.privateExtendedKey = textDec.decode(await decrypt(account.privateExtendedKey, keys, iv));
-    */
-    /*for (let i = 0; i < account.identity.length; i++) {
-        for (let j = 0; j < account.identity[i].length; j++) {
-            var decryptedData = await decrypt(account.identity[i][j].address, keys, iv);
-            account.identity[i][j].address = textDec.decode(decryptedData);
+    
+        for (let i = 0; i < account.identity.length; i++) {
+            for (let j = 0; j < account.identity[i].length; j++) {
+                var decryptedData = await decrypt(account.identity[i][j].address, keys, iv);
+                account.identity[i][j].address = textDec.decode(decryptedData);
+            }
         }
-    }*/
-
+    */
     return account;
 }
 
