@@ -15,8 +15,6 @@ export default () => {
   const selectedIdentityIdentity = useAppSelector(state => state.key.identity[selectedIdentityId]);
   const selectedChainId = useAppSelector(state => state.key.selectedChainId);
 
-  console.log(selectedIdentityIdentity);
-  console.log(selectedChainId);
 
   useEffect(() => {
     const core = async () => {

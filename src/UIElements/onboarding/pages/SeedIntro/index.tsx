@@ -27,7 +27,6 @@ export default () => {
         const account = await generateAccount(seedList, phrase.password);
         chrome.storage.session.set(account);
 
-        // @ts-ignore
         insertAccount(account as IAccount);
 
         dispatch(setSRFList(seedList));
