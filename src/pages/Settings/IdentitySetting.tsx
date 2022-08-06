@@ -15,8 +15,6 @@ export default () => {
     const identityId = parseInt(id!);
     const identity = useAppSelector(state => state.key.identity[identityId]);
 
-    console.log(identity);
-
     const handleSetCheckState = (chainId: number, check: boolean) => {
         const state = { identity: identityId, chain: chainId, state: check } as IChainState;
         dispatch(setIdentityCheckState(state));

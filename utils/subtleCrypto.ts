@@ -44,7 +44,7 @@ export function encrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
         },
         key, //from generateKey or importKey above
         data //ArrayBuffer of data you want to encrypt
-    )
+    );
 }
 
 export function decrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
@@ -58,4 +58,22 @@ export function decrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
         key, //from generateKey or importKey above
         data //ArrayBuffer of the data
     )
+}
+
+export async function encryptToString(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
+    let result = new Uint8Array(await encrypt(data, key, iv));
+    let res = '';
+    for (let i = 0; i < result.length; i++)
+        res += String.fromCharCode(result[i]);
+
+    return res;
+}
+
+export async function decryptFromString(data: string, key: CryptoKey, iv: Uint8Array) {
+    let buffer = new Uint8Array(data.length);
+    for (let i = 0; i < data.length; i++) {
+        buffer[i] = data.charCodeAt(i);
+    }
+
+    return decrypt(buffer, key, iv);
 }

@@ -2,7 +2,7 @@ import { openDB, IDBPDatabase } from 'idb';
 import config from '../../config/db'
 import { AccountSchema, IAccount } from './schema';
 import createHash from 'create-hash';
-import { encrypt, decrypt, importKey, generateKey } from '@utils/subtleCrypto';
+import { encrypt, decrypt, importKey, generateKey, encryptToString } from '@utils/subtleCrypto';
 import { IChain, IIdentity } from '@/types/identity';
 import chains from '@/config/chains';
 
@@ -23,7 +23,6 @@ export const insertAccount = async (account: IAccount) => {
   const accountCount = await db.count('account');
 
   var keys = await importKey();
-
 
   account.privateKey = await encrypt(textEnc.encode(account.privateKey), keys, iv);
   account.privateExtendedKey = await encrypt(textEnc.encode(account.privateExtendedKey), keys, iv);

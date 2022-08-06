@@ -2,7 +2,7 @@
 import config from '../../config/db'
 import { AccountSchema, IAccount } from './schema';
 import createHash from 'create-hash';
-import { encrypt, decrypt, importKey, generateKey } from '@utils/subtleCrypto';
+import { encrypt, decrypt, importKey, generateKey, encryptToString, decryptFromString } from '@utils/subtleCrypto';
 import { IChain, IIdentity } from '@/types/identity';
 import chains from '@/config/chains';
 
@@ -27,19 +27,24 @@ export const insertAccount = async (account: IAccount) => {
     }
 
     var keys = await importKey();
+    /*console.log(account.privateKey);
+    let res = await encryptToString(textEnc.encode(account.privateKey), keys, iv);
+    console.log(textDec.decode(await decryptFromString(res, keys, iv)));
+*/
 
-    /*
-        account.privateKey = await encrypt(textEnc.encode(account.privateKey), keys, iv);
-        account.privateExtendedKey = await encrypt(textEnc.encode(account.privateExtendedKey), keys, iv);
-    
-    
-        for (let i = 0; i < account.identity.length; i++) {
-            for (let j = 0; j < account.identity[i].length; j++) {
-                var data = textEnc.encode(account.identity[i][j].address);
-                account.identity[i][j].address = await encrypt(data, keys, iv);
-            }
+
+
+    account.privateKey = await encryptToString(textEnc.encode(account.privateKey), keys, iv);
+    account.privateExtendedKey = await encryptToString(textEnc.encode(account.privateExtendedKey), keys, iv);
+
+
+    for (let i = 0; i < account.identity.length; i++) {
+        for (let j = 0; j < account.identity[i].length; j++) {
+            var data = textEnc.encode(account.identity[i][j].address);
+            account.identity[i][j].address = await encryptToString(data, keys, iv);
         }
-    */
+    }
+
 
     accountTB.put(accountCount, account);
 }
@@ -64,11 +69,11 @@ export const insertIdentity = async (identity: IIdentity, accountId: number = 0)
 
     account.identity[length] = [];
 
-    /*for (let i = 0; i < chains.length; i++) {
+    for (let i = 0; i < chains.length; i++) {
         account.identity[length][i] = {
-            address: await encrypt(textEnc.encode(identity[i].address), keys, iv)
+            address: await encryptToString(textEnc.encode(identity[i].address), keys, iv)
         } as IChain;
-    }*/
+    }
 
     // @ts-ignore
     accountTB.put(accountId, account);
@@ -78,17 +83,17 @@ export const getAccount = async (accountId: number = 0) => {
     var keys = await importKey();
 
     const account = await accountTB.get(accountId, { valueEncoding: db.valueEncoding('json') }) as IAccount;
-    /*
-        account.privateKey = textDec.decode(await decrypt(account.privateKey, keys, iv));
-        account.privateExtendedKey = textDec.decode(await decrypt(account.privateExtendedKey, keys, iv));
-    
-        for (let i = 0; i < account.identity.length; i++) {
-            for (let j = 0; j < account.identity[i].length; j++) {
-                var decryptedData = await decrypt(account.identity[i][j].address, keys, iv);
-                account.identity[i][j].address = textDec.decode(decryptedData);
-            }
+
+    account.privateKey = textDec.decode(await decryptFromString(account.privateKey, keys, iv));
+    account.privateExtendedKey = textDec.decode(await decryptFromString(account.privateExtendedKey, keys, iv));
+
+    for (let i = 0; i < account.identity.length; i++) {
+        for (let j = 0; j < account.identity[i].length; j++) {
+            var decryptedData = await decryptFromString(account.identity[i][j].address, keys, iv);
+            account.identity[i][j].address = textDec.decode(decryptedData);
         }
-    */
+    }
+
     return account;
 }
 
@@ -105,7 +110,7 @@ export const retrievePrivateKey = async (accountId: number = 0) => {
 
     var keys = await importKey();
 
-    var decryptedData = await decrypt(res.privateKey, keys, iv);
+    var decryptedData = await decryptFromString(res.privateKey, keys, iv);
     return textDec.decode(decryptedData);
 };
 
