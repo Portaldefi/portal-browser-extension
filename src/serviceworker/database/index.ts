@@ -1,8 +1,7 @@
-
 import config from '../../config/db'
 import { AccountSchema, IAccount } from './schema';
 import createHash from 'create-hash';
-import { encrypt, decrypt, importKey, generateKey, encryptToString, decryptFromString } from '@utils/subtleCrypto';
+import { importKey, encryptToString, decryptFromString } from '@utils/subtleCrypto';
 import { IChain, IIdentity } from '@/types/identity';
 import chains from '@/config/chains';
 
@@ -27,16 +26,9 @@ export const insertAccount = async (account: IAccount) => {
     }
 
     var keys = await importKey();
-    /*console.log(account.privateKey);
-    let res = await encryptToString(textEnc.encode(account.privateKey), keys, iv);
-    console.log(textDec.decode(await decryptFromString(res, keys, iv)));
-*/
-
-
 
     account.privateKey = await encryptToString(textEnc.encode(account.privateKey), keys, iv);
     account.privateExtendedKey = await encryptToString(textEnc.encode(account.privateExtendedKey), keys, iv);
-
 
     for (let i = 0; i < account.identity.length; i++) {
         for (let j = 0; j < account.identity[i].length; j++) {
@@ -45,18 +37,7 @@ export const insertAccount = async (account: IAccount) => {
         }
     }
 
-
     accountTB.put(accountCount, account);
-}
-
-export const getAccountValid = async () => {
-    let accountCount = 0;
-
-    for await (const [key, value] of accountTB.iterator()) {
-        accountCount++;
-    }
-
-    return accountCount !== 0;
 }
 
 export const insertIdentity = async (identity: IIdentity, accountId: number = 0) => {
@@ -77,6 +58,24 @@ export const insertIdentity = async (identity: IIdentity, accountId: number = 0)
 
     // @ts-ignore
     accountTB.put(accountId, account);
+}
+
+export const setDBIdentityCheckState = async (accountId: number, identity: number, chain: number, state: boolean) => {
+    const account = await accountTB.get(accountId) as IAccount;
+
+    account.identity[identity][chain].allowed = state;
+
+    accountTB.put(accountId, account);
+}
+
+export const getAccountValid = async () => {
+    let accountCount = 0;
+
+    for await (const [key, value] of accountTB.iterator()) {
+        accountCount++;
+    }
+
+    return accountCount !== 0;
 }
 
 export const getAccount = async (accountId: number = 0) => {

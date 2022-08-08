@@ -11,6 +11,7 @@ import Settings from '../pages/Settings';
 import Network from '../pages/Settings/Network';
 import AccessNotification from '../pages/Notifications/Access';
 import ManageIdentities from '@/pages/Settings/ManageIdentities';
+import ManageChains from '@/pages/Settings/ManageChains';
 import IdentitySetting from '@/pages/Settings/IdentitySetting';
 
 
@@ -29,6 +30,7 @@ const AppLoader = () => {
               <Route path='settings' element={<Settings />} />
               <Route path='settings/network' element={<Network />} />
               <Route path='settings/manage_identities' element={<ManageIdentities />} />
+              <Route path='settings/manage_chains' element={<ManageChains />} />
               <Route path='settings/identity/:id' element={<IdentitySetting />} />
             </Route>
           </Route>

@@ -18,6 +18,7 @@ export default () => {
     const handleSetCheckState = (chainId: number, check: boolean) => {
         const state = { identity: identityId, chain: chainId, state: check } as IChainState;
         dispatch(setIdentityCheckState(state));
+        console.log("check", identityId, chainId, check);
         setDBIdentityCheckState(0, identityId, chainId, check);
     };
 
