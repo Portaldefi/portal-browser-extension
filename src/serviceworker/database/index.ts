@@ -120,12 +120,4 @@ export const getIdentityCount = async (accountId: number = 0) => {
 }
 
 
-export const setDBIdentityCheckState = async (accountId: number, identity: number, chain: number, state: boolean) => {
-    const account = await accountTB.get(accountId) as IAccount;
-
-    account.identity[identity][chain].allowed = state;
-
-    db.put('account', account, accountId);
-}
-
 createDB();

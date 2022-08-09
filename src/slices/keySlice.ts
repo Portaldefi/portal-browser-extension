@@ -3,10 +3,6 @@ import { IIdentity } from '@/types/identity';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IKey } from '../types/key';
 
-// interface menuState {
-// items: Array<IMenuItem>
-// }
-
 const initialState: IKey = {
   privateKey: '',
   privateExtendedKey: '',

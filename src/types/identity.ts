@@ -9,8 +9,4 @@ export interface IChain {
   allowed: boolean
 };
 
-// export interface IIdentity {
-//   [index: number]: IChain
-// };
-
 export type IIdentity = Array<IChain>;
