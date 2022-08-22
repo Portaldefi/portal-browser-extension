@@ -33,10 +33,9 @@ export default () => {
               <Header as='p' size='small' color='grey' className='description'>Fabric, the underlying protocol Portal uses extends Bitcoin’s functionality today without needing any BIPs.</Header>
               <Image src='/images/onboarding/portal.png' />
             </Grid.Row>
-            
           </Grid.Column>
-
         </Grid.Row>
+        
         <Grid.Row centered columns={2}>
           <Grid.Column>
             <Button className='blank-button' onClick={handleBack}><Icon name='angle left' />Back</Button>

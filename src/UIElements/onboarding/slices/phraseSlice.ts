@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface phraseState {
+interface PhraseState {
   SRF_Length: number,
   SRF_List: Array<string>,
   password: string
 }
 
-const initialState: phraseState = {
+const initialState: PhraseState = {
   SRF_Length: 0,
   SRF_List: [],
   password: ''
@@ -16,13 +16,13 @@ export const phraseSlice = createSlice({
   name: 'phrase',
   initialState,
   reducers: {
-    setSRFLength: (state: phraseState, action: PayloadAction<number>) => {
+    setSRFLength: (state: PhraseState, action: PayloadAction<number>) => {
       state.SRF_Length = action.payload;
     },
-    setSRFList: (state: phraseState, action: PayloadAction<Array<string>>) => {
+    setSRFList: (state: PhraseState, action: PayloadAction<Array<string>>) => {
       state.SRF_List = [...action.payload];
     },
-    setPassword: (state: phraseState, action: PayloadAction<string>) => {
+    setPassword: (state: PhraseState, action: PayloadAction<string>) => {
       state.password = action.payload;
     }
   }

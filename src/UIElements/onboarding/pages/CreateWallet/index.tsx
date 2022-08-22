@@ -9,9 +9,9 @@ export default () => {
   const dispatch = useAppDispatch();
   const [passData, setPassData] = useState({
     password: '',
-    confPass: ''
+    passConfirm: ''
   });
-  const { password, confPass } = passData;
+  const { password, passConfirm } = passData;
   const onChange = (e: any) => {
     setPassData({ ...passData, [e.target.name]: e.target.value });
   }
@@ -28,14 +28,14 @@ export default () => {
       alert('Input Password!');
       return;
     }
-    if (password !== confPass) {
+    if (password !== passConfirm) {
       alert('Passwords don\'t match');
       return;
     }
 
     dispatch(setPassword(password));
     navigate('/seed-phrase-intro', { state: { mode: 'create' } });
-  }, [password, confPass]);
+  }, [password, passConfirm]);
 
   return (
     <Segment className='board'>
@@ -49,7 +49,7 @@ export default () => {
               <Form.Input label="Password" width={8} type='password' name='password' value={password} onChange={onChange} />
             </Form.Group>
             <Form.Group inline widths={1}>
-              <Form.Input label="Confirm" width={8} type='password' name='confPass' value={confPass} onChange={onChange} />
+              <Form.Input label="Confirm" width={8} type='password' name='passConfirm' value={passConfirm} onChange={onChange} />
             </Form.Group>
           </Form>
         </Grid.Row>

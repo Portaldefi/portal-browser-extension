@@ -12,9 +12,7 @@ import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
 export default () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
   const phrase = useAppSelector(state => state.phrase);
-
   const handleContinue = useCallback(() => {
     navigate('/seed-phrase');
   }, []);
@@ -33,6 +31,7 @@ export default () => {
         dispatch(setSRFLength(seedList.length));
       }
     }
+    
     core();
   }, []);
 
