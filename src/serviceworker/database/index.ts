@@ -8,6 +8,7 @@ import chains from '@/config/chains';
 const { Level } = require('level');
 let db: any;
 let accountTB: any;
+let settingTB: any;
 
 var iv = new Uint8Array([188, 185, 57, 146, 246, 194, 116, 34, 12, 80, 198, 76]);
 var textEnc = new TextEncoder();
@@ -16,6 +17,12 @@ var textDec = new TextDecoder("utf-8");
 export const createDB = async (dbName: string = config.name) => {
     db = new Level('db');
     accountTB = db.sublevel('account', { valueEncoding: 'json' });
+    settingTB = db.sublevel('setting', { valueEncoding: 'json' });
+}
+
+export const initDB = async () => {
+    //Initialize Chains Toggle
+    settingTB.put('chains', [true, true, true, true, true]);
 }
 
 export const insertAccount = async (account: IAccount) => {
@@ -68,6 +75,10 @@ export const setDBIdentityCheckState = async (accountId: number, identity: numbe
     accountTB.put(accountId, account);
 }
 
+export const setGlobalChainState = async (settings: Array<boolean>) => {
+    settingTB.put('chains', settings);
+};
+
 export const getAccountValid = async () => {
     let accountCount = 0;
 
@@ -77,6 +88,12 @@ export const getAccountValid = async () => {
 
     return accountCount !== 0;
 }
+
+export const getGlobalChainState = async () => {
+    const settings = settingTB.get('chains', { valueEncoding: db.valueEncoding('json') });
+    return settings;
+}
+
 
 export const getAccount = async (accountId: number = 0) => {
     var keys = await importKey();

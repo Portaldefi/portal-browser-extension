@@ -1,7 +1,9 @@
 import { handleActionClick, handleStartup } from './action';
-import { createDB } from './database';
+import { createDB, initDB } from './database';
 
 createDB();
+
+initDB();
 
 chrome.action.onClicked.addListener(handleActionClick);
 

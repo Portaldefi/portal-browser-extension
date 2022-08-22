@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Grid, Header,
   List
@@ -6,15 +6,32 @@ import {
 import { useNavigate } from 'react-router-dom';
 import IdentityItem from '@/pages/Settings/IdentityItem'
 import { useAppSelector } from '@/hooks';
+import { getGlobalChainState, setGlobalChainState } from '@/serviceworker/database';
+import GlobalChainItem from './GlobalChainItem';
+import chains from '@/config/chains';
 
 export default () => {
-  const identities = useAppSelector(state => state.key.identity);
   const navigate = useNavigate();
+  const [chainState, setChainState] = useState([] as Array<boolean>);
   //console.log(identities);
 
-  const handleClickIdentity = useCallback((index: number) => {
-    navigate('/settings/identity/' + index);
+  useEffect(() => {
+    const core = async () => {
+      const chainSettings = await getGlobalChainState() as Array<boolean>;
+      setChainState(chainSettings);
+    };
+
+    core();
   }, []);
+
+  const handleSetCheckState = useCallback((index: number, state: boolean) => {
+    let chainTemp = chainState;
+    chainTemp[index] = state;
+    setChainState(chainTemp);
+
+    setGlobalChainState(chainTemp);
+  }, [chainState]);
+
 
   return (
     <Grid className='w-100'>
@@ -25,13 +42,19 @@ export default () => {
       <Grid.Row className='p-none'>
         <List className='w-100' style={{ height: "270px", overflowY: "scroll" }}>
           {
-            identities.map((identity, index) =>
-              <List.Item onClick={() => handleClickIdentity(index)} key={index}>
+            chainState.map((state, index) => {
+              console.log('inner', state, index);
+              console.log(chainState);
+              return <List.Item key={index}>
                 <List.Content>
-                  <IdentityItem name={"Identity" + index} comment={identity[0].address} />
+                  <GlobalChainItem
+                    name={chains[index].name.toUpperCase()}
+                    checked={chainState[index]}
+                    handleSetCheckState={handleSetCheckState}
+                    index={index} />
                 </List.Content>
               </List.Item>
-            )
+            })
           }
         </List>
       </Grid.Row>

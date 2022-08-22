@@ -12,7 +12,7 @@ export default () => {
   // const [address, setAddress] = useState<string>('');
   const dispatch = useAppDispatch();
   const selectedIdentityId = useAppSelector(state => state.key.selectedIdentityId);
-  const selectedIdentityIdentity = useAppSelector(state => state.key.identity[selectedIdentityId]);
+  const selectedIdentity = useAppSelector(state => state.key.identity[selectedIdentityId]);
   const selectedChainId = useAppSelector(state => state.key.selectedChainId);
 
 
@@ -38,7 +38,7 @@ export default () => {
           </Header>
         </Grid.Row>
         <Grid.Row centered>
-          <Header as='p' className='description'>fabric{cutter((selectedIdentityIdentity ? selectedIdentityIdentity[selectedChainId].address : ''), 20)}</Header>
+          <Header as='p' className='description'>fabric{cutter((selectedIdentity ? selectedIdentity[selectedChainId].address : ''), 20)}</Header>
         </Grid.Row>
         <Grid.Row stretched centered>
           <RecentConnections />
