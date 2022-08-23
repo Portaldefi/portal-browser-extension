@@ -20,6 +20,12 @@ export const createDB = async (dbName: string = config.name) => {
     settingTB = db.sublevel('setting', { valueEncoding: 'json' });
 }
 
+
+export const clearDatabase = () => {
+    console.log(123);
+    accountTB.clear();
+};
+
 export const initDB = async () => {
     //Initialize Chains Toggle
     settingTB.put('chains', [true, true, true, true, true]);
