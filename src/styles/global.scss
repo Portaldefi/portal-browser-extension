@@ -5,6 +5,7 @@ body {
   background-image: linear-gradient(50deg, #075F91 30%, #941662 120%);
   background-size: 100% 150%;
   font-family: "AvenirNext-Medium";
+  height:420px;
   
   .ui.button {
     width: 100%;
@@ -24,6 +25,7 @@ body {
     &.blank-button {
       background-color: transparent;
       text-align: left;
+      width:fit-content;
     }
     &.secondary-button {
       background-color: transparent;
@@ -71,6 +73,9 @@ body {
 .bg-white {
   background-color: white;
 }
+.seed-input{
+  border-bottom: 1px solid grey;
+}
 @each $weight in $font-weights {
   .font-weight-#{$weight} {
     font-weight: #{$weight};
@@ -95,4 +100,30 @@ body {
   .text-align-#{$option} {
     text-align: #{$option};
   }
+}
+
+
+.pwd-confirm{
+  width: 50% !important;
+}
+
+.justify-between{
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.chain-selector{
+  font-size:12px!important;
+  min-width:9em!important;
+}
+
+.home-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+}
+
+#content{
+  overflow-y:auto;
 }

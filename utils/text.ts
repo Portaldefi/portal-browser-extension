@@ -1,4 +1,4 @@
-export const cutter = (text, length = 10) => {
+export const cutter = (text:any, length = 10) => {
   if (text.length < length) {
     return text;
   } else {

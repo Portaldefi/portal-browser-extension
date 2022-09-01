@@ -1,20 +1,17 @@
 import React from 'react';
-import { Grid, Header, Radio } from 'semantic-ui-react';
+import { Checkbox, Grid, Header } from 'semantic-ui-react';
 
-interface IConnectionItem {
+interface IIdentityItem {
   name: string,
   comment: string
 };
 
-export default ({ name, comment }: IConnectionItem) => {
+export default ({ name, comment }: IIdentityItem) => {
   return (
     <Grid className='p-16 py-9 bg-white'>
       <Grid.Column width='eleven' textAlign='left'>
         <Header as='p' className='description'>{name}</Header>
         <Header as='p' className='comment'>{comment}</Header>
-      </Grid.Column>
-      <Grid.Column width='five' verticalAlign='middle'>
-        <Radio />
       </Grid.Column>
     </Grid>
   )

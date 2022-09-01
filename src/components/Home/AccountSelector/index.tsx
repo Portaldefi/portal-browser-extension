@@ -2,27 +2,31 @@ import React, { useMemo, useCallback } from 'react';
 import { Dropdown, DropdownProps } from 'semantic-ui-react';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { selectAddress } from '../../../slices/keySlice';
-import { cutter } from '../../../../utils/text';
+import { selectIdentity } from '../../../slices/keySlice';
+import { cutter } from '@utils/text';
 
 
 export default () => {
   const dispatch = useAppDispatch();
-  const addresses = useAppSelector(state => state.key.address);
-  const selectedAddress = useAppSelector(state => state.key.selectedAddress);
+  const identities = useAppSelector(state => state.key.identity);
+  const selectedIdentityId = useAppSelector(state => state.key.selectedIdentityId);
 
-  const accountOptions = useMemo(() => addresses.map((address, idx) => ({
-    key: address,
-    value: address,
-    text: `Identity ${idx} (fabric${cutter(address)})`
-  })), [addresses]);
-  const handleChange = useCallback((event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
-    dispatch(selectAddress(data.value as string));
+
+  const accountOptions = useMemo(() => identities.map((identity, idx) => ({
+    key: idx,
+    value: idx,
+    text: `Identity ${idx} (${cutter(identity[0].address)})`
+  })), [identities]);
+
+  const handleSelectAccount = useCallback((event: React.SyntheticEvent<HTMLElement>, data: DropdownProps) => {
+    dispatch(selectIdentity(data.value as number));
   }, []);
-  console.log(selectedAddress);
-  console.log(selectedAddress && accountOptions[0]?.value);
 
   return (
-    <Dropdown selection options={accountOptions} value={selectedAddress || accountOptions[0]?.value} onChange={handleChange} />
+    <Dropdown
+      selection
+      options={accountOptions}
+      value={(selectedIdentityId) || 0}
+      onChange={handleSelectAccount} />
   );
 }

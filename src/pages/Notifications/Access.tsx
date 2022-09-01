@@ -1,9 +1,12 @@
 import React from 'react';
-import { Button, Grid, Header, Icon, List } from 'semantic-ui-react';
+import { Button, Grid, Header, 
+  // Icon, 
+  List } from 'semantic-ui-react';
 
 import AccessOption from '../../components/AccessOption';
 
 export default () => {
+
   return (
     <div className='mainframe'>
       <Grid className='bg-white py-12'>
@@ -26,12 +29,12 @@ export default () => {
           <List className='w-100'>
             <List.Item className='p-none'>
               <List.Content>
-                <AccessOption name='This session' />
+                <AccessOption name='This session' comment={''} />
               </List.Content>
             </List.Item>
             <List.Item className='p-none'>
               <List.Content>
-                <AccessOption name='Indefinitely' />
+                <AccessOption name='Indefinitely' comment={''} />
               </List.Content>
             </List.Item>
           </List>

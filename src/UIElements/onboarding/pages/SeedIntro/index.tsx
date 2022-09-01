@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header, Image, Button, Grid, Segment, Icon } from 'semantic-ui-react';
+import { Header, Button, Grid, Segment } from 'semantic-ui-react';
 
-import { generateSeed, generateAddress } from '@utils/seedPhrase';
+import { generateSeed, generateAccount } from '@utils/seedPhrase';
+import { IAccount } from '@/serviceworker/database/schema';
+import { insertAccount } from '@/serviceworker/database';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
@@ -10,9 +12,7 @@ import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
 export default () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-
   const phrase = useAppSelector(state => state.phrase);
-
   const handleContinue = useCallback(() => {
     navigate('/seed-phrase');
   }, []);
@@ -21,14 +21,17 @@ export default () => {
     const core = async () => {
       if (!phrase.SRF_Length) {
         const seedList = generateSeed();
-  
-        const keys = await generateAddress(seedList);
-        chrome.storage.session.set(keys);
-  
+
+        const account = await generateAccount(seedList, phrase.password);
+        chrome.storage.session.set(account);
+
+        insertAccount(account as IAccount);
+
         dispatch(setSRFList(seedList));
         dispatch(setSRFLength(seedList.length));
       }
     }
+    
     core();
   }, []);
 

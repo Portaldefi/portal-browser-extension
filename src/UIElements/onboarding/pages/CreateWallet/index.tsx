@@ -1,16 +1,41 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header, Image, Button, Grid, Segment, Icon, Form } from 'semantic-ui-react';
+import { Header, Button, Grid, Segment, Icon, Form } from 'semantic-ui-react';
+
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setPassword } from '../../slices/phraseSlice';
 
 export default () => {
+  const dispatch = useAppDispatch();
+  const [passData, setPassData] = useState({
+    password: '',
+    passConfirm: ''
+  });
+  const { password, passConfirm } = passData;
+  const onChange = (e: any) => {
+    setPassData({ ...passData, [e.target.name]: e.target.value });
+  }
+
+
   const navigate = useNavigate();
 
   const handleBack = useCallback(() => {
     navigate('/select-action');
   }, []);
+
   const handleConfirm = useCallback(() => {
+    if (password === '') {
+      alert('Input Password!');
+      return;
+    }
+    if (password !== passConfirm) {
+      alert('Passwords don\'t match');
+      return;
+    }
+
+    dispatch(setPassword(password));
     navigate('/seed-phrase-intro', { state: { mode: 'create' } });
-  }, []);
+  }, [password, passConfirm]);
 
   return (
     <Segment className='board'>
@@ -21,10 +46,10 @@ export default () => {
         <Grid.Row centered>
           <Form className='form-container'>
             <Form.Group inline widths={1}>
-              <Form.Input label="Password" width={8} type='password' />
+              <Form.Input label="Password" width={8} type='password' name='password' value={password} onChange={onChange} />
             </Form.Group>
             <Form.Group inline widths={1}>
-              <Form.Input label="Confirm" width={8} type='password' />
+              <Form.Input label="Confirm" width={8} type='password' name='passConfirm' value={passConfirm} onChange={onChange} />
             </Form.Group>
           </Form>
         </Grid.Row>

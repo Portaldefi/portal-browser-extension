@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Message, Button, Grid, Segment, Icon, Form } from 'semantic-ui-react';
-import { useForm, NestedValue } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { isEqual } from 'lodash';
 
 import { useAppSelector } from '../../hooks';
@@ -14,14 +14,14 @@ type FormValue = {
 };
 
 const defaultPhrases = {
-  phrase1: '', phrase2: '', phrase3: '', 
+  phrase1: '', phrase2: '', phrase3: '',
   phrase4: '', phrase5: '', phrase6: '',
   phrase7: '', phrase8: '', phrase9: '',
   phrase10: '', phrase11: '', phrase12: '',
 }
 
 export default () => {
-  const [ isDirty, setIsDirty ] = useState(false);
+  const [isDirty, setIsDirty] = useState(false);
   const navigate = useNavigate();
   const phrase = useAppSelector(state => state.phrase);
   const { setValue, getValues, watch } = useForm<FormValue>({ defaultValues: defaultPhrases });
@@ -34,6 +34,7 @@ export default () => {
     watch('phrase7'), watch('phrase8'), watch('phrase9'),
     watch('phrase10'), watch('phrase11'), watch('phrase12'),
   ]);
+  // @ts-ignore
   const isCorrectPhrase = useMemo(() => isEqual(Object.keys(phrases).map(key => phrases[key]), phrase.SRF_List), [phrases, phrase.SRF_List]);
 
   const handleBack = useCallback(() => {
@@ -61,7 +62,8 @@ export default () => {
                 {[...new Array(3)].map((_, colIdx) => {
                   const id = rowIdx * 3 + colIdx + 1;
 
-                  return <Form.Input label={`${id}.`} width={16} key={colIdx} value={phrases[`phrase${id}`]} onChange={(e) => { setValue(`phrase${id}`, e.target.value); setIsDirty(true); }} />
+  // @ts-ignore
+                  return <Form.Input type='password' label={`${id}.`} width={16} key={colIdx} value={phrases[`phrase${id}`]} onChange={(e) => { setValue(`phrase${id}`, e.target.value); setIsDirty(true); }} />
                 })}
               </Form.Group>
             ))}

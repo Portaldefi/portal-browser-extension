@@ -8,7 +8,8 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const ProgressBar = require('progress-bar-webpack-plugin');
-const webpack = require('webpack')
+const webpack = require('webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const pkgJson = require('./package.json');
 
@@ -128,13 +129,43 @@ module.exports = (env) => {
                 }],
                 '@babel/preset-react',
                 {
-                    'plugins': ['@babel/plugin-proposal-class-properties']
+                  'plugins': ['@babel/plugin-proposal-class-properties']
                 }
               ],
             }
           }],
           include: [path.resolve(__dirname, 'node_modules/@fabric')],
         },
+        {
+          test: /\.ts$/,
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+                onlyCompileBundledFiles: true,
+              },
+            },{
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  ['@babel/preset-env', {
+                    "targets": "defaults"
+                  }],
+                  '@babel/preset-react',
+                  {
+                      'plugins': ['@babel/plugin-proposal-class-properties']
+                  },
+                  '@babel/preset-typescript',
+                ],
+              }
+          }],"exclude": /node_modules/,
+        include: [
+          path.resolve(__dirname, 'node_modules/@fabric'),
+          path.resolve(__dirname, 'utils')
+        ],
+      },
         {
           test: /\.(s[ac]|c)ss$/i,
           use: removeEmpty([
@@ -164,6 +195,11 @@ module.exports = (env) => {
       ],
     },
     plugins: removeEmpty([
+      new ForkTsCheckerWebpackPlugin({
+        // tslint: false,      // change to 'true' later
+        // useTypescriptIncrementalApi: true,
+        // checkSyntacticErrors: true,
+      }),
       new CleanWebpackPlugin({
         cleanStaleWebpackAssets: false, // don't remove index.html when using the flag watch
       }),

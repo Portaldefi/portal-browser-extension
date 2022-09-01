@@ -9,7 +9,7 @@ const portal: IPortal = {
     })
   }
 };
-
+// @ts-ignore
 window.portal = portal;
 
 export default portal;

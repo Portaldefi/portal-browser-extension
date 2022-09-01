@@ -1,5 +1,5 @@
 interface IItems {
-  [key: string]: String
+  [key: string]: String | Object
 }
 
 type fieldType = String | Array<String> | Object;

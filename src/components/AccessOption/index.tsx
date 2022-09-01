@@ -1,12 +1,18 @@
 import React from 'react';
-import { Checkbox, Grid, Header, Radio } from 'semantic-ui-react';
+import { 
+  // Checkbox, 
+  Grid, 
+  // Header, 
+  Radio } from 'semantic-ui-react';
 
 interface IConnectionItem {
   name: string,
   comment: string
 };
 
-export default ({name, comment}: IConnectionItem) => {
+export default ({name
+  // , comment
+}: IConnectionItem) => {
   return (
     <Grid className='p-16 py-5 bg-white'>
       <Grid.Column width='eleven' textAlign='left'>

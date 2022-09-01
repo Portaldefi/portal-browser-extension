@@ -1,15 +1,20 @@
-import { syncGet, syncSet } from '../storage';
+import { syncGet } from '../storage';
+import { getAccountValid } from './database';
 
-const handleActionClick = async () => {
-  const accountStatus = await syncGet('accountStatus');
-
-  if (accountStatus !== undefined) {
-    chrome.tabs.create({
-      url: 'onboarding.html'
-    })
-  }
+export const handleActionClick = async () => {
+  chrome.tabs.create({
+    url: 'onboarding.html'
+  })
 };
 
-export {
-  handleActionClick
+export const handleStartup = async () => {
+  const accountStatus = await syncGet('accountStatus');
+  const accValid = await getAccountValid();
+
+  if (accValid === true)
+    chrome.action.setPopup({ popup: 'index.html?popup=true' });
+
+  if (typeof accountStatus == 'string' && accountStatus == 'set') {
+    chrome.action.setPopup({ popup: 'index.html?popup=true' });
+  }
 }

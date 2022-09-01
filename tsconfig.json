@@ -4,7 +4,7 @@
     "module": "ES6",
     "lib": [
       "DOM",
-      "ESNext"
+      "es6"
     ],
     "baseUrl": "./",
     "paths": {
@@ -17,23 +17,23 @@
     // "declaration": true,
     "sourceMap": true,
     "outDir": "./assets",
-    "rootDir": "./src",
+    // "rootDir": "./src",
     "removeComments": true,
     "noEmit": true,
     "isolatedModules": true,
     "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
+    // "noImplicitAny": true,
+    // "strictNullChecks": true,
+    // "strictFunctionTypes": true,
+    // "strictBindCallApply": true,
     // "strictPropertyInitialization": true,
     "noImplicitThis": true,
-    "alwaysStrict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
+    "alwaysStrict": false,
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    // "noImplicitReturns": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noUncheckedIndexedAccess": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -43,7 +43,8 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src"
+    "src",
+    "utils"
   ],
   "exclude": [
     "node_modules",

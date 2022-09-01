@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Form, Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
+import { Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
+import { syncSet } from '@/storage';
 
 type LocationState = {
   state: {
@@ -9,6 +10,7 @@ type LocationState = {
 }
 
 export default () => {
+  // @ts-ignore
   const location = useLocation<LocationState>();
 
   const { state: { mode: connectMode } } = location as LocationState;
@@ -19,8 +21,15 @@ export default () => {
 
   useEffect(() => {
     chrome.action.setPopup({ popup: 'index.html?popup=true' });
+    syncSet({ 'accountStatus': 'set' });
   }, []);
-  
+
+  const closeTab = () => {
+    window.opener = null;
+    window.open("", "_self");
+    window.close();
+  };
+
   return (
     <Segment className='board'>
       <Grid>
@@ -32,22 +41,22 @@ export default () => {
             }
           </Header>
         </Grid.Row>
-        { connectMode === 'create'
-        ? <>
+        {connectMode === 'create'
+          ? <>
             <Grid.Row centered>
               <Header as='p' size='small' color='grey' className='description'>
-                You are now ready to connect to Fabric web3 applications. 
+                You are now ready to connect to Fabric web applications. 
               </Header>
             </Grid.Row>
             <Grid.Row centered>
               <Header as='p' size='small' color='grey' className='description'>
-                Remember to back up your seed in a secure location. 
+                Remember to back up your seed in a secure location.
               </Header>
             </Grid.Row>
           </>
-        : <Grid.Row centered>
+          : <Grid.Row centered>
             <Header as='p' size='small' color='grey' className='description'>
-              Your DeIdentity is now ready to connect to Fabric web3 applications.
+              Your DeIdentity is now ready to connect to Fabric web applications.
             </Header>
           </Grid.Row>
         }
