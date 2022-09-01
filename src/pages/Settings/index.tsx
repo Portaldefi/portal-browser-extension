@@ -49,6 +49,9 @@ export default () => {
       {/* <Grid.Row className='p-none'>
         <SettingItem name='Import Identity' />
       </Grid.Row> */}
+      <Grid.Row className='p-none' onClick={() => navigate('/settings/change_password')}>
+        <SettingItem name='Change Password' extra={undefined} />
+      </Grid.Row>
       <Grid.Row className='p-none'>
         <SettingItem name='Clear Identities' extra={undefined} />
       </Grid.Row>

@@ -22,7 +22,6 @@ export const createDB = async (dbName: string = config.name) => {
 
 
 export const clearDatabase = () => {
-    console.log(123);
     accountTB.clear();
 };
 
@@ -124,6 +123,13 @@ export const checkPassword = async (accountId: number = 0, password: string) => 
     const passHash = createHash('sha256').update(password).digest('base64');
     // @ts-ignore
     return (res.password === passHash);
+}
+
+export const changePassword = async (accountId: number = 0, password: string) => {
+    const account = await accountTB.get(accountId);
+
+    account.password = createHash('sha256').update(password).digest('base64');
+    accountTB.put(accountId, account);
 }
 
 export const retrievePrivateKey = async (accountId: number = 0) => {
