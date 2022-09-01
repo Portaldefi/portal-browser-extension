@@ -60,7 +60,7 @@
     "not dead"
   ],
   "dependencies": {
-    "@fabric/core": "FabricLabs/fabric#feature/node-16",
+    "@fabric/core": "FabricLabs/fabric#feature/master",
     "@fabric/http": "FabricLabs/fabric-http#feature/node-16",
     "@fabric/react": "FabricLabs/fabric-react#feature/node-16",
     "@reduxjs/toolkit": "^1.8.2",
