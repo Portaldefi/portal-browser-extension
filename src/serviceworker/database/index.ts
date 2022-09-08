@@ -20,7 +20,6 @@ export const createDB = async (dbName: string = config.name) => {
     settingTB = db.sublevel('setting', { valueEncoding: 'json' });
 }
 
-
 export const clearDatabase = () => {
     accountTB.clear();
 };
