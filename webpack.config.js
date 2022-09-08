@@ -192,6 +192,11 @@ module.exports = (env) => {
             filename: 'fonts/[hash][ext][query]',
           },
         },
+        {
+            test: /\.wasm$/,
+            type: "asset/inline",
+            // loaders: ['wasm-loader']
+        },
       ],
     },
     plugins: removeEmpty([
