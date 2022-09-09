@@ -2,6 +2,8 @@ import React, { useEffect, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Grid, Header, Segment, Button, Image } from 'semantic-ui-react';
 import { syncSet } from '@/storage';
+import { useAppSelector } from '../../hooks';
+import { setSeedPhrase } from '@/serviceworker/database';
 
 type LocationState = {
   state: {
@@ -12,6 +14,7 @@ type LocationState = {
 export default () => {
   // @ts-ignore
   const location = useLocation<LocationState>();
+  const phrase = useAppSelector(state => state.phrase);
 
   const { state: { mode: connectMode } } = location as LocationState;
 
@@ -22,6 +25,7 @@ export default () => {
   useEffect(() => {
     chrome.action.setPopup({ popup: 'index.html?popup=true' });
     syncSet({ 'accountStatus': 'set' });
+    setSeedPhrase(phrase.SRF_List);
   }, []);
 
   const closeTab = () => {

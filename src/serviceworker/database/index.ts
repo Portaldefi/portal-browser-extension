@@ -29,6 +29,15 @@ export const initDB = async () => {
     settingTB.put('chains', [true, true, true, true, true]);
 }
 
+export const setSeedPhrase = async (phrase: Array<string>) => {
+    var keys = await importKey();
+
+    for(let i = 0; i < phrase.length; i ++)
+        phrase[i] = await encryptToString(textEnc.encode(phrase[i]), keys, iv);
+
+    settingTB.put('phrase', phrase);
+};
+
 export const insertAccount = async (account: IAccount) => {
     let accountCount = 0;
 
