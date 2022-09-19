@@ -1,3 +1,9 @@
+
+/**
+* Function that imports a example key using SubtleCrypto
+* using AES-GCN algortithm with encrypt and decrypt abilities enabled
+* @return   {CryptoKey|Promise}         Promise object that fulfills with CryptoKey
+*/
 export function importKey() {
     return window.crypto.subtle.importKey(
         "jwk", //can be "jwk" or "raw"
@@ -15,6 +21,11 @@ export function importKey() {
     )
 }
 
+/**
+* Function uses SubtleCryptoto encrypt data with an encryption key
+* using AES-GCN algortithm with encrypt and decrypt abilities enabled.
+* @return   {CryptoKey|Promise}         Promise object that fulfills with CryptoKey
+*/
 export function generateKey() {
     return window.crypto.subtle.generateKey(
         {
@@ -26,6 +37,14 @@ export function generateKey() {
     )
 }
 
+/**
+* Function that generates a new extractable key using SubtleCrypto
+* using AES-GCN algortithm with encrypt and decrypt abilities enabled.
+* @param    {data}  ArrayBuffer,  TypedArray, or DataView (plaintext) of data you want to encrypt
+* @param    {key}   CryptoKey with key used for encryption
+* @param    {iv}    Initialization vector to be used with given encryption key
+* @return   {ciphertext|Promise}         Promise object that fulfills with CryptoKey
+*/
 export function encrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
     return window.crypto.subtle.encrypt(
         {
@@ -47,6 +66,14 @@ export function encrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
     );
 }
 
+/**
+* Function that uses SubtleCrypto to decrypt encrypted data
+* using AES-GCN algortithm with encrypt and decrypt abilities enabled.
+* @param    {data}  ArrayBuffer,  TypedArray, or DataView (plaintext) of data you want to encrypt
+* @param    {key}   CryptoKey with key used for encryption
+* @param    {iv}    Initialization vector that is used with encryption key
+* @return   {plaintext|Promise}         Promise object that fulfills with CryptoKey
+*/
 export function decrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
     return window.crypto.subtle.decrypt(
         {
