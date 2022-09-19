@@ -19,6 +19,12 @@ export const generateSeed = () => {
   }
 };
 
+/**
+* Function that generates an account object with supplied mnemonic seed phrase and encryption password
+* @param    {[mnemonic]}  An array of seed words
+* @param    {password}    encryption password set in wallet initialization
+* @return   {IAccount}         account object generated with supplied seed and password
+*/
 export const generateAccount = async (mnemonic: any[], password: any) => {
   let _mnemonic;
   if (typeof mnemonic === 'object') {
@@ -31,7 +37,6 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
   const hdKey = HDKey.fromMasterSeed(_seed);
 
   const privateKey = hdKey.privateExtendedKey;
-
 
   const result = {
     privateKey: privateKey.toString(),
