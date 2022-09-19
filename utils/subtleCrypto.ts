@@ -40,9 +40,9 @@ export function generateKey() {
 /**
 * Function that generates a new extractable key using SubtleCrypto
 * using AES-GCN algortithm with encrypt and decrypt abilities enabled.
-* @param    {data}  ArrayBuffer,  TypedArray, or DataView (plaintext) of data you want to encrypt
-* @param    {key}   CryptoKey with key used for encryption
-* @param    {iv}    Initialization vector to be used with given encryption key
+* @param    {ArrayBuffer}  data as ArrayBuffer of data to be encrypted
+* @param    {CryptoKey}   key as CryptoKey with key used for encryption
+* @param    {Uint8Array}    iv - initialization vector that is used with encryption key
 * @return   {ciphertext|Promise}         Promise object that fulfills with CryptoKey
 */
 export function encrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
@@ -69,9 +69,9 @@ export function encrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
 /**
 * Function that uses SubtleCrypto to decrypt encrypted data
 * using AES-GCN algortithm with encrypt and decrypt abilities enabled.
-* @param    {data}  ArrayBuffer,  TypedArray, or DataView (plaintext) of data you want to encrypt
-* @param    {key}   CryptoKey with key used for encryption
-* @param    {iv}    Initialization vector that is used with encryption key
+* @param    {ArrayBuffer}  data as ArrayBuffer of data to be decrypted
+* @param    {CryptoKey}   key as CryptoKey with key used for encryption
+* @param    {Uint8Array}    iv - initialization vector that is used with encryption key
 * @return   {plaintext|Promise}         Promise object that fulfills with CryptoKey
 */
 export function decrypt(data: ArrayBuffer, key: CryptoKey, iv: Uint8Array) {
