@@ -38,3 +38,71 @@ There are two sublevels of data stored: account and setting.
 ### New Chain Integration
 Chain address derivation is set in src/config/chains.ts and generated in utils/seedPhrase.ts
 
+### Storage function descriptions
+
+#### const initDB = async ()
+- Description : Initialize leveldb with chain flags set to true
+
+#### const setSeedPhrase = async (phrase)
+- Description : Set seed phrase to setting
+- Params
+  - {Array<string>} phrase : 12 seed phrases
+ 
+#### const insertAccount = async (account)
+- Description : Insert a new account
+- Params 
+  - {object}    account : Account Info
+
+#### const insertIdentity = async (identity, accountId = 0)
+- Description : Insert identity into an account
+- Params
+  - {IIdentity} identity : array of identities generated from account
+  - {number}    accountId : index of account generated from seed.
+ 
+#### const setDBIdentityCheckState = async (accountId, identity, chain, state)
+- Description :  Enable/disable chain operability for specified idenity
+- Params
+  - {number} accountId : Account index
+  - {number} identity : identity index
+  - {number} chain : chain's id listed in browser extension
+  - {boolean} state : boolean to enable or disable chain
+  
+#### const setGlobalChainState = async (settings)
+- Description : Enable/disable chain operability for wallet
+- Params
+  - {Array} settings : Chain Settings
+
+#### const getAccountValid = async ()
+- Description : Check if there is an account in the store
+
+#### const getGlobalChainState = async ()
+- Description : Get global chain state
+
+#### const getAccount = async (accountId = 0)
+- Description : Get specific account from the store
+- Params
+  - {number} accountId : Account Index
+
+#### const checkPassword = async (accountId 0, password)
+- Description : Check if the password inputed is same as saved in the store
+- Params
+  - {number} accountId : Account Index
+  - {string} passHash : Hashed Password
+
+#### const changePassword = async (accountId = 0, password)
+- Description : Change the password in the store
+- Params 
+  - {number} accountId : Account Index
+  - {string} password : Hashed Password
+ 
+#### const retrievePrivateKey = async (accountId = 0)
+- Description : Retrieves private key of account in the store
+- Params
+  - {number} accountId : Account Index
+
+#### const getIdentityCount = async (accountId = 0)
+- Description : Get Count of identities of an account
+- Params 
+  - {number} accountId : Account Index
+
+  
