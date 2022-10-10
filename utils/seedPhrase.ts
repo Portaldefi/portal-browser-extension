@@ -1,13 +1,13 @@
 import * as bip39 from 'bip39';
 import createHash from 'create-hash';
 import HDKey from 'hdkey';
-import * as bs58check from 'bs58check';
 import { retrievePrivateKey, getIdentityCount, insertIdentity } from '@/serviceworker/database';
 import { IAccount } from '@/serviceworker/database/schema';
 import { IChain, IIdentity } from '@/types/identity';
 import chains from '@/config/chains';
 
-// const bip32 = Bip32Factory(ecc);
+const Identity = require('@fabric/core/types/identity');
+
 
 export const generateSeed = () => {
   try {
@@ -45,11 +45,16 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
     password: createHash('sha256').update(password).digest('base64')
   } as IAccount;
 
+
   for (let i = 0; i < 10; i++) {
     result.identity[i] = [] as IIdentity;
     for (let j = 0; j < chains.length; j++) {
+      const identity = new Identity({
+        accountId: i,
+        index: j
+      });
       result.identity[i][j] = {
-        address: generateAddressFromPvtKey(result.privateKey, j, i),
+        address: identity.toString(),//generateAddressFromPvtKey(result.privateKey, j, i),
         allowed: true
       } as IChain;
     }
@@ -57,7 +62,7 @@ export const generateAccount = async (mnemonic: any[], password: any) => {
 
   return result;
 };
-
+/*
 export const generateAddressFromPvtKey = (privateKey: any, chainNo = 0, addressNo = 0) => {
   const hdKey = HDKey.fromExtendedKey(privateKey.toString());
   const addrNode = hdKey.derive(getDerivationPathOfChain(chainNo, addressNo) as string);
@@ -72,12 +77,12 @@ export const generateAddressFromPvtKey = (privateKey: any, chainNo = 0, addressN
 
   return address;
 }
-
-
+*/
+/*
 export const getDerivationPathOfChain = (chainNo: number, addrNo: number) => {
   return `${chains[chainNo].path}${addrNo}`;
 }
-
+*/
 
 export const generateIdentity = async () => {
   const key = await retrievePrivateKey();
@@ -85,8 +90,12 @@ export const generateIdentity = async () => {
 
   let identity = [] as IIdentity;
   for (let i = 0; i < chains.length; i++) {
+    const identity = new Identity({
+      accountID: idCnt,
+      index: i
+    });
     identity[i] = {
-      address: generateAddressFromPvtKey(key, 0, idCnt),
+      address: identity.toString(),//generateAddressFromPvtKey(key, 0, idCnt),
       allowed: true
     } as IChain;
   }
