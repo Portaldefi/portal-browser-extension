@@ -19,7 +19,7 @@ export default () => {
   const { state: { mode: connectMode } } = location as LocationState;
 
   const handleFinish = useCallback(() => {
-    window.location.replace('http://localhost:3000');
+    //window.location.replace('http://localhost:3000');
   }, []);
 
   useEffect(() => {

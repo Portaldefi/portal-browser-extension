@@ -2,7 +2,6 @@ import React, { useCallback, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Button, Grid, Segment, Icon, Form, Message } from 'semantic-ui-react';
 import { useForm } from 'react-hook-form';
-// import { isEqual } from 'lodash';
 import * as bip39 from 'bip39';
 
 import { generateAccount } from '@utils/seedPhrase';
