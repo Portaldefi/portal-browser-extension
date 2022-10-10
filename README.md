@@ -27,7 +27,37 @@ Additional extension features and configurations can be accessed in the settings
 6. While on fabric applications, users could test the signing feature by clicking the login button when on portal-web or by entering `window.portal.request()` in the console
 
 ## Encryption
-All data stored in chrome.storage is encrypted with subtleCrypto AES-GCM algorithm. Encryption methods found in utils/subtleCrypto
+Data stored in leveldb is encrypted with the subtleCrypto AES-GCM algorithm. Encryption methods are found in fabric/core/types/subtleCrypto
+
+#### const importKey = ()
+- Description : Import Key for SubtleCrypto Encryption
+  
+#### const generateKey = ()
+- Description : Generate Key for SubtleCrypto Encryption
+  
+#### const encrypt = (data, key, iv)
+- Description : Encrypt data
+- Params
+  - {ArrayBuffer} data : Data to be encrypted
+  - {CryptoKey} key : Key to be used for encryption
+  - {Uint8Array} iv : Initial Vector for encryption
+
+#### const decrypt = (data, key, iv)
+- Description : Decrypt data
+- Params
+  - {ArrayBuffer} data : Data to be decrypted
+  - {CryptoKey} key : Key to be used for decryption
+  - {Uint8Array} iv : Initial Vector for decryption
+  
+#### const encryptToString = (data)
+- Description : Encrypt data to string
+- Params
+  - {ArrayBuffer} data : Data to be encrypted
+  
+#### const decryptFromString = (data)
+- Description : Decrypt data from string
+- Params
+  - {String} data : Data to be decrypted
 
 ## Storage
 Data is stored with leveldb and chrome.storage on the client side. Storage operations can be found in src/serviceworker/database.
