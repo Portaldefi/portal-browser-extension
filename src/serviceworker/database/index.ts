@@ -4,14 +4,14 @@ import createHash from 'create-hash';
 import { IChain, IIdentity } from '@/types/identity';
 import chains from '@/config/chains';
 
-const Store = require('@fabric/core/types/store');
+const Store = require('@fabric/core');
 
 const store = new Store({
     path: './stores/fabric',
     persistent: false
 });
 
-const { encryptToString, decryptFromString } = require('@fabric/core/types/encryption');
+const { encryptToString, decryptFromString } = require('@fabric/core');
 
 /**
  * Create leveldb for extension in the store
