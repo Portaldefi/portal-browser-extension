@@ -1,17 +1,20 @@
 import config from '../../config/db'
 import { AccountSchema, IAccount } from './schema';
 import createHash from 'create-hash';
-import { IChain, IIdentity } from '@/types/identity';
-import chains from '@/config/chains';
+import { IChain, IIdentity } from '../../types/identity';
+import chains from '../../config/chains';
+// @ts-ignore
+import { Store, encryptToString, decryptFromString } from "@fabric/core";
 
-const Store = require('@fabric/core/types/store');
+// const Store = require('@fabric/core');
 
 const store = new Store({
-    path: './stores/fabric',
+    path: __dirname + '/stores/fabric',
     persistent: false
 });
 
-const { encryptToString, decryptFromString } = require('@fabric/core/types/encryption');
+// const { encryptToString, decryptFromString } = require('@fabric/core');
+
 
 /**
  * Create leveldb for extension in the store

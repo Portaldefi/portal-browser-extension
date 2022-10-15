@@ -1,4 +1,4 @@
-import { clearDatabase } from '@/serviceworker/database';
+import { clearDatabase } from '../../../../serviceworker/database';
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Image, Button, Grid, Segment } from 'semantic-ui-react';
