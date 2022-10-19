@@ -3,6 +3,7 @@
 
 # dependencies
 node_modules
+.yalc
 
 # builds
 assets
@@ -10,3 +11,4 @@ dist
 
 # misc
 .DS_Store
+EXT_DB
