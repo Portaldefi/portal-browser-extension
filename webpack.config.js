@@ -192,6 +192,11 @@ module.exports = (env) => {
             filename: 'fonts/[hash][ext][query]',
           },
         },
+        {
+            test: /\.wasm$/,
+            type: "asset/inline",
+            // loaders: ['wasm-loader']
+        },
       ],
     },
     plugins: removeEmpty([
@@ -275,19 +280,24 @@ module.exports = (env) => {
       }),
       ifDev(new ReactRefreshWebpackPlugin()),
       ifProd(new ProgressBar()),
-      // fix "process is not defined" error:
       new webpack.ProvidePlugin({
+        // fix "process is not defined" error:
         process: 'process/browser',
+        // Work around for Buffer is undefined:
+        // https://github.com/webpack/changelog-v5/issues/10
+          Buffer: ['buffer', 'Buffer'],
       }),
     ]),
     resolve: {
       extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        '@utils': path.resolve(__dirname, 'utils')
+        '@utils': path.resolve(__dirname, 'utils'),
+        'process': "process/browser"
       },
       fallback: {
         "assert": false,
+        "buffer": require.resolve('buffer/'),
         "child_process": false,
         "dgram": false,
         "fs": false,

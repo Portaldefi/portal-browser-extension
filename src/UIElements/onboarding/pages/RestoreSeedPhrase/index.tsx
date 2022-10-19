@@ -63,7 +63,7 @@ export default () => {
                   const id = rowIdx * 3 + colIdx + 1;
 
   // @ts-ignore
-                  return <Form.Input type='password' label={`${id}.`} width={16} key={colIdx} value={phrases[`phrase${id}`]} onChange={(e) => { setValue(`phrase${id}`, e.target.value); setIsDirty(true); }} />
+                  return <Form.Input label={`${id}.`} width={16} key={colIdx} value={phrases[`phrase${id}`]} onChange={(e) => { setValue(`phrase${id}`, e.target.value); setIsDirty(true); }} />
                 })}
               </Form.Group>
             ))}

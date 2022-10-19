@@ -58,6 +58,9 @@ export default () => {
       <Grid.Row className='p-none' onClick={() => navigate('/settings/manage_identities')}>
         <SettingItem name='Manage Identities' extra={undefined} />
       </Grid.Row>
+      <Grid.Row className='p-none' onClick={() => navigate('/settings/add_duress_key')}>
+        <SettingItem name='Add Duress Key' extra={undefined} />
+      </Grid.Row>
       <Grid.Row className='p-none' onClick={() => navigate('/settings/manage_chains')}>
         <SettingItem name='Manage Chains' extra={undefined} />
       </Grid.Row>
