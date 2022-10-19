@@ -102,5 +102,11 @@
     "tiny-secp256k1": "^2.2.1",
     "trezor-connect": "^8.2.9",
     "ts-loader": "^9.3.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns" : [
+      "<rootDir>/.yalc/",
+      "<rootDir>/node_modules/"
+    ]
   }
 }
