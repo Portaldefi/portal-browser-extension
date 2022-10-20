@@ -4,8 +4,8 @@ import {
   List
 } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import IdentityItem from '@/pages/Settings/IdentityItem'
-import { useAppSelector } from '@/hooks';
+import IdentityItem from './IdentityItem'
+import { useAppSelector } from '../../hooks';
 
 export default () => {
   const identities = useAppSelector(state => state.key.identity);
