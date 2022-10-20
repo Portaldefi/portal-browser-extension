@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateWalletComponent should work 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        Create Password
+      </div>
+    </div>
+    <div
+      className="centered row"
+    >
+      <form
+        className="ui form form-container"
+        onSubmit={[Function]}
+      >
+        <div
+          className="inline one fields"
+        >
+          <div
+            className="eight wide field"
+          >
+            <label>
+              Password
+            </label>
+            <div
+              className="ui input"
+            >
+              <input
+                aria-describedby={null}
+                name="password"
+                onChange={[Function]}
+                type="password"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="inline one fields"
+        >
+          <div
+            className="eight wide field"
+          >
+            <label>
+              Confirm
+            </label>
+            <div
+              className="ui input"
+            >
+              <input
+                aria-describedby={null}
+                name="passConfirm"
+                onChange={[Function]}
+                type="password"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      className="row"
+    >
+      <p
+        className="ui grey small header description extra-former-blank extra-latter-blank"
+      >
+        WARNING: Improper backup of the seed phrase will result in loss of funds!
+      </p>
+    </div>
+    <div
+      className="centered two column row"
+    >
+      <div
+        className="column"
+      >
+        <button
+          className="ui button blank-button"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="angle left icon"
+            onClick={[Function]}
+          />
+          Back
+        </button>
+      </div>
+      <div
+        className="column"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Confirm
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
