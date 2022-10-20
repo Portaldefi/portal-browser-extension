@@ -6,7 +6,7 @@ import {
   List
 } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import ConnectionItem from '@/components/Home/RecentConnections/ConnectionItem';
+import ConnectionItem from '../../components/Home/RecentConnections/ConnectionItem';
 
 import NetworkOption from '../../components/Settings/NetworkOption';
 
