@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addIdentity } from '../../slices/keySlice';
 
 import SettingItem from '../../components/Home/SettingItem';
-import { generateIdentity } from '@utils/seedPhrase';
+import { generateIdentity } from '../../../utils/seedPhrase';
 
 export default () => {
   const dispatch = useAppDispatch();
