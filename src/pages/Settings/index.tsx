@@ -44,7 +44,7 @@ export default () => {
         <SettingItem name='Export Seed' extra={undefined} />
       </Grid.Row>
       <Grid.Row className='p-none' onClick={addIdentityFr}>
-        <SettingItem name='Add Identity' extra='undefined' />
+        <SettingItem name='Add Identity' extra={undefined} />
       </Grid.Row>
       {/* <Grid.Row className='p-none'>
         <SettingItem name='Import Identity' />
