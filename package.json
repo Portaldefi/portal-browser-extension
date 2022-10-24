@@ -66,10 +66,10 @@
     "not dead"
   ],
   "dependencies": {
-    "@fabric/core": "github:FabricLabs/fabric#feature/encryption",
-    "@fabric/http": "FabricLabs/fabric-http#feature/node-16",
-    "@fabric/react": "FabricLabs/fabric-react#feature/node-16",
-    "@reduxjs/toolkit": "^1.8.2",
+    "@fabric/react": "FabricLabs/fabric-react#feature/fabric",
+    "@fabric/http": "FabricLabs/fabric-http#feature/compiler",
+    "@fabric/core": "FabricLabs/fabric#feature/encryption",
+    "@reduxjs/toolkit": "1.8.2",
     "@types/chrome": "0.0.190",
     "acorn": "8.7.1",
     "assert": "2.0.0",
