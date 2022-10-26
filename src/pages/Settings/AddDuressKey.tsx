@@ -1,13 +1,10 @@
 import React, {useCallback, useState} from 'react';
 import { useAppDispatch } from '@/hooks';
 import { Grid, Header, Form, Button } from 'semantic-ui-react';
-import { checkPassword, changePassword } from '@/serviceworker/database';
 import { useNavigate } from 'react-router-dom';
 
 
 export default () => {
-    const dispatch = useAppDispatch();
-    const navigate = useNavigate();
     const [duressKey, setDuressKey] = useState<string>('');
     
     const onChangeDuressKeyInput = useCallback((e: any) => {
@@ -19,7 +16,6 @@ export default () => {
     }, [duressKey]);
 
     return (
-
         <Grid className='w-100'>
             <Grid.Row centered className='p-none pb-19'>
                 <Header as='h1' className='heading'>Add Duress Key</Header>
