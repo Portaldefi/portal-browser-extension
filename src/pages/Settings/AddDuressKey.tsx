@@ -12,7 +12,6 @@ export default () => {
     }, []);
 
     const handleAdd = useCallback(async () => {
-        
     }, [duressKey]);
 
     return (
