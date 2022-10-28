@@ -25,7 +25,95 @@ exports[`ManageIdentitiesComponent should work 1`] = `
           "overflowY": "scroll",
         }
       }
-    />
+    >
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned eleven wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                Identity0
+              </p>
+              <p
+                className="ui header comment"
+              >
+                test address
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ManageIdentitiesComponent should work 2`] = `
+<div
+  className="ui grid w-100"
+>
+  <div
+    className="centered row p-none pb-19"
+  >
+    <h1
+      className="ui header heading"
+    >
+      Manage Identities
+    </h1>
+  </div>
+  <div
+    className="row p-none"
+  >
+    <div
+      className="ui list w-100"
+      role="list"
+      style={
+        {
+          "height": "270px",
+          "overflowY": "scroll",
+        }
+      }
+    >
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned eleven wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                Identity0
+              </p>
+              <p
+                className="ui header comment"
+              >
+                test address
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 `;
