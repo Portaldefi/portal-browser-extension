@@ -9,6 +9,7 @@ describe('CreateWalletComponent', () => {
   let initialState;
   let mockStore;
   let store;
+  let jsdomAlert;
   beforeEach(() => {
     initialState = {
       phrase: {
@@ -22,6 +23,8 @@ describe('CreateWalletComponent', () => {
     }
     mockStore = configureStore()
     store = mockStore(initialState);
+    jsdomAlert = window.alert;  // remember the jsdom alert
+    window.alert = () => {};  // provide an empty implementation for window.alert
   });
 
   it('should work', async () => {
@@ -65,5 +68,8 @@ describe('CreateWalletComponent', () => {
     }));
     expect(tree).toMatchSnapshot();
   });
-  afterAll(() => jest.resetModules());
+  afterAll(() => {
+    jest.resetModules();
+    window.alert = jsdomAlert;  // restore the jsdom alert
+  });
 });
