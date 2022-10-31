@@ -7,6 +7,10 @@ import AccessOption from '../../components/AccessOption';
 
 export default () => {
 
+  const closeWindow = () => {
+    window.close();
+  }
+
   return (
     <div className='mainframe'>
       <Grid className='bg-white py-12'>
@@ -41,10 +45,10 @@ export default () => {
         </Grid.Row>
         <Grid.Row centered columns={2}>
           <Grid.Column className='px-16'>
-            <Button className='secondary-button' onClick={()=>{window.close()}}>Reject</Button>
+            <Button className='secondary-button' onClick={closeWindow}>Reject</Button>
           </Grid.Column>
           <Grid.Column className='px-16'>
-            <Button className='primary-button' onClick={()=>{window.close()}}>Allow</Button>
+            <Button className='primary-button' onClick={closeWindow}>Allow</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
