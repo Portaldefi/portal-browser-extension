@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 
 describe('IntroComponent', () => {
-  it('should work', async () => {
+  it('should work', () => {
     let tree;
     act(() => {
       tree = create(
@@ -16,7 +16,7 @@ describe('IntroComponent', () => {
 
     expect(tree).toMatchSnapshot();
   });
-  it('buttons', async () => {
+  it('buttons', () => {
     let tree;
     act(() => {
       tree = create(

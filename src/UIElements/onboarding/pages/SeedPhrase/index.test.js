@@ -22,7 +22,7 @@ describe('SeedPhraseComponent', () => {
     store = mockStore(initialState)
   });
 
-  it('should work', async () => {
+  it('should work', () => {
     let tree;
     act(() => {
       tree = create(
@@ -36,7 +36,7 @@ describe('SeedPhraseComponent', () => {
 
     expect(tree).toMatchSnapshot();
   });
-  it('functions', async () => {
+  it('functions', () => {
     let tree;
     act(() => {
       tree = create(

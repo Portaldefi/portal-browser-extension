@@ -27,7 +27,7 @@ describe('CreateWalletComponent', () => {
     window.alert = () => {};  // provide an empty implementation for window.alert
   });
 
-  it('should work', async () => {
+  it('should work', () => {
     let tree;
     act(() => {
       tree = create(
@@ -42,7 +42,7 @@ describe('CreateWalletComponent', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('functions', async () => {
+  it('functions', () => {
     let tree;
     act(() => {
       tree = create(

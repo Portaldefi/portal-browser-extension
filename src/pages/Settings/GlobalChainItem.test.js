@@ -9,7 +9,7 @@ describe('GlobalChainItemComponent', () => {
     handleSetCheckState = jest.fn();
     index = 0;
   });
-  it('should work', async () => {
+  it('should work', () => {
     let tree;
     act(() => {
       tree = create(

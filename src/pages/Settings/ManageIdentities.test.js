@@ -26,7 +26,7 @@ describe('ManageIdentitiesComponent', () => {
   let store
 
 
-  it('should work', async () => {
+  it('should work', () => {
     let tree;
     act(() => {
       store = mockStore(initialState)

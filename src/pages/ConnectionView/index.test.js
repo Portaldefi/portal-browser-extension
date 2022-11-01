@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 describe('ConnectionViewComponent', () => {
 
 
-  it('should work', async () => {
+  it('should work', () => {
     let tree;
     act(() => {
       tree = create(
