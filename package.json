@@ -11,7 +11,8 @@
     "watch": "./init.sh && webpack --env devBuild --watch",
     "dev": "./init.sh && webpack --env devBuild",
     "build": "./init.sh && webpack --env prod",
-    "test": "jest --env=jsdom"
+    "test": "jest --env=jsdom",
+    "cov": "jest --env=jsdom --coverage"
   },
   "devDependencies": {
     "@babel/core": "7.18.5",
