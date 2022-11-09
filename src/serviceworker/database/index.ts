@@ -11,7 +11,7 @@ const store = new Store({
     persistent: false
 });
 
-const { encryptToString, decryptFromString } = require('@fabric/core/types/encryption');
+const { encryptToString, decryptFromString } = require('@utils/encryption');
 
 /**
  * Create leveldb for extension in the store
