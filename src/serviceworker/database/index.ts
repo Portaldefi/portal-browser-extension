@@ -4,12 +4,9 @@ import createHash from 'create-hash';
 import { IChain, IIdentity } from '../../types/identity';
 import chains from '../../config/chains';
 
-const Store = require('@fabric/core/types/store');
+const localforage = require('localforage');
 
-const store = new Store({
-    path: __dirname + '/stores/fabric',
-    persistent: false
-});
+var accountTB: any, settingTB: any;
 
 const { encryptToString, decryptFromString } = require('@utils/encryption');
 
@@ -18,14 +15,22 @@ const { encryptToString, decryptFromString } = require('@utils/encryption');
  * @param {string} dbName Database Name
  */
 export const createDB = async (dbName: string = config.name) => {
-    store.createDB(dbName);
+    //store.createDB(dbName);
+    accountTB = localforage.createInstance({
+        name: 'extension',
+        storeName: 'account'
+    });
+    settingTB = localforage.createInstance({
+        name: 'extension',
+        storeName: 'setting'
+    });
 }
 
 /**
  * Clear database in the store
  */
 export const clearDatabase = () => {
-    store.clearDatabase();
+    accountTB.clear();
 };
 
 /**
@@ -33,7 +38,7 @@ export const clearDatabase = () => {
  */
 export const initDB = async () => {
     //Initialize Chains Toggle
-    store.initDB();
+    settingTB.setItem('chains', [true, true, true, true, true])
 }
 /**
  * Set seed phrase to setting
@@ -44,7 +49,7 @@ export const setSeedPhrase = async (phrase: Array<string>) => {
     for(let i = 0; i < phrase.length; i ++)
         newPhrase[i] = await encryptToString(phrase[i]);
 
-    store.setSeedPhrase(newPhrase);
+    settingTB.setItem('phrase', newPhrase);
 };
 /**
  * Insert a new account
@@ -59,8 +64,8 @@ export const insertAccount = async (account: IAccount) => {
             account.identity[i][j].address = await encryptToString(account.identity[i][j].address);
         }
     }
-
-    store.insertAccount(account);
+    let accountCount = await accountTB.length();
+    accountTB.setItem(accountCount, account);
 }
 /**
  * Insert identity into an account.
@@ -68,7 +73,7 @@ export const insertAccount = async (account: IAccount) => {
  * @param  {number}  accountId index of account generated from seed.
  */
 export const insertIdentity = async (identity: IIdentity, accountId: number = 0) => {
-    const account = await store.getAccount(accountId) as IAccount;
+    const account = await getAccount(accountId) as IAccount;
     // @ts-ignore
 
     var keys = await importKey();
@@ -81,8 +86,10 @@ export const insertIdentity = async (identity: IIdentity, accountId: number = 0)
         identity[i].address = await encryptToString(identity[i].address);
     }
 
-    // @ts-ignore
-    store.insertIdentity(identity, accountId);
+    const account1 = await accountTB.getItem(accountId);
+    var length = account1.identity.length as number;
+    account1.identity[length] = identity;
+    accountTB.setItem(accountId, account1);
 }
 /**
  * Enable/disable chain operability for specified idenity
@@ -92,26 +99,33 @@ export const insertIdentity = async (identity: IIdentity, accountId: number = 0)
  * @param {boolean} state boolean to enable or disable chain
  */
 export const setDBIdentityCheckState = async (accountId: number, identity: number, chain: number, state: boolean) => {
-    store.setDBIdentityCheckState(accountId, identity, chain, state);
+    const account = await accountTB.getItem(accountId);
+
+    account.identity[identity][chain].allowed = state;
+
+    accountTB.setItem(accountId, account);
 }
 /**
  * Enable/disable chain operability for wallet
  * @param {Array} settings Chain Settings
  */
 export const setGlobalChainState = async (settings: Array<boolean>) => {
-    store.setGlobalChainState(settings);
+    settingTB.setItem('chains', settings);
 };
 /**
  * Check if there is an account in the store
  */
 export const getAccountValid = async () => {
-    return store.getAccountValid();
+    let accountCount = await accountTB.length();
+
+    return accountCount !== 0;
 }
 /**
  * Get global chain state
  */
 export const getGlobalChainState = async () => {
-    return store.getGlobalChainState();
+    const settings = await settingTB.getItem('chains');
+    return settings;
 }
 
 /**
@@ -119,7 +133,7 @@ export const getGlobalChainState = async () => {
  * @param {number} accountId Account Index
  */
 export const getAccount = async (accountId: number = 0) => {
-    const account = await store.getAccount(accountId) as IAccount;
+    const account = await accountTB.getItem(accountId) as IAccount;
 
     account.privateKey = await decryptFromString(account.privateKey);
     account.privateExtendedKey = await decryptFromString(account.privateExtendedKey);
@@ -140,7 +154,9 @@ export const getAccount = async (accountId: number = 0) => {
  */
 export const checkPassword = async (accountId: number = 0, password: string) => {
     password = createHash('sha256').update(password).digest('base64');
-    return store.checkPassword(accountId, password);
+    const res = await accountTB.getItem(accountId);
+    // @ts-ignore
+    return (res.password === password);
 }
 /**
  * Change the password in the store
@@ -149,7 +165,9 @@ export const checkPassword = async (accountId: number = 0, password: string) => 
  */
 export const changePassword = async (accountId: number = 0, password: string) => {
     password = createHash('sha256').update(password).digest('base64');
-    store.changePassword(accountId, password);
+    const account = await accountTB.getItem(accountId);
+    account.password = password;
+    accountTB.setItem(accountId, account);
 }
 
 /**
@@ -157,7 +175,8 @@ export const changePassword = async (accountId: number = 0, password: string) =>
  * @param {number} accountId Account Index
  */
 export const retrievePrivateKey = async (accountId: number = 0) => {
-    const privateKey = await store.retrievePrivateKey(accountId) as string;
+    const res = await accountTB.getItem(accountId);
+    const privateKey = res.privateKey as string;
     // @ts-ignore
     console.log(privateKey);
     var decryptedData = await decryptFromString(privateKey);
@@ -169,7 +188,9 @@ export const retrievePrivateKey = async (accountId: number = 0) => {
  * @param {number} accountId Account Index
  */
 export const getIdentityCount = async (accountId: number = 0) => {
-    return store.getIdentityCount(accountId);
+    const res = await accountTB.getItem(accountId);
+    // @ts-ignore
+    return res.identity.length;
 }
 
 

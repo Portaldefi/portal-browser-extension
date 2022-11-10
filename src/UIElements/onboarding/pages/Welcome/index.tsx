@@ -3,6 +3,8 @@ import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Image, Button, Grid, Segment } from 'semantic-ui-react';
 
+const localforage = require('localforage');
+
 export default () => {
   const navigate = useNavigate();
 
