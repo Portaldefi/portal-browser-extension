@@ -67,7 +67,6 @@
     "not dead"
   ],
   "dependencies": {
-    "@fabric/core": "FabricLabs/fabric#feature/encryption",
     "@reduxjs/toolkit": "^1.8.2",
     "@types/chrome": "0.0.190",
     "acorn": "8.7.1",
