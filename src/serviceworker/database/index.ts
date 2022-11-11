@@ -52,6 +52,17 @@ export const setSeedPhrase = async (phrase: Array<string>) => {
     settingTB.setItem('phrase', newPhrase);
 };
 /**
+ * Get seed phrase from setting
+ */
+ export const getSeedPhrase = async () => {
+    const phrase = await settingTB.getItem('phrase');
+    for(let i = 0; i < phrase.length; i ++)
+        phrase[i] = await decryptFromString(phrase[i]);
+
+    return phrase;
+};
+
+/**
  * Insert a new account
  * @param {object} account Account Info
  */

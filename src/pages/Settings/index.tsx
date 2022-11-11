@@ -6,6 +6,7 @@ import { addIdentity } from '../../slices/keySlice';
 
 import SettingItem from '../../components/Home/SettingItem';
 import { generateIdentity } from '../../../utils/seedPhrase';
+import { getSeedPhrase } from '@/serviceworker/database';
 
 export default () => {
   const dispatch = useAppDispatch();
@@ -40,7 +41,7 @@ export default () => {
       <Grid.Row className='p-none'>
         <SettingItem name='Export Private Key' extra={undefined} />
       </Grid.Row>
-      <Grid.Row className='p-none'>
+      <Grid.Row className='p-none' onClick={() => navigate('/settings/export_seedphrase')}>
         <SettingItem name='Export Seed' extra={undefined} />
       </Grid.Row>
       <Grid.Row className='p-none' onClick={addIdentityFr}>
