@@ -1,18 +1,13 @@
+import binancepath from './binance/chainpath';
+import bitcoinpath from './bitcoin/chainpath';
+import cosmospath from './cosmos/chainpath';
+import polygonpath from './polygon/chainpath';
+import ethereumpath from './ethereum/chainpath';
+
 export default [
-    {
-        name: 'ethereum',
-        path: "m/44'/60'/0'/0'/"
-    }, {
-        name: 'bitcoin',
-        path: "m/44'/0'/0'/0/"
-    }, {
-        name: 'cosmos',
-        path: "m/44'/118'/0'/0/"
-    }, {
-        name: 'binance',
-        path: "m/44'/60'/0'/0'/"
-    }, {
-        name: 'polygon',
-        path: "m/44'/60'/0'/0'/"
-    }
+    ethereumpath,
+    bitcoinpath,
+    cosmospath,
+    binancepath,
+    polygonpath,
 ];
