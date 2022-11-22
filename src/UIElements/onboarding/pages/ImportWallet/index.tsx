@@ -62,7 +62,7 @@ export default () => {
           const seedList = Object.keys(phrases).map(key => phrases[key]);
 
   // @ts-ignore
-          const keys = await generateAddress(seedList);
+          const keys = await generateAccount(seedList);
           chrome.storage.session.set(keys);
 
           dispatch(setSRFList(seedList));
