@@ -9,6 +9,8 @@ import { generateAccount } from '@utils/seedPhrase';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
+import { insertAccount } from '@/serviceworker/database';
+import { IAccount } from '@/serviceworker/database/schema';
 
 type FormValue = {
   phrase1: string,
@@ -62,8 +64,10 @@ export default () => {
           const seedList = Object.keys(phrases).map(key => phrases[key]);
 
   // @ts-ignore
-          const keys = await generateAccount(seedList);
-          chrome.storage.session.set(keys);
+          const account = await generateAccount(seedList, phrase.password);
+          chrome.storage.session.set(account);
+
+          insertAccount(account as IAccount);
 
           dispatch(setSRFList(seedList));
           dispatch(setSRFLength(seedList.length));
