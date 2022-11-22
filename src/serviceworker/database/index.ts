@@ -169,14 +169,6 @@ export const getPassword = async (accountId: number = 0) => {
     return res.password;
 }
 /**
- * Get hashed password from the store
- * @param {number} accountId Account Index
- */
-export const getPassword = async (accountId: number = 0) => {
-    const res = await accountTB.getItem(accountId);
-    return res.password;
-}
-/**
  * Check if the password inputed is same as saved in the store
  * @param {number} accountId Account Index
  * @param {string} passHash Hashed Password
