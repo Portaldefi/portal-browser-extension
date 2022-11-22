@@ -1,6 +1,3 @@
-var textEnc = new TextEncoder();
-var textDec = new TextDecoder("utf-8");
-
 /**
  * Encryption functionality using SubtleCrypto algorithm
  */
@@ -89,6 +86,7 @@ export const decrypt = (data: BufferSource, key: CryptoKey, iv: Uint8Array) => {
 }
 
 export const encryptToString = async (pwd: string, data: any) => {
+    let textEnc = new TextEncoder();
     data = textEnc.encode(data);
     let key = await importKey();
     let iv = getIVFromPwd(pwd);
@@ -101,6 +99,7 @@ export const encryptToString = async (pwd: string, data: any) => {
 }
 
 export const decryptFromString = async (pwd: string, data: string) => {
+    let textDec = new TextDecoder("utf-8");
     let key = await importKey();
     let iv = getIVFromPwd(pwd);
     let buffer = new Uint8Array(data.length);
