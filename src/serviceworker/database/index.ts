@@ -46,18 +46,19 @@ export const initDB = async () => {
  */
 export const setSeedPhrase = async (phrase: Array<string>) => {
     let newPhrase = [];
+    const pwd = await getPassword();
     for(let i = 0; i < phrase.length; i ++)
-        newPhrase[i] = await encryptToString(phrase[i]);
-
+        newPhrase[i] = await encryptToString(pwd, phrase[i]);
     settingTB.setItem('phrase', newPhrase);
 };
 /**
  * Get seed phrase from setting
  */
  export const getSeedPhrase = async () => {
+    const pwd = await getPassword();
     const phrase = await settingTB.getItem('phrase');
     for(let i = 0; i < phrase.length; i ++)
-        phrase[i] = await decryptFromString(phrase[i]);
+        phrase[i] = await decryptFromString(pwd, phrase[i]);
 
     return phrase;
 };
@@ -67,12 +68,12 @@ export const setSeedPhrase = async (phrase: Array<string>) => {
  * @param {object} account Account Info
  */
 export const insertAccount = async (account: IAccount) => {
-    account.privateKey = await encryptToString(account.privateKey);
-    account.privateExtendedKey = await encryptToString(account.privateExtendedKey);
+    account.privateKey = await encryptToString(account.password, account.privateKey);
+    account.privateExtendedKey = await encryptToString(account.password, account.privateExtendedKey);
 
     for (let i = 0; i < account.identity.length; i++) {
         for (let j = 0; j < account.identity[i].length; j++) {
-            account.identity[i][j].address = await encryptToString(account.identity[i][j].address);
+            account.identity[i][j].address = await encryptToString(account.password, account.identity[i][j].address);
         }
     }
     let accountCount = await accountTB.length();
@@ -94,7 +95,7 @@ export const insertIdentity = async (identity: IIdentity, accountId: number = 0)
     account.identity[length] = [];
 
     for (let i = 0; i < chains.length; i++) {
-        identity[i].address = await encryptToString(identity[i].address);
+        identity[i].address = await encryptToString(account.password, identity[i].address);
     }
 
     const account1 = await accountTB.getItem(accountId);
@@ -145,18 +146,35 @@ export const getGlobalChainState = async () => {
  */
 export const getAccount = async (accountId: number = 0) => {
     const account = await accountTB.getItem(accountId) as IAccount;
+    const pwd = await getPassword(accountId);
 
-    account.privateKey = await decryptFromString(account.privateKey);
-    account.privateExtendedKey = await decryptFromString(account.privateExtendedKey);
+    account.privateKey = await decryptFromString(pwd, account.privateKey);
+    account.privateExtendedKey = await decryptFromString(pwd, account.privateExtendedKey);
 
     for (let i = 0; i < account.identity.length; i++) {
         for (let j = 0; j < account.identity[i].length; j++) {
-            var decryptedData = await decryptFromString(account.identity[i][j].address);
+            var decryptedData = await decryptFromString(pwd, account.identity[i][j].address);
             account.identity[i][j].address = decryptedData;
         }
     }
 
     return account;
+}
+/**
+ * Get hashed password from the store
+ * @param {number} accountId Account Index
+ */
+export const getPassword = async (accountId: number = 0) => {
+    const res = await accountTB.getItem(accountId);
+    return res.password;
+}
+/**
+ * Get hashed password from the store
+ * @param {number} accountId Account Index
+ */
+export const getPassword = async (accountId: number = 0) => {
+    const res = await accountTB.getItem(accountId);
+    return res.password;
 }
 /**
  * Check if the password inputed is same as saved in the store
@@ -187,10 +205,10 @@ export const changePassword = async (accountId: number = 0, password: string) =>
  */
 export const retrievePrivateKey = async (accountId: number = 0) => {
     const res = await accountTB.getItem(accountId);
+    const pwd = getPassword(accountId);
     const privateKey = res.privateKey as string;
     // @ts-ignore
-    console.log(privateKey);
-    var decryptedData = await decryptFromString(privateKey);
+    var decryptedData = await decryptFromString(pwd, privateKey);
     return decryptedData;
 };
 
