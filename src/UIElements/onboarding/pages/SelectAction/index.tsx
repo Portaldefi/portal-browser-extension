@@ -9,7 +9,7 @@ export default () => {
     navigate('/create-wallet');
   }, []);
   const handleImport = useCallback(() => {
-    navigate('/import-wallet');
+    navigate('/create-password');
   }, []);
 
   return (

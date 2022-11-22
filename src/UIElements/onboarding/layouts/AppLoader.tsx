@@ -5,6 +5,7 @@ import { Container } from 'semantic-ui-react';
 import Welcome from '../pages/Welcome';
 import Intro from '../pages/Intro';
 import SelectAction from '../pages/SelectAction';
+import CreatePassword from '../pages/CreatePassword';
 import ImportWallet from '../pages/ImportWallet';
 import CreateWallet from '../pages/CreateWallet';
 import SeedIntro from '../pages/SeedIntro';
@@ -21,6 +22,7 @@ const AppLoader = () => {
           <Route path='welcome' element={<Welcome />} />
           <Route path='intro' element={<Intro />} />
           <Route path='select-action' element={<SelectAction />} />
+          <Route path='create-password' element={<CreatePassword />} />
           <Route path='import-wallet' element={<ImportWallet />} />
           <Route path='create-wallet' element={<CreateWallet />} />
           <Route path='seed-phrase-intro' element={<SeedIntro />} />
