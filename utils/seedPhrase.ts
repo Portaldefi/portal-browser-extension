@@ -6,6 +6,7 @@ import { retrievePrivateKey, getIdentityCount, insertIdentity } from '@/servicew
 import { IAccount } from '@/serviceworker/database/schema';
 import { IChain, IIdentity } from '@/types/identity';
 import chains from '@/config/chains';
+import * as bitcoin from 'bitcoinjs-lib';
 
 // const bip32 = Bip32Factory(ecc);
 
@@ -70,6 +71,13 @@ export const generateAddressFromPvtKey = (privateKey: any, chainNo = 0, addressN
 
   const address = bs58check.encode(step4);
 
+  if(chainNo==1){
+    const { address } =  bitcoin.payments.p2pkh({
+      pubkey: addrNode.publicKey,
+      network: bitcoin.networks.testnet,
+    });
+    return address;
+  }
   return address;
 }
 
