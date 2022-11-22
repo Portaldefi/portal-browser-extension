@@ -5,13 +5,11 @@ import { IChain, IIdentity } from '../../types/identity';
 import chains from '../../config/chains';
 
 const localforage = require('localforage');
-
 var accountTB: any, settingTB: any;
-
-const { encryptToString, decryptFromString } = require('@utils/encryption');
+const { encryptToString, decryptFromString } = require('../../../utils/encryption');
 
 /**
- * Create leveldb for extension in the store
+ * Create localforage for extension in the store
  * @param {string} dbName Database Name
  */
 export const createDB = async (dbName: string = config.name) => {
