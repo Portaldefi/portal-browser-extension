@@ -26,7 +26,7 @@
     }
   ],
   "content_security_policy": {
-    "extension_pages": "default-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval'; object-src 'self'",
+    "extension_pages": "default-src 'self' 'unsafe-inline'; script-src 'self' 'wasm-unsafe-eval'; object-src 'self';connect-src https://blockstream.info",
     "sandbox": "sandbox allow-scripts; style-src 'self' 'unsafe-hashes' 'sha256-sURy7T/2ybDO6stoR/OmP+EnzlrG/368te4gyVCf+Ks=' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' 'sha256-iUAyWC1OVqoSxpNafiI6aXUEY/i3gWq7OT1h5HW6yyA=' 'sha256-gkB68+aJ3NBKYm5pX21/eeKmWgjAcp1Udw0nx6NbJ3c=' 'sha256-sURy7T/2ybDO6stoR/OmP+EnzlrG/368te4gyVCf+Ks=' 'sha256-fL7Cc+PbeSRcWtOodwa9snJSGPIOjQlQfxSswtJL0j4='; style-src-elem 'https://fonts.googleapis.com/css2' 'https://fonts.googleapis.com/css'"
   },
   "web_accessible_resources": [{

@@ -166,37 +166,43 @@ module.exports = (env) => {
           path.resolve(__dirname, 'utils')
         ],
       },
-        {
-          test: /\.(s[ac]|c)ss$/i,
-          use: removeEmpty([
-            ifProd(MiniCssExtractPlugin.loader, 'style-loader'),
-            'css-loader',
-            'sass-loader',
-          ]),
-          include: [
-            path.join(__dirname, 'src'),
-            /node_modules/
-          ],
+      {
+        test: /\.m?js/,
+        resolve: {
+            fullySpecified: false
+        }
+      },
+      {
+        test: /\.(s[ac]|c)ss$/i,
+        use: removeEmpty([
+          ifProd(MiniCssExtractPlugin.loader, 'style-loader'),
+          'css-loader',
+          'sass-loader',
+        ]),
+        include: [
+          path.join(__dirname, 'src'),
+          /node_modules/
+        ],
+      },
+      {
+        test: /\.(png|svg|jpe?g|gif)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'img/[hash][ext][query]',
         },
-        {
-          test: /\.(png|svg|jpe?g|gif)$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'img/[hash][ext][query]',
-          },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[hash][ext][query]',
         },
-        {
-          test: /\.(woff|woff2|eot|ttf|otf)$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'fonts/[hash][ext][query]',
-          },
-        },
-        {
-            test: /\.wasm$/,
-            type: "asset/inline",
-            // loaders: ['wasm-loader']
-        },
+      },
+      {
+          test: /\.wasm$/,
+          type: "asset/inline",
+          // loaders: ['wasm-loader']
+      },
       ],
     },
     plugins: removeEmpty([
