@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WelcomeComponent should work 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        Welcome to Portal
+      </div>
+    </div>
+    <div
+      className="centered row"
+    >
+      <p
+        className="ui grey small header description"
+      >
+        Your Gateway To Uncensorable Applications
+      </p>
+    </div>
+    <div
+      className="centered row"
+    >
+      <img
+        className="ui image"
+        src="/icons/logo.png"
+      />
+    </div>
+    <div
+      className="centered one column row"
+    >
+      <button
+        className="ui button primary-button"
+        onClick={[Function]}
+      >
+        Get Started
+      </button>
+    </div>
+  </div>
+</div>
+`;
