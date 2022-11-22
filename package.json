@@ -66,6 +66,11 @@
     "chrome >= 72",
     "not dead"
   ],
+  "jest": {
+    "globals": {
+      "window": {}
+    }
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.2",
     "@types/chrome": "0.0.190",
