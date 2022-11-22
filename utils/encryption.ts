@@ -1,10 +1,30 @@
-var iv = new Uint8Array([188, 185, 57, 146, 246, 194, 116, 34, 12, 80, 198, 76]);
 var textEnc = new TextEncoder();
 var textDec = new TextDecoder("utf-8");
 
 /**
  * Encryption functionality using SubtleCrypto algorithm
  */
+
+export const getIVFromPwd = (password: string) => {
+    let arr = [], len, i;
+    for(i = 0; i < password.length; i ++)
+        arr.push(password.charCodeAt(i));
+    len = arr.length;
+    if(len < 12) {
+        for(i = len; i < 12; i ++)
+            arr.push((arr[i - len] + i * 7) % 256);
+    } else {
+        let cnt = Math.ceil(len / 12);
+        for(i = 0; i < 12; i ++) {
+            let itv = (len - i * cnt) > cnt ? cnt : (len - i * cnt), sum = 0;
+            for(let j = i * cnt; j < i * cnt + itv; j ++) {
+                sum += arr[j];
+            }
+            arr[i] = Math.floor(sum / itv);
+        }
+    }
+    return new Uint8Array(arr);
+};
 
 export const importKey = () => {
     return window.crypto.subtle.importKey(
@@ -68,9 +88,10 @@ export const decrypt = (data: BufferSource, key: CryptoKey, iv: Uint8Array) => {
     )
 }
 
-export const encryptToString = async (data: any) => {
+export const encryptToString = async (pwd: string, data: any) => {
     data = textEnc.encode(data);
     let key = await importKey();
+    let iv = getIVFromPwd(pwd);
     let result = new Uint8Array(await encrypt(data, key, iv));
     let res = '';
     for (let i = 0; i < result.length; i++)
@@ -79,8 +100,9 @@ export const encryptToString = async (data: any) => {
     return res;
 }
 
-export const decryptFromString = async (data: string) => {
+export const decryptFromString = async (pwd: string, data: string) => {
     let key = await importKey();
+    let iv = getIVFromPwd(pwd);
     let buffer = new Uint8Array(data.length);
     for (let i = 0; i < data.length; i++) {
         buffer[i] = data.charCodeAt(i);
