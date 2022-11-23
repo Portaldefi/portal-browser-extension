@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
+import { getBalanceFromTestNet } from '@/config/bitcoin/bitcoin';
+import { add } from 'lodash';
 
 
 export default ( address:any ) => {
   const [balance, setBalance] = useState('0');
   const req = 'https://blockstream.info/testnet/api/address/' + address.address;
 
-
   useEffect(() => {
-    if(address){
-      Axios.get('https://blockstream.info/testnet/api/address/'+address.address).then((response: any)=>{
-        console.log("This is the balance ");
-        console.log(req);
-          console.log(response);
-          setBalance(response.data.chain_stats.funded_txo_sum);
-      }).catch(function(error){
-        console.log(error.response.data);
-      });
-    }
+    const core = async () => {
+      if(address.address && address.address !== ''){
+        const res = await getBalanceFromTestNet(address.address) ;
+        setBalance(res);
+      }
+    };
+    core();
   }, [address]);
 
 
