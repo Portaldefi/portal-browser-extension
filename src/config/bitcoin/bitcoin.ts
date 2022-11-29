@@ -9,3 +9,11 @@ export const getBalanceFromTestNet = async (address: any) => {
 		return 0;
 	}
 }
+
+export const getTransactionHistory = async (address: string) => {
+	try {
+		const res = await axios.get('https://blockchain.info/rawaddr/' + address);
+	} catch (err) {
+		console.log(err);
+	}
+}
