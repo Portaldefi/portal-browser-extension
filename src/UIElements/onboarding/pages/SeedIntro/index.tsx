@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Header, Button, Grid, Segment } from 'semantic-ui-react';
 
 import { generateSeed, generateAccount } from '@utils/seedPhrase';
-import { IAccount } from '@/serviceworker/database/schema';
-import { insertAccount } from '@/serviceworker/database';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
@@ -24,8 +22,6 @@ export default () => {
 
         const account = await generateAccount(seedList, phrase.password);
         chrome.storage.session.set(account);
-
-        insertAccount(account as IAccount);
 
         dispatch(setSRFList(seedList));
         dispatch(setSRFLength(seedList.length));

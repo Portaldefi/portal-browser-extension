@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { isEqual } from 'lodash';
 
 import { useAppSelector } from '../../hooks';
+import { IAccount } from '@/serviceworker/database/schema';
+import { insertAccount } from '@/serviceworker/database';
 
 type FormValue = {
   phrase1: string, phrase2: string, phrase3: string,
@@ -42,11 +44,17 @@ export default () => {
   }, []);
 
   const handleConfirm = useCallback(() => {
-    if (isCorrectPhrase) {
-      navigate('/congrats', { state: { mode: 'create' } });
-    } else {
-      setIsDirty(true);
+    const core = async () => {
+      if (isCorrectPhrase) {
+        const account = await chrome.storage.session.get('account');
+        console.log(account);
+        insertAccount(account as IAccount);
+        navigate('/congrats', { state: { mode: 'create' } });
+      } else {
+        setIsDirty(true);
+      }
     }
+    core();
   }, [isCorrectPhrase]);
 
   return (
