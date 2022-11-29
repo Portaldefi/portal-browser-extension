@@ -9,7 +9,7 @@ import { generateAccount } from '@utils/seedPhrase';
 
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setSRFList, setSRFLength } from '../../slices/phraseSlice';
-import { insertAccount } from '@/serviceworker/database';
+import { insertAccount, setSeedPhrase } from '@/serviceworker/database';
 import { IAccount } from '@/serviceworker/database/schema';
 
 type FormValue = {
@@ -71,6 +71,8 @@ export default () => {
 
           dispatch(setSRFList(seedList));
           dispatch(setSRFLength(seedList.length));
+
+          setSeedPhrase(seedList);
         }
       }
       core();
