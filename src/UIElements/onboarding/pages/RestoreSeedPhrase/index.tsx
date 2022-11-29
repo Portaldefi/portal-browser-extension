@@ -6,7 +6,7 @@ import { isEqual } from 'lodash';
 
 import { useAppSelector } from '../../hooks';
 import { IAccount } from '@/serviceworker/database/schema';
-import { insertAccount } from '@/serviceworker/database';
+import { insertAccount, setSeedPhrase } from '@/serviceworker/database';
 
 type FormValue = {
   phrase1: string, phrase2: string, phrase3: string,
@@ -46,9 +46,10 @@ export default () => {
   const handleConfirm = useCallback(() => {
     const core = async () => {
       if (isCorrectPhrase) {
-        const account = await chrome.storage.session.get('account');
+        const account = await chrome.storage.session.get();
         console.log(account);
         insertAccount(account as IAccount);
+        setSeedPhrase(phrase.SRF_List);
         navigate('/congrats', { state: { mode: 'create' } });
       } else {
         setIsDirty(true);

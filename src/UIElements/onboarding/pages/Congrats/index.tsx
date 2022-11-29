@@ -25,7 +25,6 @@ export default () => {
   useEffect(() => {
     chrome.action.setPopup({ popup: 'index.html?popup=true' });
     syncSet({ 'accountStatus': 'set' });
-    setSeedPhrase(phrase.SRF_List);
   }, []);
 
   const closeTab = () => {
