@@ -22,7 +22,8 @@ export default ({tx}: ITransactionItem) => {
         <Header as='p' className='description'>{dateToString(new Date(tx.status.block_time))}</Header>
       </Grid.Column>
       <Grid.Column width='five' verticalAlign='middle'>
-        {tx.vout.map((row: any) => <Header as='p' className='description'>{row.value}</Header>)}
+        <Header as='p' className='description'>{tx.status.confirmed === true ? "Confirmed" : "Unconfirmed"}</Header>
+        <Header as='p' className='description'>{tx.vout[1].value - tx.vout[0].value}</Header>
       </Grid.Column>
     </Grid>
   )
