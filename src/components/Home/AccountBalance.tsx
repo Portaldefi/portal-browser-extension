@@ -6,7 +6,6 @@ import { add } from 'lodash';
 
 export default ( address:any ) => {
   const [balance, setBalance] = useState('0');
-  const req = 'https://blockstream.info/testnet/api/address/' + address.address;
 
   useEffect(() => {
     const core = async () => {
