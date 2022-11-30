@@ -4,7 +4,7 @@ import { Grid, Header } from 'semantic-ui-react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { setKeys } from '../../slices/keySlice';
 import { cutter } from '../../../utils/text';
-import RecentConnections from '../../components/Home/RecentConnections';
+import TransactionHistory from '../../components/Home/TransactionHistory';
 import { getAccount } from '@/serviceworker/database';
 import ChainSelector from '@/components/Home/ChainSelector';
 import AccountBalance from '../../components/Home/AccountBalance';
@@ -46,7 +46,7 @@ export default () => {
             <AccountBalance address={(selectedIdentity ? selectedIdentity[selectedChainId].address : '')} />
         </Grid.Row>
         <Grid.Row stretched centered>
-          <RecentConnections />
+          <TransactionHistory />
           {/* {selectedIdentity[selectedChainId].address} */}
         </Grid.Row>
       </Grid>

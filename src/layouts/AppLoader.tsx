@@ -16,8 +16,6 @@ import IdentitySetting from '@/pages/Settings/IdentitySetting';
 import ChangePassword from '@/pages/Settings/ChangePassword';
 import AddDuressKey from '@/pages/Settings/AddDuressKey';
 import ExportSeedPhrase from '@/pages/Settings/ExportSeedPhrase';
-import TransactionHistory from '@/pages/Settings/TransactionHistory';
-
 
 const AppLoader = () => {
   return (
@@ -38,7 +36,6 @@ const AppLoader = () => {
               <Route path='settings/manage_chains' element={<ManageChains />} />
               <Route path='settings/export_seedphrase' element={<ExportSeedPhrase />} />
               <Route path='settings/change_password' element={<ChangePassword />} />
-              <Route path='settings/transaction_history' element={<TransactionHistory />} />
               <Route path='settings/identity/:id' element={<IdentitySetting />} />
             </Route>
           </Route>
