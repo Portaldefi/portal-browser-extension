@@ -8,7 +8,7 @@ const initialState: IKey = {
   privateExtendedKey: '',
   identity: [],
   selectedIdentityId: 0,
-  selectedChainId: 0
+  selectedChainId: 1
 };
 
 export const menuSlice = createSlice({
