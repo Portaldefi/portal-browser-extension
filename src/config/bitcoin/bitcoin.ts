@@ -13,8 +13,7 @@ export const getBalanceFromTestNet = async (address: string) => {
 export const getTransactionHistory = async (address: string) => {
 	try {
 		const res = await axios.get(`https://mempool.space/testnet/api/address/tb1qh9rdah0fefhsuhj4v6h7znd85k4tyqz6vmrl56/txs`);
-		console.log(res);
-		return res;
+		return res.data;
 	} catch (err) {
 		console.log(err);
 	}
