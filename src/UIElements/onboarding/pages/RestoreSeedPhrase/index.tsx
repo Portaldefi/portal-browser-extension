@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import { isEqual } from 'lodash';
 
 import { useAppSelector } from '../../hooks';
-import { IAccount } from '@/serviceworker/database/schema';
-import { insertAccount, setSeedPhrase } from '@/serviceworker/database';
+import { IAccount } from '../../../../serviceworker/database/schema';
+import { insertAccount, setSeedPhrase } from '../../../../serviceworker/database';
 
 type FormValue = {
   phrase1: string, phrase2: string, phrase3: string,
