@@ -65,6 +65,9 @@ export default () => {
       <Grid.Row className='p-none' onClick={() => navigate('/settings/manage_chains')}>
         <SettingItem name='Manage Chains' extra={undefined} />
       </Grid.Row>
+      <Grid.Row className='p-none' onClick={() => navigate('/settings/transaction_history')}>
+        <SettingItem name='Transaction History' extra={undefined} />
+      </Grid.Row>
       <Grid.Row className='p-none'>
         <SettingItem name='Feedback' extra={undefined} />
       </Grid.Row>
