@@ -17,6 +17,7 @@ import ChangePassword from '@/pages/Settings/ChangePassword';
 import AddDuressKey from '@/pages/Settings/AddDuressKey';
 import ExportSeedPhrase from '@/pages/Settings/ExportSeedPhrase';
 import SendBalance from '@/pages/SendBalance';
+import TransactionDetail from '@/pages/TransactionDetail';
 
 const AppLoader = () => {
   return (
@@ -31,6 +32,7 @@ const AppLoader = () => {
             <Route path='' element={<Board />}>
               <Route path='connection-detail' element={<ConnectionView />} />
               <Route path='send_balance' element={<SendBalance />} />
+              <Route path='transaction_detail' element={<TransactionDetail />} />
               <Route path='settings' element={<Settings />} />
               <Route path='settings/network' element={<Network />} />
               <Route path='settings/manage_identities' element={<ManageIdentities />} />

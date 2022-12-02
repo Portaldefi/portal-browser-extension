@@ -25,7 +25,7 @@ export default () => {
     navigate('/connection-detail')
   }, []);
 
-  const txContainer = transactions.map((tx, idx) => idx < 5 && <TransactionItem tx={tx} />);
+  const txContainer = transactions.map((tx, idx) => idx < 5 && <TransactionItem tx={tx}/>);
 
   return (
     <Grid className='recent-connection'>

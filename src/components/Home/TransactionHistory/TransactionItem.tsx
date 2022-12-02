@@ -1,5 +1,6 @@
 import React from 'react';
 import { Checkbox, Grid, Header } from 'semantic-ui-react';
+import { useNavigate } from 'react-router-dom';
 
 interface ITransactionItem {
   tx: any
@@ -14,9 +15,15 @@ const dateToString = (dat: Date) => {
 }
 
 export default ({tx}: ITransactionItem) => {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    navigate('/transaction_detail');
+  };
+
   console.log(tx);
   return (
-    <Grid className='p-16 py-9 bg-white'>
+    <Grid className='p-16 py-9 bg-white' onClick={handleClick}>
       <Grid.Column width='eleven' textAlign='left'>
         <Header as='p' className='description'>{shortenString(tx.txid)}</Header>
         <Header as='p' className='description'>{dateToString(new Date(tx.status.block_time))}</Header>
