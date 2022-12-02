@@ -30,19 +30,19 @@ export const getTransactionHistory = async (address: string) => {
 }
 
 export const makeTransaction = async ({pubkey, address, wif, dest}: ITransaction) => {
-	/*try {
+	try {
 		var rootUrl = "https://api.blockcypher.com/v1/btc/test3";
 
 		//get balance
-		let res = await axios.get(rootUrl + "/addrs/" + address + "/balance");
+		let res = (await axios.get(rootUrl + "/addrs/" + "tb1qh9rdah0fefhsuhj4v6h7znd85k4tyqz6vmrl56" + "/balance")).data;
 		console.log(res);
 
 		// send token from one wallet to another
-		var key   = bitcoin.ECPair.fromWIF(source.wif, bitcoinNetwork);
+		/*var key = bitcoin.ECPair.fromWIF(source.wif, bitcoinNetwork);
 
 		res = (await axios.get(rootUrl + "/addrs/" + address + "?unspentOnly=true")).data;
-		let balance = res?.balance;
-		let unconfirmed_balance = res?.unconfirmed_balance;
+		let balance = res?.balance;*/
+		/*let unconfirmed_balance = res?.unconfirmed_balance;
 		if(unconfirmed_balance < 0)
 			balance = balance + unconfirmed_balance;
 		var tx = new bitcoin.TransactionBuilder(bitcoinNetwork);
@@ -70,8 +70,8 @@ export const makeTransaction = async ({pubkey, address, wif, dest}: ITransaction
 				console.log(body.error);
 			else 
 				console.log(body.tx.hash);
-		} else console.log("Not enough balance : " + balance);
+		} else console.log("Not enough balance : " + balance);*/
 	} catch (err) {
 		console.log(err);
-	}*/
+	}
 }

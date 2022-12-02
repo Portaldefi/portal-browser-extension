@@ -1,10 +1,12 @@
+import { makeTransaction } from '@/config/bitcoin/bitcoin';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Form, Grid, Header } from 'semantic-ui-react';
 
 export default () => {
   const [params, setParams] = useState({
     address: '',
-    amount: 0
+    amount: 0,
+    message: ''
   });
 
   useEffect(() => {
@@ -17,6 +19,15 @@ export default () => {
       [e.target.name]: e.target.value
     })
   }, [params]);
+
+  const onSendBalance = useCallback(() => {
+    makeTransaction({
+      pubkey: '',
+      address: '',
+      wif: '',
+      dest: ''
+    })
+  }, []);
 
   return (
     <Grid className='w-100'>
@@ -36,7 +47,13 @@ export default () => {
         </Form.Group>
       </Grid.Row>
       <Grid.Row centered>
-        <Button className='primary-button pwd-confirm'>Confirm</Button>
+        <Form.Group>
+          <label>Message</label>
+          <Form.Input width={8} type='text' name='message' value={params.message} onChange={onInputChanged}/>
+        </Form.Group>
+      </Grid.Row>
+      <Grid.Row centered>
+        <Button className='primary-button pwd-confirm' onClick={onSendBalance}>Confirm</Button>
       </Grid.Row>
     </Grid >
   );
