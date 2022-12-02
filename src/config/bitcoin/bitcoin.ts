@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as bitcoin from 'bitcoinjs-lib';
+const bitcoin = require('bitcoinjs-lib');
 
 interface ITransaction {
 	pubkey: string,
@@ -31,24 +31,26 @@ export const getTransactionHistory = async (address: string) => {
 
 export const makeTransaction = async ({pubkey, address, wif, dest}: ITransaction) => {
 	try {
+		address = 'tb1qh9rdah0fefhsuhj4v6h7znd85k4tyqz6vmrl56';
 		var rootUrl = "https://api.blockcypher.com/v1/btc/test3";
 
 		//get balance
-		let res = (await axios.get(rootUrl + "/addrs/" + "tb1qh9rdah0fefhsuhj4v6h7znd85k4tyqz6vmrl56" + "/balance")).data;
+		let res = (await axios.get(rootUrl + "/addrs/" + address + "/balance")).data;
 		console.log(res);
 
 		// send token from one wallet to another
-		/*var key = bitcoin.ECPair.fromWIF(source.wif, bitcoinNetwork);
+		// var key = bitcoin.ECPair.fromWIF(wif, bitcoinNetwork);
 
 		res = (await axios.get(rootUrl + "/addrs/" + address + "?unspentOnly=true")).data;
-		let balance = res?.balance;*/
-		/*let unconfirmed_balance = res?.unconfirmed_balance;
+		let balance = res?.balance;
+		let unconfirmed_balance = res?.unconfirmed_balance;
 		if(unconfirmed_balance < 0)
 			balance = balance + unconfirmed_balance;
 		var tx = new bitcoin.TransactionBuilder(bitcoinNetwork);
 		let txs = res?.txrefs;
+		console.log(balance, txs);
 		if (balance > 0 && txs) {
-			txs.forEach(function(txn) {
+			txs.forEach((txn: any) => {
 				console.log(txn);
 				tx.addInput(txn.tx_hash, txn.tx_output_n);
 			});
@@ -61,16 +63,16 @@ export const makeTransaction = async ({pubkey, address, wif, dest}: ITransaction
 			tx.addOutput(dest, amount_to_transfer);
 			let txn_no = txs.length;
 			while(txn_no > 0){
-				tx.sign(txn_no-1, key);
+				tx.sign(txn_no-1, '');
 				txn_no--;
 			}
 			let tx_hex = tx.build().toHex();
-			const body = (await axios.post(rootUrl + "/txs/push",{json :{tx: tx_hex}})?.body;
+			const body = (await axios.post(rootUrl + "/txs/push",{json :{tx: tx_hex}}))?.data;
 			if(body.error)
 				console.log(body.error);
 			else 
 				console.log(body.tx.hash);
-		} else console.log("Not enough balance : " + balance);*/
+		} else console.log("Not enough balance : " + balance);
 	} catch (err) {
 		console.log(err);
 	}
