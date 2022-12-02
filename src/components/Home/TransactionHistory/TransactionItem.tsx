@@ -1,24 +1,20 @@
 import React from 'react';
 import { Checkbox, Grid, Header } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
+import { useAppSelector } from '@/hooks';
+import { dateToString, shortenString } from '@/common/helpers';
 
 interface ITransactionItem {
-  tx: any
+  id: number
 };
 
-const shortenString = (str: string) => {
-  return str.substring(0, 6) + '...' + str.substring(str.length - 3);
-};
-
-const dateToString = (dat: Date) => {
-  return dat.getFullYear() + '-' + (dat.getMonth() + 1) + '-' + dat.getDate();
-}
-
-export default ({tx}: ITransactionItem) => {
+export default ({ id }: ITransactionItem) => {
+  const transactions = useAppSelector(state => state.menu.transactions);
+  const tx = transactions[id];
   const navigate = useNavigate();
   
   const handleClick = () => {
-    navigate('/transaction_detail');
+    navigate(`/transaction_detail/${id}`);
   };
 
   console.log(tx);

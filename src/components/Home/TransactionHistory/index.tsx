@@ -9,7 +9,6 @@ import { setTransactions } from '@/slices/menuSlice';
 
 export default () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const selectedIdentityId = useAppSelector(state => state.key.selectedIdentityId);
   const selectedIdentity = useAppSelector(state => state.key.identity[selectedIdentityId]);
   const selectedChainId = useAppSelector(state => state.key.selectedChainId);
@@ -24,7 +23,7 @@ export default () => {
     if(selectedIdentity && selectedIdentity[selectedChainId] && selectedIdentity[selectedChainId].address) core();
   }, [selectedIdentity, selectedChainId]);
 
-  const txContainer = transactions.map((tx, idx) => idx < 5 && <TransactionItem tx={tx}/>);
+  const txContainer = transactions.map((tx, idx) => idx < 5 && <TransactionItem id={idx}/>);
 
   return (
     <Grid className='recent-connection'>

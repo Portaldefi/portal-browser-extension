@@ -32,7 +32,7 @@ const AppLoader = () => {
             <Route path='' element={<Board />}>
               <Route path='connection-detail' element={<ConnectionView />} />
               <Route path='send_balance' element={<SendBalance />} />
-              <Route path='transaction_detail' element={<TransactionDetail />} />
+              <Route path='transaction_detail/:id' element={<TransactionDetail />} />
               <Route path='settings' element={<Settings />} />
               <Route path='settings/network' element={<Network />} />
               <Route path='settings/manage_identities' element={<ManageIdentities />} />
