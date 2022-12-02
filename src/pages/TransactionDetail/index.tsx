@@ -1,3 +1,4 @@
+import { useAppSelector } from '@/hooks';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Form, Grid, Header } from 'semantic-ui-react';
 
@@ -7,7 +8,11 @@ export default () => {
     amount: 0
   });
 
+  const transactions = useAppSelector(state => state.menu.transactions);
+  console.log(transactions);
+
   useEffect(() => {
+
   }, []);
 
   const onInputChanged = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,6 +29,7 @@ export default () => {
         <Header as='h1' className='heading'>Transaction Details</Header>
       </Grid.Row>
       <Grid.Row centered>
+        <Header as='h3' className='heading'>{}</Header>
       </Grid.Row>
     </Grid >
   );

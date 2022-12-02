@@ -1,29 +1,28 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Grid, Header, List } from 'semantic-ui-react';
-import ConnectionItem from './TransactionItem';
 import { getTransactionHistory } from '../../../config/bitcoin/bitcoin';
 import { useAppSelector } from '@/hooks';
 import TransactionItem from './TransactionItem';
+import { useAppDispatch } from '@/hooks';
+import { setTransactions } from '@/slices/menuSlice';
 
 export default () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const selectedIdentityId = useAppSelector(state => state.key.selectedIdentityId);
   const selectedIdentity = useAppSelector(state => state.key.identity[selectedIdentityId]);
   const selectedChainId = useAppSelector(state => state.key.selectedChainId);
-  const [transactions, setTransactions] = useState([]);
+  const [transactions, setTxs] = useState([]);
 
   useEffect(() => {
     const core = async () => {
       const res = await getTransactionHistory(selectedIdentity[selectedChainId].address);
-      setTransactions(res);
+      dispatch(setTransactions(res));
+      setTxs(res);
     }
     if(selectedIdentity && selectedIdentity[selectedChainId] && selectedIdentity[selectedChainId].address) core();
   }, [selectedIdentity, selectedChainId]);
-
-  const handleClickConnection = useCallback(() => {
-    navigate('/connection-detail')
-  }, []);
 
   const txContainer = transactions.map((tx, idx) => idx < 5 && <TransactionItem tx={tx}/>);
 

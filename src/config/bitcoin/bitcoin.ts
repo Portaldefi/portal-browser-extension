@@ -39,8 +39,10 @@ export const makeTransaction = async ({pubkey, address, wif, dest}: ITransaction
 		console.log(res);
 
 		// send token from one wallet to another
-		// var key = bitcoin.ECPair.fromWIF(wif, bitcoinNetwork);
-
+		 var key = bitcoin.ECPair.fromWIF('KwDiBf89QgGbjEhKnhXJuH7LrciVrZi3qYjgd9M7rFU73sVHnoWn', bitcoinNetwork);
+		 console.log(key);
+		 /*const alice = ECPair.fromWIF('L2uPYXe17xSTqbCjZvL2DsyXPCbXspvcu5mHLDYUgzdUbZGSKrSr',);
+		 console.log(alice);
 		res = (await axios.get(rootUrl + "/addrs/" + address + "?unspentOnly=true")).data;
 		let balance = res?.balance;
 		let unconfirmed_balance = res?.unconfirmed_balance;
@@ -72,7 +74,7 @@ export const makeTransaction = async ({pubkey, address, wif, dest}: ITransaction
 				console.log(body.error);
 			else 
 				console.log(body.tx.hash);
-		} else console.log("Not enough balance : " + balance);
+		} else console.log("Not enough balance : " + balance);*/
 	} catch (err) {
 		console.log(err);
 	}
