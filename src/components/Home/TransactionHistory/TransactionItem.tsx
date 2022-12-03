@@ -26,7 +26,7 @@ export default ({ id }: ITransactionItem) => {
       </Grid.Column>
       <Grid.Column width='five' verticalAlign='middle'>
         <Header as='p' className='description'>{tx.status.confirmed === true ? "Confirmed" : "Unconfirmed"}</Header>
-        <Header as='p' className='description'>{tx.vout[1].value - tx.vout[0].value}</Header>
+
       </Grid.Column>
     </Grid>
   )
