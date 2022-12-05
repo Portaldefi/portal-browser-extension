@@ -348,6 +348,9 @@ module.exports = (env) => {
       // outputModule: true,
       // syncWebAssembly: true,
       // topLevelAwait: true,
+    },
+    externals: {
+      bitcoin: 'build/js/bitcoinjs-lib.js'
     }
   };
 };
