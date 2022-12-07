@@ -193,10 +193,10 @@ const bip32: BIP32API = BIP32Factory(ecc);
 
 export {
   ecc,
-  ECPair,
-  ECPairAPI,
-  ECPairInterface,
-  bip32,
-  BIP32API,
-  BIP32Interface,
+  ECPair, bip32
 };
+export type {
+    ECPairAPI,
+    ECPairInterface, BIP32API,
+    BIP32Interface
+  };
