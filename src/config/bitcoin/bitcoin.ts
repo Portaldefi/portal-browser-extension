@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { ECPair, bip32 } from '../../../utils/noble-ecc-wrapper';
+import * as ecpair from 'ecpair';
 const bitcoin = require('bitcoinjs-lib');
 interface ITransaction {
 	pubkey: string,
@@ -8,7 +9,19 @@ interface ITransaction {
 	dest: string
 }
 
-const bitcoinNetwork = bitcoin.networks.testnet;
+const bitcoinNetwork = ecpair.networks.bitcoin;
+
+// const bitcoinNetwork = {
+//   messagePrefix: '\x18Bitcoin Signed Message:\n',
+//   bech32: 'tb',
+//   bip32: {
+//     public: 0x043587cf,
+//     private: 0x04358394,
+//   },
+//   pubKeyHash: 0x6f,
+//   scriptHash: 0xc4,
+//   wif: 0xef,
+// };
 
 export const getBalanceFromTestNet = async (address: string) => {
 	try {
@@ -39,6 +52,7 @@ export const makeTransaction = async ({pubkey, address, wif, dest}: ITransaction
 		console.log(res);
 
 		// send token from one wallet to another
+    // @ts-ignore
 		 var key = ECPair.fromWIF('KwDiBf89QgGbjEhKnhXJuH7LrciVrZi3qYjgd9M7rFU73sVHnoWn', bitcoinNetwork);
 		 console.log(key);
 		 /*const alice = ECPair.fromWIF('L2uPYXe17xSTqbCjZvL2DsyXPCbXspvcu5mHLDYUgzdUbZGSKrSr',);
