@@ -1,6 +1,6 @@
 import axios from 'axios';
+import { ECPair, bip32 } from '../../../utils/noble-ecc-wrapper';
 const bitcoin = require('bitcoinjs-lib');
-
 interface ITransaction {
 	pubkey: string,
 	address: string,
