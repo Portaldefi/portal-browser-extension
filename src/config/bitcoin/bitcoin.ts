@@ -39,7 +39,7 @@ export const makeTransaction = async ({pubkey, address, wif, dest}: ITransaction
 		console.log(res);
 
 		// send token from one wallet to another
-		 var key = bitcoin.ECPair.fromWIF('KwDiBf89QgGbjEhKnhXJuH7LrciVrZi3qYjgd9M7rFU73sVHnoWn', bitcoinNetwork);
+		 var key = ECPair.fromWIF('KwDiBf89QgGbjEhKnhXJuH7LrciVrZi3qYjgd9M7rFU73sVHnoWn', bitcoinNetwork);
 		 console.log(key);
 		 /*const alice = ECPair.fromWIF('L2uPYXe17xSTqbCjZvL2DsyXPCbXspvcu5mHLDYUgzdUbZGSKrSr',);
 		 console.log(alice);
