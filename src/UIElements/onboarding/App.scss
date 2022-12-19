@@ -1,0 +1,34 @@
+.App {
+  text-align: center;
+}
+
+.app-header {
+  min-height: 25vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  font-family: 'AvenirNext-DemiBold';
+  padding-top: 3em !important;
+  padding-bottom: 1em !important;
+}
+
+.app-logo {
+  display: inline-block;
+  margin-right: 0.5em;
+  width: 7em;
+  height: auto;
+  vertical-align: middle;
+}
+
+.branding {
+  padding: 100px 0;
+  color: white;
+  font-family: 'Water Brush', cursive;
+  font-weight: 400;
+  font-size: 120px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Water+Brush&display=swap');
