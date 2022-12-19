@@ -1,0 +1,185 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeedPhraseComponent functions 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        New Seed Phrase
+      </div>
+    </div>
+    <div
+      className="centered row"
+    >
+      <form
+        className="ui form form-container"
+        onSubmit={[Function]}
+      >
+        <div
+          className="inline three fields"
+        >
+          <div
+            className="sixteen wide field"
+          >
+            <label>
+              1.
+            </label>
+            <div
+              className="ui input"
+            >
+              <input
+                aria-describedby={null}
+                onChange={[Function]}
+                readOnly={true}
+                type="text"
+                value="123"
+              />
+            </div>
+          </div>
+          <div
+            className="sixteen wide field"
+          >
+            <label>
+              2.
+            </label>
+            <div
+              className="ui input"
+            >
+              <input
+                aria-describedby={null}
+                onChange={[Function]}
+                readOnly={true}
+                type="text"
+                value="asdf"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      className="row"
+    >
+      <p
+        className="ui grey small header description extra-former-blank extra-latter-blank"
+      >
+        WARNING: Improper backup of the seed phrase will result in loss of funds!
+      </p>
+    </div>
+    <div
+      className="centered one column row"
+    >
+      <div
+        className="column"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SeedPhraseComponent should work 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        New Seed Phrase
+      </div>
+    </div>
+    <div
+      className="centered row"
+    >
+      <form
+        className="ui form form-container"
+        onSubmit={[Function]}
+      >
+        <div
+          className="inline three fields"
+        >
+          <div
+            className="sixteen wide field"
+          >
+            <label>
+              1.
+            </label>
+            <div
+              className="ui input"
+            >
+              <input
+                aria-describedby={null}
+                onChange={[Function]}
+                readOnly={true}
+                type="text"
+                value="123"
+              />
+            </div>
+          </div>
+          <div
+            className="sixteen wide field"
+          >
+            <label>
+              2.
+            </label>
+            <div
+              className="ui input"
+            >
+              <input
+                aria-describedby={null}
+                onChange={[Function]}
+                readOnly={true}
+                type="text"
+                value="asdf"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div
+      className="row"
+    >
+      <p
+        className="ui grey small header description extra-former-blank extra-latter-blank"
+      >
+        WARNING: Improper backup of the seed phrase will result in loss of funds!
+      </p>
+    </div>
+    <div
+      className="centered one column row"
+    >
+      <div
+        className="column"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
