@@ -1,0 +1,98 @@
+@import './color.scss';
+@import './variables.scss';
+
+body {
+  background-image: linear-gradient(50deg, #075F91 30%, #941662 120%);
+  background-size: 100% 150%;
+  font-family: "AvenirNext-Medium";
+  
+  .ui.button {
+    width: 100%;
+    margin: 0;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+
+    &.primary-button {
+      background-color: $accent;
+      color: white;
+    }
+    &.blank-button {
+      background-color: transparent;
+      text-align: left;
+    }
+    &.secondary-button {
+      background-color: transparent;
+      color: rgba(21, 25, 32, 0.5);
+      border: 1px solid rgba(86, 103, 137, 0.26);
+    }
+  }
+}
+
+
+.w-100 {
+  width: 100%;
+}
+.p-none {
+  padding: 0 !important;
+}
+.p-16 {
+  padding: 16px !important;
+}
+.px-16 {
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+.pb-19 {
+  padding-bottom: 19px !important;
+}
+.py-5 {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+.py-9 {
+  padding-top: 9px !important;
+  padding-bottom: 9px !important;
+}
+.py-12 {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+}
+.m-none {
+  margin: 0 !important;
+}
+.mb-3 {
+  margin-bottom: 3px !important;
+}
+.bg-white {
+  background-color: white;
+}
+@each $weight in $font-weights {
+  .font-weight-#{$weight} {
+    font-weight: #{$weight};
+  }
+}
+@each $size in $font-sizes {
+  .font-size-#{$size} {
+    font-size: #{$size}px;
+  }
+}
+@each $height in $line-heights {
+  .line-height-#{$height} {
+    line-height: #{$height}px;
+  }
+}
+@each $family in $font-families {
+  .font-family-#{$family} {
+    font-family: #{$family}, sans-serif;
+  }
+}
+@each $option in $text-align-options {
+  .text-align-#{$option} {
+    text-align: #{$option};
+  }
+}
