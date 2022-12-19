@@ -3,9 +3,9 @@ import { Dropdown, DropdownProps } from 'semantic-ui-react';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { selectChain } from '../../../slices/keySlice';
-import { cutter } from '@utils/text';
-import chains from '@/config/chains';
-import { getGlobalChainState } from '@/serviceworker/database';
+import { cutter } from '../../../../utils/text';
+import chains from '../../../config/chains';
+import { getGlobalChainState } from '../../../serviceworker/database';
 
 export default () => {
   const dispatch = useAppDispatch();

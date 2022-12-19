@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChainSelector should work 1`] = `
+<div
+  aria-expanded={false}
+  className="ui selection dropdown chain-selector"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onMouseDown={[Function]}
+  role="listbox"
+  tabIndex={0}
+>
+  <div
+    aria-atomic={true}
+    aria-live="polite"
+    className="divider text"
+    role="alert"
+  >
+    ETHEREUM
+  </div>
+  <i
+    aria-hidden="true"
+    className="dropdown icon"
+    onClick={[Function]}
+  />
+  <div
+    className="menu transition"
+  >
+    <div
+      aria-checked={true}
+      aria-selected={true}
+      className="active selected item"
+      onClick={[Function]}
+      role="option"
+      style={
+        {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <span
+        className="text"
+      >
+        ETHEREUM
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <span
+        className="text"
+      >
+        BITCOIN
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <span
+        className="text"
+      >
+        COSMOS
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <span
+        className="text"
+      >
+        BINANCE
+      </span>
+    </div>
+    <div
+      aria-checked={false}
+      aria-selected={false}
+      className="item"
+      onClick={[Function]}
+      role="option"
+      style={
+        {
+          "pointerEvents": "all",
+        }
+      }
+    >
+      <span
+        className="text"
+      >
+        POLYGON
+      </span>
+    </div>
+  </div>
+</div>
+`;
