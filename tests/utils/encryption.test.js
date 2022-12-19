@@ -1,4 +1,4 @@
-import { encryptToString, generateKey, getIVFromPwd, importKey } from '../../utils/encryption';
+import { decryptFromString, encryptToString, generateKey, getIVFromPwd, importKey } from '../../utils/encryption';
 import { TextEncoder, TextDecoder } from 'util';
 global.TextEncoder = TextEncoder;
 global.TextDecoder = TextDecoder;
@@ -41,26 +41,37 @@ describe('Encryption Methods Test', () => {
     await expect(generateKey()).resolves.toEqual({});
   });*/
 
-  /*it('encryptToString with string', async () => {
+  it('check encryption with number', async () => {
     const crypto = require('crypto');
     Object.defineProperty(global.self, 'crypto', {
       value: {
         subtle: crypto.webcrypto.subtle,
       }
     });
-    expect('123').toMatch(/1/);
-    await expect(encryptToString('a', 10)).resolves.toBe('1*ûa⌂«T1.ñ0¸ï[jõ´');
+    let res = await encryptToString('a', 10);
+    await expect(decryptFromString('a', res)).resolves.toEqual("10");
   });
 
-  it('encryptToString with array', async () => {
+  it('check encryption with string', async () => {
     const crypto = require('crypto');
     Object.defineProperty(global.self, 'crypto', {
       value: {
         subtle: crypto.webcrypto.subtle,
       }
     });
-    console.log(encryptToString('mine', {a: '1', b: '2'}));
-    await expect(encryptToString('mine', {a: '1', b: '2'})).resolves.toBe('a→ºûv{Ä(¯♂öePYöÏs');
-  });*/
+    let res = await encryptToString('key', 'Anything is encrypted');
+    await expect(decryptFromString('key', res)).resolves.toEqual('Anything is encrypted');
+  });
+
+  it('check encryption not working', async () => {
+    const crypto = require('crypto');
+    Object.defineProperty(global.self, 'crypto', {
+      value: {
+        subtle: crypto.webcrypto.subtle,
+      }
+    });
+    let res = await encryptToString('key', 'Anything is encrypted');
+    await expect(decryptFromString('another', res)).rejects.toThrow('Cipher job failed');
+  });
   afterAll(() => jest.resetModules());
 });
