@@ -17,7 +17,6 @@ export default ({ id }: ITransactionItem) => {
     navigate(`/transaction_detail/${id}`);
   };
 
-  console.log(tx);
   return (
     <Grid className='p-16 py-9 bg-white' onClick={handleClick}>
       <Grid.Column width='eleven' textAlign='left'>
@@ -27,6 +26,7 @@ export default ({ id }: ITransactionItem) => {
       <Grid.Column width='five' verticalAlign='middle'>
         <Header as='p' className='description'>{tx.status.confirmed === true ? "Confirmed" : "Unconfirmed"}</Header>
 
+        <Header as='p' className='description'>{tx.vout[0].value}</Header>
       </Grid.Column>
     </Grid>
   )
