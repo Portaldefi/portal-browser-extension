@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IdentityItemComponent should work 1`] = `
+<div
+  className="ui grid p-16 py-9 bg-white"
+>
+  <div
+    className="left aligned eleven wide column"
+  >
+    <p
+      className="ui header description"
+    />
+    <p
+      className="ui header comment"
+    />
+  </div>
+</div>
+`;

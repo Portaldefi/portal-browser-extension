@@ -1,0 +1,112 @@
+@import './color.scss';
+@import './variables.scss';
+
+.ui.board {
+  background-color: white;
+  width: $boardSize;
+  top: 30vh;
+  border-radius: 16px;
+  box-shadow: 0px 8px 36px rgba(0, 0, 0, 0.16);
+  margin: 0 auto;
+  font-family: 'Public-Sans', sans-serif;
+
+  button {
+    width: 100%;
+    margin: 0;
+    padding: 9px 16px;
+    border-radius: 8px;
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+
+    &.primary-button {
+      background-color: $accent;
+      color: white;
+    }
+    &.blank-button {
+      background-color: white;
+      text-align: left;
+    }
+    &.secondary-button {
+      background-color: transparent;
+      color: rgba(21, 25, 32, 0.5);
+      border: 1px solid rgba(86, 103, 137, 0.26);
+    }
+  }
+
+  .heading, .description {
+    font-family: 'Public Sans', sans-serif;
+    font-style: normal;
+  }
+  .form-container {
+    .fields {
+      margin: 0 20px;
+
+      label, input[type="text"], input[type="password"] {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 13px;
+        line-height: 19px;
+      }
+      label {
+        margin: 0;
+      }
+      input[type="text"], input[type="password"] {
+        padding-left: 0;
+        border: none;
+      }
+      input[type="password"] {
+        border-bottom: 1px solid rgba(86, 103, 137, 0.26);
+      }
+    }
+  }
+  .heading {
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 24px;
+    color: black;
+  }
+  .description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+
+    &.extra-latter-blank {
+      margin-bottom: 1em;
+    }
+    &.extra-former-blank {
+      margin-top: 1em;
+    }
+  }
+  .ui.form-container {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 20px;
+    box-shadow: 0px 45px 112px rgba(0, 0, 0, 0.06), 0px 22.7812px 48.825px rgba(0, 0, 0, 0.0405), 0px 9px 18.2px rgba(0, 0, 0, 0.03), 0px 1.96875px 6.475px rgba(0, 0, 0, 0.0195);
+    border-radius: 10px;
+    width: 100%;
+  }
+  .row {
+    padding: 12px 24px;
+
+    &:first-child {
+      padding-top: 24px;
+    }
+    &:last-child {
+      padding-bottom: 24px;
+    }
+    .column {
+      padding: 0 4px;
+
+      &:first-child {
+        padding-left: 0;
+      }
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}

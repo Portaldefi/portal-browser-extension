@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChainItem checkbox should work 1`] = `
+<div
+  className="ui grid p-16 py-9 bg-white"
+>
+  <div
+    className="left aligned eleven wide column"
+  >
+    <p
+      className="ui header description"
+    />
+    <p
+      className="ui header comment"
+    />
+  </div>
+  <div
+    className="middle aligned five wide column"
+  >
+    <div
+      className="ui checked fitted toggle checkbox"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <input
+        checked={true}
+        className="hidden"
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+      />
+      <label />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ChainItem should work 1`] = `
+<div
+  className="ui grid p-16 py-9 bg-white"
+>
+  <div
+    className="left aligned eleven wide column"
+  >
+    <p
+      className="ui header description"
+    />
+    <p
+      className="ui header comment"
+    />
+  </div>
+  <div
+    className="middle aligned five wide column"
+  >
+    <div
+      className="ui checked fitted toggle checkbox"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <input
+        checked={true}
+        className="hidden"
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+      />
+      <label />
+    </div>
+  </div>
+</div>
+`;

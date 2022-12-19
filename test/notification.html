@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test - Notification</title>
+  <style>
+
+    #test {
+      background-color: #2B4BF2;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <button id="test" onclick="handleClick()">Hit me</button>
+  <script>
+    handleClick = () => {
+      window.portal.request();
+    }
+  </script>
+</body>
+</html>

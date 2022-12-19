@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccessOptionComponent should work 1`] = `
+<div
+  className="ui grid p-16 py-5 bg-white"
+>
+  <div
+    className="left aligned eleven wide column"
+  >
+    <p
+      className="font-family-Inter font-weight-400 font-size-14 line-height-17"
+    />
+  </div>
+  <div
+    className="middle aligned five wide column"
+  >
+    <div
+      className="ui fitted radio checkbox"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        readOnly={true}
+        tabIndex={0}
+        type="radio"
+      />
+      <label />
+    </div>
+  </div>
+</div>
+`;
