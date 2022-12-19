@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddDuressKeyComponent functions should work 1`] = `
+<div
+  className="ui grid w-100"
+>
+  <div
+    className="centered row p-none pb-19"
+  >
+    <h1
+      className="ui header heading"
+    >
+      Add Duress Key
+    </h1>
+  </div>
+  <div
+    className="centered row"
+  >
+    <div
+      className="fields"
+    >
+      <label>
+        Duress Key
+      </label>
+      <div
+        className="eight wide field"
+      >
+        <div
+          className="ui input"
+        >
+          <input
+            aria-describedby={null}
+            name="duresskey"
+            onChange={[Function]}
+            type="password"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="centered row"
+  >
+    <button
+      className="ui button primary-button pwd-confirm"
+      onClick={[Function]}
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;
+
+exports[`AddDuressKeyComponent functions should work 2`] = `
+<div
+  className="ui grid w-100"
+>
+  <div
+    className="centered row p-none pb-19"
+  >
+    <h1
+      className="ui header heading"
+    >
+      Add Duress Key
+    </h1>
+  </div>
+  <div
+    className="centered row"
+  >
+    <div
+      className="fields"
+    >
+      <label>
+        Duress Key
+      </label>
+      <div
+        className="eight wide field"
+      >
+        <div
+          className="ui input"
+        >
+          <input
+            aria-describedby={null}
+            name="duresskey"
+            onChange={[Function]}
+            type="password"
+            value="test"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="centered row"
+  >
+    <button
+      className="ui button primary-button pwd-confirm"
+      onClick={[Function]}
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;
+
+exports[`AddDuressKeyComponent should work 1`] = `
+<div
+  className="ui grid w-100"
+>
+  <div
+    className="centered row p-none pb-19"
+  >
+    <h1
+      className="ui header heading"
+    >
+      Add Duress Key
+    </h1>
+  </div>
+  <div
+    className="centered row"
+  >
+    <div
+      className="fields"
+    >
+      <label>
+        Duress Key
+      </label>
+      <div
+        className="eight wide field"
+      >
+        <div
+          className="ui input"
+        >
+          <input
+            aria-describedby={null}
+            name="duresskey"
+            onChange={[Function]}
+            type="password"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="centered row"
+  >
+    <button
+      className="ui button primary-button pwd-confirm"
+      onClick={[Function]}
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;

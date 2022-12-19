@@ -1,1 +1,14 @@
+
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
 node_modules
+.yalc
+
+# builds
+assets
+dist
+
+# misc
+.DS_Store
+EXT_DB

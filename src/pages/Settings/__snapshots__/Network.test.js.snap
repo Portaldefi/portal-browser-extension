@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NetworkComponent should work 1`] = `
+<div
+  className="ui grid w-100"
+>
+  <div
+    className="centered row p-none pb-19"
+  >
+    <h1
+      className="ui header heading"
+    >
+      Settings
+    </h1>
+  </div>
+  <div
+    className="row p-none"
+  >
+    <div
+      className="ui list w-100"
+      role="list"
+    >
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned eleven wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                Bitcoin
+              </p>
+              <p
+                className="ui header comment"
+              >
+                https://grove.chat/  -  Tue, Apr. 26, 2022 5:00 am
+              </p>
+            </div>
+            <div
+              className="middle aligned five wide column"
+            >
+              <div
+                className="ui fitted toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+              >
+                <input
+                  checked={false}
+                  className="hidden"
+                  readOnly={true}
+                  tabIndex={0}
+                  type="checkbox"
+                />
+                <label />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned eleven wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                Ethereum
+              </p>
+              <p
+                className="ui header comment"
+              >
+                https://uniswap.org/  -  Mon, Apr. 25, 2022 8:00 pm
+              </p>
+            </div>
+            <div
+              className="middle aligned five wide column"
+            >
+              <div
+                className="ui fitted toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+              >
+                <input
+                  checked={false}
+                  className="hidden"
+                  readOnly={true}
+                  tabIndex={0}
+                  type="checkbox"
+                />
+                <label />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`NetworkComponent should work 2`] = `
+<div
+  className="ui grid w-100"
+>
+  <div
+    className="centered row p-none pb-19"
+  >
+    <h1
+      className="ui header heading"
+    >
+      Settings
+    </h1>
+  </div>
+  <div
+    className="row p-none"
+  >
+    <div
+      className="ui list w-100"
+      role="list"
+    >
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned eleven wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                Bitcoin
+              </p>
+              <p
+                className="ui header comment"
+              >
+                https://grove.chat/  -  Tue, Apr. 26, 2022 5:00 am
+              </p>
+            </div>
+            <div
+              className="middle aligned five wide column"
+            >
+              <div
+                className="ui fitted toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+              >
+                <input
+                  checked={false}
+                  className="hidden"
+                  readOnly={true}
+                  tabIndex={0}
+                  type="checkbox"
+                />
+                <label />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned eleven wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                Ethereum
+              </p>
+              <p
+                className="ui header comment"
+              >
+                https://uniswap.org/  -  Mon, Apr. 25, 2022 8:00 pm
+              </p>
+            </div>
+            <div
+              className="middle aligned five wide column"
+            >
+              <div
+                className="ui fitted toggle checkbox"
+                onChange={[Function]}
+                onClick={[Function]}
+                onMouseDown={[Function]}
+                onMouseUp={[Function]}
+              >
+                <input
+                  checked={false}
+                  className="hidden"
+                  readOnly={true}
+                  tabIndex={0}
+                  type="checkbox"
+                />
+                <label />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
