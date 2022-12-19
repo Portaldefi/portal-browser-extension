@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SettingItem should work 1`] = `
+<div
+  className="ui grid p-16 py-12 bg-white w-100"
+>
+  <div
+    className="left aligned eleven wide column"
+  >
+    <p
+      className="ui header description"
+    />
+  </div>
+  <div
+    className="right aligned five wide column"
+  />
+</div>
+`;
