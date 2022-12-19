@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransactionHistory ConnectionItem 1`] = `
+<div
+  className="ui grid p-16 py-9 bg-white"
+>
+  <div
+    className="left aligned eleven wide column"
+  >
+    <p
+      className="ui header description"
+    />
+    <p
+      className="ui header comment"
+    />
+  </div>
+  <div
+    className="middle aligned five wide column"
+  >
+    <div
+      className="ui fitted toggle checkbox"
+      onChange={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      onMouseUp={[Function]}
+    >
+      <input
+        checked={false}
+        className="hidden"
+        readOnly={true}
+        tabIndex={0}
+        type="checkbox"
+      />
+      <label />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`TransactionHistory TransactionItem 1`] = `
+<div
+  className="ui grid p-16 py-9 bg-white"
+  onClick={[Function]}
+>
+  <div
+    className="left aligned eleven wide column"
+  >
+    <p
+      className="ui header description"
+    />
+    <p
+      className="ui header description"
+    >
+      NaN-NaN-NaN
+    </p>
+  </div>
+  <div
+    className="middle aligned five wide column"
+  >
+    <p
+      className="ui header description"
+    >
+      Confirmed
+    </p>
+    <p
+      className="ui header description"
+    >
+      0
+    </p>
+  </div>
+</div>
+`;
