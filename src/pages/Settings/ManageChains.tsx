@@ -4,8 +4,6 @@ import {
   List
 } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
-import IdentityItem from '@/pages/Settings/IdentityItem'
-import { useAppSelector } from '@/hooks';
 import { getGlobalChainState, setGlobalChainState } from '@/serviceworker/database';
 import GlobalChainItem from './GlobalChainItem';
 import chains from '@/config/chains';

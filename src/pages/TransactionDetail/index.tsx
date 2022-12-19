@@ -1,18 +1,14 @@
-import { shortenString } from '@utils/helpers';
-import { useAppSelector } from '@/hooks';
-import React, { useCallback, useEffect, useState } from 'react';
+import { shortenString } from '../../../utils/helpers';
+import { useAppSelector } from '../..//hooks';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Form, Grid, Header } from 'semantic-ui-react';
+import { Grid, Header } from 'semantic-ui-react';
 
 export default () => {
   const transactions = useAppSelector(state => state.menu.transactions);
   const { id } = useParams();
   const txId = parseInt(id!);
   const tx = transactions[txId];
-
-  useEffect(() => {
-
-  }, []);
 
   return (
     <Grid className='w-100'>

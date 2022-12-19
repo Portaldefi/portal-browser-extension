@@ -1,12 +1,11 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Grid, Header, Icon } from 'semantic-ui-react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { Grid, Header } from 'semantic-ui-react';
+import { useAppDispatch } from '../../hooks';
 import { addIdentity } from '../../slices/keySlice';
 
 import SettingItem from '../../components/Home/SettingItem';
 import { generateIdentity } from '../../../utils/seedPhrase';
-import { getSeedPhrase } from '@/serviceworker/database';
 
 export default () => {
   const dispatch = useAppDispatch();
