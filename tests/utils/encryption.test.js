@@ -1,4 +1,4 @@
-import { getIVFromPwd, importKey } from './encryption';
+import { getIVFromPwd, importKey } from '../../utils/encryption';
 
 describe('Encryption Methods Test', () => {
   it('getIVFromPwd', () => {

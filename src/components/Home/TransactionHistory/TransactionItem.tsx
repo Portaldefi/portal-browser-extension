@@ -2,7 +2,7 @@ import React from 'react';
 import { Checkbox, Grid, Header } from 'semantic-ui-react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '@/hooks';
-import { dateToString, shortenString } from '@/common/helpers';
+import { dateToString, shortenString } from '@utils/helpers';
 
 interface ITransactionItem {
   id: number

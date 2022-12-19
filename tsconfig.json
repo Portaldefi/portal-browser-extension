@@ -45,7 +45,7 @@
   "include": [
     "src",
     "utils"
-  ],
+, "tests/encryption.test.js"  ],
   "exclude": [
     "node_modules",
     "assets",

@@ -1,4 +1,4 @@
-import { shortenString } from '@/common/helpers';
+import { shortenString } from '@utils/helpers';
 import { useAppSelector } from '@/hooks';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
