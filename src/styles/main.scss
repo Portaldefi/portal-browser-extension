@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&family=Public+Sans:wght@400;700&family=Work+Sans:wght@600&display=swap');
+
+.ui.container.App {
+  margin: 0 !important;
+}
+
+.ui.grid {
+  margin: 0;
+}
+
+#menu, #content {
+  padding: 0;
+}
+#menu {
+  height: 48px;
+  background-color: white;
+  box-sizing: border-box;
+
+  .column {
+    padding: 8px;
+
+    .ui.dropdown {
+      // width: 171px;
+      min-height: 28px;
+      min-width: 171px;
+
+      background: #ECECEC;
+      border-radius: 10px;
+      &, .icon {
+        padding: 7px 12px !important;
+      }
+      &.active {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      &, * {
+        border: none;
+      }
+
+      .text {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+      }
+      .transition {
+        background: #ECECEC;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border: none;
+        max-height: none;
+        width: auto;
+        min-width: max-content;
+        margin: 0;
+
+        .item {
+          // width: 171px;
+          padding: 5px 10px !important;
+        }
+      }
+    }
+  }  
+}
+#content {
+  .column {
+    padding: 0;
+
+    .mainframe {
+      height: 372px;
+      background-color: rgba(255, 255, 255, 0.7);
+
+      .heading {
+        font-weight: 700;
+        font-size: 19px;
+        line-height: 24px;
+        color: black;
+      }
+      .title {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 24px;
+        line-height: 29px;
+      }
+      .subtitle {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 17px;
+      }
+      .description {
+        font-family: "Inter", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+      }
+      .comment {
+        font-family: 'Inter', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 8px;
+        line-height: 10px;
+      }
+      .recent-connection {
+        width: 100%;
+
+        .row {
+          padding: 0;
+        }
+      }
+      .light-shadow {
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1), inset 0px 1px 1px rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+}
