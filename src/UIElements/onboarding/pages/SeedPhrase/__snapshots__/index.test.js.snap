@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SeedPhraseComponent should work 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        New Seed Phrase
+      </div>
+    </div>
+    <div
+      className="centered row"
+    >
+      <form
+        className="ui form form-container"
+        onSubmit={[Function]}
+      />
+    </div>
+    <div
+      className="row"
+    >
+      <p
+        className="ui grey small header description extra-former-blank extra-latter-blank"
+      >
+        WARNING: Improper backup of the seed phrase will result in loss of funds!
+      </p>
+    </div>
+    <div
+      className="centered one column row"
+    >
+      <div
+        className="column"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
