@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IntroComponent buttons 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        Our Values
+      </div>
+    </div>
+    <div
+      className="centered two column row"
+    >
+      <div
+        className="column"
+      >
+        <div
+          className="centered row"
+        >
+          <div
+            className="ui medium header heading"
+          >
+            Censorship-resistant
+          </div>
+          <p
+            className="ui grey small header description"
+          >
+            Using Fabric, we enable web scale, serverless infrastructure with strong privacy and security guarantees.
+          </p>
+          <img
+            className="ui image"
+            src="/images/onboarding/black-glasses.png"
+          />
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <div
+          className="centered row"
+        >
+          <div
+            className="ui medium header heading"
+          >
+            Freedom
+          </div>
+          <p
+            className="ui grey small header description"
+          >
+            Fabric, the underlying protocol Portal uses extends Bitcoin’s functionality today without needing any BIPs.
+          </p>
+          <img
+            className="ui image"
+            src="/images/onboarding/portal.png"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="centered two column row"
+    >
+      <div
+        className="column"
+      >
+        <button
+          className="ui button blank-button"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="angle left icon"
+            onClick={[Function]}
+          />
+          Back
+        </button>
+      </div>
+      <div
+        className="column"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`IntroComponent should work 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        Our Values
+      </div>
+    </div>
+    <div
+      className="centered two column row"
+    >
+      <div
+        className="column"
+      >
+        <div
+          className="centered row"
+        >
+          <div
+            className="ui medium header heading"
+          >
+            Censorship-resistant
+          </div>
+          <p
+            className="ui grey small header description"
+          >
+            Using Fabric, we enable web scale, serverless infrastructure with strong privacy and security guarantees.
+          </p>
+          <img
+            className="ui image"
+            src="/images/onboarding/black-glasses.png"
+          />
+        </div>
+      </div>
+      <div
+        className="column"
+      >
+        <div
+          className="centered row"
+        >
+          <div
+            className="ui medium header heading"
+          >
+            Freedom
+          </div>
+          <p
+            className="ui grey small header description"
+          >
+            Fabric, the underlying protocol Portal uses extends Bitcoin’s functionality today without needing any BIPs.
+          </p>
+          <img
+            className="ui image"
+            src="/images/onboarding/portal.png"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="centered two column row"
+    >
+      <div
+        className="column"
+      >
+        <button
+          className="ui button blank-button"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="angle left icon"
+            onClick={[Function]}
+          />
+          Back
+        </button>
+      </div>
+      <div
+        className="column"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Continue
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
