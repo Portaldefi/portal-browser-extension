@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConnectionHistory button click 1`] = `
+<div
+  className="ui grid recent-connection"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="left aligned ten wide column"
+    >
+      <p
+        className="ui header subtitle p-16 py-9"
+      >
+        Last Connections
+      </p>
+    </div>
+    <div
+      className="right aligned six wide column"
+    >
+      <button
+        className="ui button blank-button"
+        onClick={[Function]}
+      >
+        Clear
+      </button>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="ui list w-100"
+      role="list"
+    >
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned sixteen wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                https://grove.chat/
+              </p>
+              <p
+                className="ui header comment"
+              >
+                Tue, Apr. 26, 2022 5:00 am
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned sixteen wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                https://grove.chat/
+              </p>
+              <p
+                className="ui header comment"
+              >
+                Sat, Apr. 23, 2022 8:30 am
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned sixteen wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                https://grove.chat/
+              </p>
+              <p
+                className="ui header comment"
+              >
+                Fri, Apr. 22, 2022 12:00 pm
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ConnectionHistory should work 1`] = `
+<div
+  className="ui grid recent-connection"
+>
+  <div
+    className="row"
+  >
+    <div
+      className="left aligned ten wide column"
+    >
+      <p
+        className="ui header subtitle p-16 py-9"
+      >
+        Last Connections
+      </p>
+    </div>
+    <div
+      className="right aligned six wide column"
+    >
+      <button
+        className="ui button blank-button"
+        onClick={[Function]}
+      >
+        Clear
+      </button>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="ui list w-100"
+      role="list"
+    >
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned sixteen wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                https://grove.chat/
+              </p>
+              <p
+                className="ui header comment"
+              >
+                Tue, Apr. 26, 2022 5:00 am
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned sixteen wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                https://grove.chat/
+              </p>
+              <p
+                className="ui header comment"
+              >
+                Sat, Apr. 23, 2022 8:30 am
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="item"
+        onClick={[Function]}
+        role="listitem"
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui grid p-16 py-9 bg-white"
+          >
+            <div
+              className="left aligned sixteen wide column"
+            >
+              <p
+                className="ui header description"
+              >
+                https://grove.chat/
+              </p>
+              <p
+                className="ui header comment"
+              >
+                Fri, Apr. 22, 2022 12:00 pm
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

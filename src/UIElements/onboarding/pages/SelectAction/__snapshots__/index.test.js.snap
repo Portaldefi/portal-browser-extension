@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectActionComponent button clicks 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        Connect Identity
+      </div>
+    </div>
+    <div
+      className="centered row"
+    >
+      <p
+        className="ui grey small header description"
+      >
+        Every identity is created with a seed, with the option to create multiple detached identities from each seed.
+      </p>
+    </div>
+    <div
+      className="centered row"
+    >
+      <img
+        className="ui image"
+        src="/images/onboarding/vault.png"
+      />
+    </div>
+    <div
+      className="centered two column row"
+    >
+      <div
+        className="column"
+      >
+        <button
+          className="ui button secondary-button"
+          onClick={[Function]}
+        >
+          Import Seed
+        </button>
+      </div>
+      <div
+        className="column"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Create New Identity Seed
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SelectActionComponent should work 1`] = `
+<div
+  className="ui segment board"
+>
+  <div
+    className="ui grid"
+  >
+    <div
+      className="centered row"
+    >
+      <div
+        className="ui medium header heading"
+      >
+        Connect Identity
+      </div>
+    </div>
+    <div
+      className="centered row"
+    >
+      <p
+        className="ui grey small header description"
+      >
+        Every identity is created with a seed, with the option to create multiple detached identities from each seed.
+      </p>
+    </div>
+    <div
+      className="centered row"
+    >
+      <img
+        className="ui image"
+        src="/images/onboarding/vault.png"
+      />
+    </div>
+    <div
+      className="centered two column row"
+    >
+      <div
+        className="column"
+      >
+        <button
+          className="ui button secondary-button"
+          onClick={[Function]}
+        >
+          Import Seed
+        </button>
+      </div>
+      <div
+        className="column"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Create New Identity Seed
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

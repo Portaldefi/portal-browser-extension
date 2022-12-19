@@ -1,0 +1,182 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccessComponent should work 1`] = `
+<div
+  className="mainframe"
+>
+  <div
+    className="ui grid bg-white py-12"
+  >
+    <div
+      className="centered row"
+    >
+      <h1
+        className="ui header title"
+      >
+        Grove Chat
+      </h1>
+      <p
+        className="font-size-14 font-weight-400 line-height-17 font-family-Inter"
+      >
+        is requesting access to your Fabric Identity
+      </p>
+    </div>
+    <div
+      className="centered stretched row"
+    >
+      <div
+        className="light-shadow p-16 py-9 w-100 font-family-Inter font-weight-400 bg-white"
+      >
+        <p
+          className="font-size-12 line-height-15 text-align-left mb-3"
+        >
+          Website
+        </p>
+        <p
+          className="font-size-14 line-height-17 text-align-left"
+        >
+          https://grove.chat/
+        </p>
+      </div>
+      <div
+        className="light-shadow p-16 py-9 w-100 font-family-Inter font-weight-400 bg-white"
+      >
+        <p
+          className="font-size-12 line-height-15 text-align-left mb-3"
+        >
+          Fabric Identity
+        </p>
+        <p
+          className="font-size-14 line-height-17 text-align-left"
+        >
+          fabricm3fuk238hJ3oawHIlk3wa4kjls
+        </p>
+      </div>
+    </div>
+    <div
+      className="row p-none"
+    >
+      <p
+        className="font-family-Inter font-weight-400 font-size-12 line-height-15 px-16 m-none"
+      >
+        Allow access for
+      </p>
+      <div
+        className="ui list w-100"
+        role="list"
+      >
+        <div
+          className="item p-none"
+          onClick={[Function]}
+          role="listitem"
+        >
+          <div
+            className="content"
+          >
+            <div
+              className="ui grid p-16 py-5 bg-white"
+            >
+              <div
+                className="left aligned eleven wide column"
+              >
+                <p
+                  className="font-family-Inter font-weight-400 font-size-14 line-height-17"
+                >
+                  This session
+                </p>
+              </div>
+              <div
+                className="middle aligned five wide column"
+              >
+                <div
+                  className="ui fitted radio checkbox"
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                >
+                  <input
+                    checked={false}
+                    className="hidden"
+                    readOnly={true}
+                    tabIndex={0}
+                    type="radio"
+                  />
+                  <label />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          className="item p-none"
+          onClick={[Function]}
+          role="listitem"
+        >
+          <div
+            className="content"
+          >
+            <div
+              className="ui grid p-16 py-5 bg-white"
+            >
+              <div
+                className="left aligned eleven wide column"
+              >
+                <p
+                  className="font-family-Inter font-weight-400 font-size-14 line-height-17"
+                >
+                  Indefinitely
+                </p>
+              </div>
+              <div
+                className="middle aligned five wide column"
+              >
+                <div
+                  className="ui fitted radio checkbox"
+                  onChange={[Function]}
+                  onClick={[Function]}
+                  onMouseDown={[Function]}
+                  onMouseUp={[Function]}
+                >
+                  <input
+                    checked={false}
+                    className="hidden"
+                    readOnly={true}
+                    tabIndex={0}
+                    type="radio"
+                  />
+                  <label />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="centered two column row"
+    >
+      <div
+        className="column px-16"
+      >
+        <button
+          className="ui button secondary-button"
+          onClick={[Function]}
+        >
+          Reject
+        </button>
+      </div>
+      <div
+        className="column px-16"
+      >
+        <button
+          className="ui button primary-button"
+          onClick={[Function]}
+        >
+          Allow
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
