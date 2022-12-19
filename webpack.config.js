@@ -1,42 +1,347 @@
 const path = require('path');
+const fs = require('fs');
+const { camelCase } = require('lodash');
+const { getIfUtils, removeEmpty } = require('webpack-config-utils');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const ProgressBar = require('progress-bar-webpack-plugin');
+const webpack = require('webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
-module.exports = {
-  entry: path.resolve(__dirname, 'scripts', 'popup.js'),
-  output: {
-    path: path.resolve(__dirname, 'assets'),
-    filename: 'popup.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(jsx|js)$/,
-        include: path.resolve(__dirname, 'scripts'),
-        exclude: /node_modules/,
-        use: [{
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', {
-                "targets": "defaults" 
-              }],
-              '@babel/preset-react'
-            ]
-          }
-        }]
-      }
-    ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: "./assets/popup.html",
-      filename: "popup.html"
+const pkgJson = require('./package.json');
+
+const ifDirIsNotEmpty = (dir, value) => {
+  return fs.readdirSync(dir).length !== 0 ? value : undefined;
+};
+
+/**
+ * @param SrcPath the folder/file name (eg 'popup') or the path relative to the 'src' dir (eg 'scripts/background.ts')
+ * @param value the value to return if the folder is found
+ */
+const ifDirExists = (SrcPath, value) => {
+  return fs.existsSync(path.join(__dirname, 'src', SrcPath))
+    ? value
+    : undefined;
+};
+
+module.exports = (env) => {
+  const { ifProd, ifDev } = getIfUtils(env);
+
+  /**
+   * @param dirPath the path relative to src (eg 'scripts' not 'src/scripts')
+   */
+  const getFolders = (dirPath) => {
+    return fs
+      .readdirSync(path.join(__dirname, 'src', dirPath), {
+        withFileTypes: true,
+      })
+      .filter((dirent) => dirent.isDirectory())
+      .map((dirent) => dirent.name);
+  };
+
+  /**
+   * @param dirPath the path relative to src (eg 'scripts' not 'src/scripts')
+   * @param entryFile the entry point (eg 'index.ts' or 'index.tsx')
+   */
+  const getEntries = (dirPath, entryFile = 'index.tsx') => {
+    const _e = {};
+    // get all folders
+    const folders = getFolders(dirPath);
+
+    folders.forEach((folderName) => {
+      _e[camelCase(folderName)] = path.join(
+        __dirname,
+        'src',
+        dirPath,
+        folderName,
+        entryFile,
+      );
+    });
+
+    return _e;
+  };
+
+  /** get a list of all folders in UIElements (this means the user has added a (react) html page and wants webpack to handle bundling and transpiling) */
+  const UIElementsDir = path.join(__dirname, 'src', 'UIElements');
+  const setUIElementHtml = () => {
+    const htmlPages = [];
+    const UIElements = getFolders('UIElements');
+    UIElements.forEach((folderName) => {
+      htmlPages.push(
+        new HtmlWebpackPlugin({
+          filename: `${camelCase(folderName)}.html`,
+          template: path.join(UIElementsDir, folderName, 'index.html'),
+          chunks: [camelCase(folderName)],
+        }),
+      );
+    });
+    return htmlPages;
+  };
+
+  return {
+    mode: ifProd('production', 'development'),
+    entry: removeEmpty({
+      index: './src/index.tsx',
+      popup: ifDirExists('popup', path.join(__dirname, 'src/popup/index.tsx')),
+      options: ifDirExists('options', './src/options/index.tsx'),
+      onboarding: ifDirExists('onboarding', './src/onboarding/index.tsx'),
+      newtab: ifDirExists('newtab', './src/newtab/index.tsx'),
+      serviceworker: ifDirExists('serviceworker/index.ts', {
+        import: './src/serviceworker/index.ts',
+        filename: 'serviceworker.js',
+      }),
+      ...getEntries('UIElements'),
+      ...getEntries('scripts', 'index.ts'),
     }),
-    new CopyPlugin({
-      patterns: [
-        { from: "public" }
+    output: {
+      path: path.resolve(__dirname, 'assets'),
+      filename: 'js/[name].js',
+    },
+    module: {
+      rules: [
+        {
+          test: /\.[jt]sx?$/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                '@babel/preset-env',
+                ['@babel/preset-react', { runtime: 'automatic' }],
+                '@babel/preset-typescript',
+              ],
+              plugins: removeEmpty([ifDev('react-refresh/babel')]),
+            },
+          },
+          exclude: /node_modules/,
+          include: [path.resolve(__dirname, 'src')],
+        },
+        {
+          test: /\.(js)$/,
+          use: [{
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                ['@babel/preset-env', {
+                  "targets": "defaults"
+                }],
+                '@babel/preset-react',
+                {
+                  'plugins': ['@babel/plugin-proposal-class-properties']
+                }
+              ],
+            }
+          }],
+          include: [path.resolve(__dirname, 'node_modules/@fabric')],
+        },
+        {
+          test: /\.ts$/,
+          use: [
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true,
+                onlyCompileBundledFiles: true,
+              },
+            },{
+              loader: 'babel-loader',
+              options: {
+                presets: [
+                  ['@babel/preset-env', {
+                    "targets": "defaults"
+                  }],
+                  '@babel/preset-react',
+                  {
+                      'plugins': ['@babel/plugin-proposal-class-properties']
+                  },
+                  '@babel/preset-typescript',
+                ],
+              }
+          }],"exclude": /node_modules/,
+        include: [
+          path.resolve(__dirname, 'node_modules/@fabric'),
+          path.resolve(__dirname, 'utils')
+        ],
+      },
+        {
+          test: /\.(s[ac]|c)ss$/i,
+          use: removeEmpty([
+            ifProd(MiniCssExtractPlugin.loader, 'style-loader'),
+            'css-loader',
+            'sass-loader',
+          ]),
+          include: [
+            path.join(__dirname, 'src'),
+            /node_modules/
+          ],
+        },
+        {
+          test: /\.(png|svg|jpe?g|gif)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'img/[hash][ext][query]',
+          },
+        },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'fonts/[hash][ext][query]',
+          },
+        },
+        {
+            test: /\.wasm$/,
+            type: "asset/inline",
+            // loaders: ['wasm-loader']
+        },
       ],
-    }),
-  ]
+    },
+    plugins: removeEmpty([
+      new ForkTsCheckerWebpackPlugin({
+        // tslint: false,      // change to 'true' later
+        // useTypescriptIncrementalApi: true,
+        // checkSyntacticErrors: true,
+      }),
+      new CleanWebpackPlugin({
+        cleanStaleWebpackAssets: false, // don't remove index.html when using the flag watch
+      }),
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'build/index.html',
+        chunks: ['index'],
+      }),
+      new webpack.ProvidePlugin({
+        Buffer: ['buffer', 'Buffer'],
+      }),
+      ifProd(
+        new MiniCssExtractPlugin({
+          filename: 'css/[name].css',
+        }),
+      ),
+      ifDirExists(
+        'popup',
+        new HtmlWebpackPlugin({
+          filename: 'popup.html',
+          template: 'src/popup/index.html',
+          chunks: ['popup'],
+        }),
+      ),
+      ifDirExists(
+        'options',
+        new HtmlWebpackPlugin({
+          filename: 'options.html',
+          template: 'src/options/index.html',
+          chunks: ['options'],
+        }),
+      ),
+      ifDirExists(
+        'newtab',
+        new HtmlWebpackPlugin({
+          filename: 'newtab.html',
+          template: 'src/newtab/index.html',
+          chunks: ['newtab'],
+        }),
+      ),
+      ifDirExists(
+        'onboarding',
+        new HtmlWebpackPlugin({
+          filename: 'onboarding.html',
+          template: 'src/onboarding/index.html',
+          chunks: ['onboarding'],
+        }),
+      ),
+      ...setUIElementHtml(),
+      new CopyPlugin({
+        patterns: removeEmpty([
+          ifDirIsNotEmpty(path.join(__dirname, 'build', 'icons'), {
+            from: 'build/icons',
+            to: 'icons',
+          }),
+          ifDirIsNotEmpty(path.join(__dirname, 'build', 'images'), {
+            from: 'build/images',
+            to: 'images',
+          }),
+          {
+            from: 'build/manifest.json',
+            transform: (buffer) => {
+              const manifestJson = JSON.parse(buffer.toString());
+              manifestJson.name = pkgJson.name;
+              manifestJson.version = pkgJson.version;
+              manifestJson.description = pkgJson.description;
+              manifestJson.author = pkgJson.author;
+              manifestJson.homepage_url = pkgJson.homepage; // TODO: check this
+              return Buffer.from(JSON.stringify(manifestJson));
+            },
+          },
+        ]),
+      }),
+      ifDev(new ReactRefreshWebpackPlugin()),
+      ifProd(new ProgressBar()),
+      new webpack.ProvidePlugin({
+        // fix "process is not defined" error:
+        process: 'process/browser',
+        // Work around for Buffer is undefined:
+        // https://github.com/webpack/changelog-v5/issues/10
+          Buffer: ['buffer', 'Buffer'],
+      }),
+    ]),
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js', '.jsx', '.json'],
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+        '@utils': path.resolve(__dirname, 'utils'),
+        'process': "process/browser"
+      },
+      fallback: {
+        "assert": false,
+        "buffer": require.resolve('buffer/'),
+        "child_process": false,
+        "dgram": false,
+        "fs": false,
+        "iso-639-3": false,
+        "tls": false,
+        "net": false,
+        "os": require.resolve("os-browserify/browser"),
+        "path": false,
+        "zlib": false,
+        "http": false,
+        "https": false,
+        "process": require.resolve('process'),
+        "stream": require.resolve("stream-browserify"),
+        "crypto": require.resolve('crypto-browserify'),
+        "url": false,
+        "util": false,
+        "querystring": false
+      },
+      symlinks: true,
+    },
+    devtool: ifProd(false, 'source-map'),
+    devServer: {
+      //   index: 'index.html', // The filename that is considered the index file.
+      port: 3003,
+      host: 'localhost',
+      open: true, // open the browser after server had been started
+      compress: true,
+      // overlay: true, // show compiler errors in the browser
+      static: path.join(__dirname, 'build'),
+    },
+    stats: {
+      errorDetails: true,
+      children: true
+    },
+    experiments: {
+      asyncWebAssembly: true,
+      buildHttp: [
+        () => true
+      ],
+      // layers: true,
+      // lazyCompilation: true,
+      // outputModule: true,
+      // syncWebAssembly: true,
+      // topLevelAwait: true,
+    }
+  };
 };
