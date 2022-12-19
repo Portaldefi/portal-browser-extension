@@ -1,0 +1,41 @@
+{
+  "name": "@fabric/passport",
+  "description": "Sign in to websites using Fabric.",
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "serviceWorker.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "24": "icons/icon24.png",
+      "32": "icons/icon32.png"
+    },
+    "default_title": "Fabric Wallet"
+  },
+  "permissions": [
+    "tabs", "storage", "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/contentscript.js"],
+      "all_frames": true,
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [{
+    "resources": ["js/injectscript.js"],
+    "matches": ["<all_urls>"]
+  }],
+  "externally_connectable": {
+    "matches": ["*://*.google.com/*",
+                "localhost:3000"]
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
